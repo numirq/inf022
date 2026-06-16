@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl" xml:lang="pl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Vulpi">
+
+<title>Analiza Zadań Praktycznych - Egzamin INF.02</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="egzamin-12.06.2026-przeglad_files/libs/clipboard/clipboard.min.js"></script>
+<script src="egzamin-12.06.2026-przeglad_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="egzamin-12.06.2026-przeglad_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="egzamin-12.06.2026-przeglad_files/libs/quarto-html/popper.min.js"></script>
+<script src="egzamin-12.06.2026-przeglad_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="egzamin-12.06.2026-przeglad_files/libs/quarto-html/anchor.min.js"></script>
+<link href="egzamin-12.06.2026-przeglad_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="egzamin-12.06.2026-przeglad_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="egzamin-12.06.2026-przeglad_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="egzamin-12.06.2026-przeglad_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="egzamin-12.06.2026-przeglad_files/libs/bootstrap/bootstrap-67270d1595a62d14f123c043d4fb2f18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Spis treści</h2>
+   
+  <ul>
+  <li><a href="#wstęp" id="toc-wstęp" class="nav-link active" data-scroll-target="#wstęp"><span class="header-section-number">1</span> Wstęp</a></li>
+  <li><a href="#montaż" id="toc-montaż" class="nav-link" data-scroll-target="#montaż"><span class="header-section-number">2</span> Montaż</a>
+  <ul>
+  <li><a href="#dysk-m.2" id="toc-dysk-m.2" class="nav-link" data-scroll-target="#dysk-m.2"><span class="header-section-number">2.1</span> Dysk M.2</a></li>
+  <li><a href="#dysk-hdd" id="toc-dysk-hdd" class="nav-link" data-scroll-target="#dysk-hdd"><span class="header-section-number">2.2</span> Dysk HDD</a></li>
+  <li><a href="#rj-45-kabel" id="toc-rj-45-kabel" class="nav-link" data-scroll-target="#rj-45-kabel"><span class="header-section-number">2.3</span> RJ-45 Kabel</a></li>
+  </ul></li>
+  <li><a href="#identyfikacja-parametrów-systemu-linux" id="toc-identyfikacja-parametrów-systemu-linux" class="nav-link" data-scroll-target="#identyfikacja-parametrów-systemu-linux"><span class="header-section-number">3</span> Identyfikacja parametrów systemu Linux</a>
+  <ul>
+  <li><a href="#polecam-każdemu-nauczyć-się-podstawowych-komend-pokazują-one-więcej-danych-niż-to-co-znajdziemy-graficznie-i-często-jest-to-szybsze-i-pewniejsze-rozwiązanie." id="toc-polecam-każdemu-nauczyć-się-podstawowych-komend-pokazują-one-więcej-danych-niż-to-co-znajdziemy-graficznie-i-często-jest-to-szybsze-i-pewniejsze-rozwiązanie." class="nav-link" data-scroll-target="#polecam-każdemu-nauczyć-się-podstawowych-komend-pokazują-one-więcej-danych-niż-to-co-znajdziemy-graficznie-i-często-jest-to-szybsze-i-pewniejsze-rozwiązanie."><span class="header-section-number">3.1</span> <strong>Polecam</strong> każdemu nauczyć się podstawowych komend, pokazują one więcej danych niż to co znajdziemy graficznie, i często jest to szybsze i pewniejsze rozwiązanie.</a></li>
+  <li><a href="#wersja-jądra-i-nazwa-dystrybucji" id="toc-wersja-jądra-i-nazwa-dystrybucji" class="nav-link" data-scroll-target="#wersja-jądra-i-nazwa-dystrybucji"><span class="header-section-number">3.2</span> Wersja jądra i nazwa dystrybucji</a></li>
+  <li><a href="#procesor-nazwa-model-taktowanie" id="toc-procesor-nazwa-model-taktowanie" class="nav-link" data-scroll-target="#procesor-nazwa-model-taktowanie"><span class="header-section-number">3.3</span> Procesor (Nazwa, model, taktowanie)</a></li>
+  <li><a href="#pamięć-ram-ilość-i-parametry" id="toc-pamięć-ram-ilość-i-parametry" class="nav-link" data-scroll-target="#pamięć-ram-ilość-i-parametry"><span class="header-section-number">3.4</span> Pamięć RAM (Ilość i parametry)</a></li>
+  <li><a href="#karta-graficzna-i-rozdzielczość-monitora" id="toc-karta-graficzna-i-rozdzielczość-monitora" class="nav-link" data-scroll-target="#karta-graficzna-i-rozdzielczość-monitora"><span class="header-section-number">3.5</span> Karta graficzna i rozdzielczość monitora</a></li>
+  <li><a href="#dyski---rozmiar-i-wolne-miejsce" id="toc-dyski---rozmiar-i-wolne-miejsce" class="nav-link" data-scroll-target="#dyski---rozmiar-i-wolne-miejsce"><span class="header-section-number">3.6</span> Dyski - Rozmiar i wolne miejsce</a></li>
+  <li><a href="#najważniejsze-komendy-do-identyfikacji" id="toc-najważniejsze-komendy-do-identyfikacji" class="nav-link" data-scroll-target="#najważniejsze-komendy-do-identyfikacji"><span class="header-section-number">3.7</span> Najważniejsze komendy do identyfikacji</a></li>
+  </ul></li>
+  <li><a href="#identyfikacja-parametrów-systemu-windows" id="toc-identyfikacja-parametrów-systemu-windows" class="nav-link" data-scroll-target="#identyfikacja-parametrów-systemu-windows"><span class="header-section-number">4</span> Identyfikacja parametrów systemu Windows</a></li>
+  <li><a href="#konfiguracja-routera" id="toc-konfiguracja-routera" class="nav-link" data-scroll-target="#konfiguracja-routera"><span class="header-section-number">5</span> Konfiguracja routera</a>
+  <ul>
+  <li><a href="#ustawienie-ip-interfejsu-lan" id="toc-ustawienie-ip-interfejsu-lan" class="nav-link" data-scroll-target="#ustawienie-ip-interfejsu-lan"><span class="header-section-number">5.1</span> Ustawienie IP interfejsu LAN</a></li>
+  <li><a href="#ustawienia-serwera-dhcp" id="toc-ustawienia-serwera-dhcp" class="nav-link" data-scroll-target="#ustawienia-serwera-dhcp"><span class="header-section-number">5.2</span> Ustawienia serwera DHCP</a>
+  <ul class="collapse">
+  <li><a href="#ustawienia-opcji-dzierżawy-i-rezerwacje" id="toc-ustawienia-opcji-dzierżawy-i-rezerwacje" class="nav-link" data-scroll-target="#ustawienia-opcji-dzierżawy-i-rezerwacje"><span class="header-section-number">5.2.1</span> Ustawienia opcji dzierżawy i rezerwacje</a>
+  <ul class="collapse">
+  <li><a href="#czas-dzierżawy" id="toc-czas-dzierżawy" class="nav-link" data-scroll-target="#czas-dzierżawy"><span class="header-section-number">5.2.1.1</span> Czas dzierżawy</a></li>
+  <li><a href="#rezerwacje-adresów-ip" id="toc-rezerwacje-adresów-ip" class="nav-link" data-scroll-target="#rezerwacje-adresów-ip"><span class="header-section-number">5.2.1.2</span> Rezerwacje adresów IP</a></li>
+  </ul></li>
+  <li><a href="#ustawienie-puli-adresów-w-webfig" id="toc-ustawienie-puli-adresów-w-webfig" class="nav-link" data-scroll-target="#ustawienie-puli-adresów-w-webfig"><span class="header-section-number">5.2.2</span> Ustawienie puli adresów w WebFig</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#konfiguracja-switcha" id="toc-konfiguracja-switcha" class="nav-link" data-scroll-target="#konfiguracja-switcha"><span class="header-section-number">6</span> Konfiguracja switcha</a>
+  <ul>
+  <li><a href="#ustawienie-podstaw-przełącznika" id="toc-ustawienie-podstaw-przełącznika" class="nav-link" data-scroll-target="#ustawienie-podstaw-przełącznika"><span class="header-section-number">6.1</span> Ustawienie podstaw przełącznika</a></li>
+  <li><a href="#ustawienia-vlan" id="toc-ustawienia-vlan" class="nav-link" data-scroll-target="#ustawienia-vlan"><span class="header-section-number">6.2</span> Ustawienia VLAN</a></li>
+  <li><a href="#ustawienia-portów---wyłączaniewłączanie" id="toc-ustawienia-portów---wyłączaniewłączanie" class="nav-link" data-scroll-target="#ustawienia-portów---wyłączaniewłączanie"><span class="header-section-number">6.3</span> Ustawienia portów - Wyłączanie/Włączanie</a></li>
+  </ul></li>
+  <li><a href="#różne-z-windowsa" id="toc-różne-z-windowsa" class="nav-link" data-scroll-target="#różne-z-windowsa"><span class="header-section-number">7</span> Różne z Windowsa</a>
+  <ul>
+  <li><a href="#ustawienia-karty-sieciowej" id="toc-ustawienia-karty-sieciowej" class="nav-link" data-scroll-target="#ustawienia-karty-sieciowej"><span class="header-section-number">7.1</span> Ustawienia karty sieciowej</a></li>
+  <li><a href="#tworzenie-lokalnych-grup-i-użytkowników" id="toc-tworzenie-lokalnych-grup-i-użytkowników" class="nav-link" data-scroll-target="#tworzenie-lokalnych-grup-i-użytkowników"><span class="header-section-number">7.2</span> Tworzenie lokalnych grup i użytkowników</a></li>
+  <li><a href="#zasady-lokalnych-grup-w-gpedit.msc" id="toc-zasady-lokalnych-grup-w-gpedit.msc" class="nav-link" data-scroll-target="#zasady-lokalnych-grup-w-gpedit.msc"><span class="header-section-number">7.3</span> Zasady lokalnych grup w gpedit.msc</a></li>
+  <li><a href="#uprawnienia-dla-folderów-w-systemie-ntfs" id="toc-uprawnienia-dla-folderów-w-systemie-ntfs" class="nav-link" data-scroll-target="#uprawnienia-dla-folderów-w-systemie-ntfs"><span class="header-section-number">7.4</span> Uprawnienia dla folderów w systemie NTFS</a></li>
+  <li><a href="#konfiguracja-dysków" id="toc-konfiguracja-dysków" class="nav-link" data-scroll-target="#konfiguracja-dysków"><span class="header-section-number">7.5</span> Konfiguracja dysków</a></li>
+  <li><a href="#przydziały-dyskowe" id="toc-przydziały-dyskowe" class="nav-link" data-scroll-target="#przydziały-dyskowe"><span class="header-section-number">7.6</span> Przydziały dyskowe</a></li>
+  <li><a href="#udostępnianie-folderów-lub-dysku-w-sieci" id="toc-udostępnianie-folderów-lub-dysku-w-sieci" class="nav-link" data-scroll-target="#udostępnianie-folderów-lub-dysku-w-sieci"><span class="header-section-number">7.7</span> Udostępnianie folderów lub dysku w sieci</a>
+  <ul class="collapse">
+  <li><a href="#folder-macierzysty-folder-domowy" id="toc-folder-macierzysty-folder-domowy" class="nav-link" data-scroll-target="#folder-macierzysty-folder-domowy"><span class="header-section-number">7.7.1</span> Folder macierzysty (folder domowy)</a></li>
+  <li><a href="#ręczne-mapowanie-dyskufolder" id="toc-ręczne-mapowanie-dyskufolder" class="nav-link" data-scroll-target="#ręczne-mapowanie-dyskufolder"><span class="header-section-number">7.7.2</span> Ręczne mapowanie dysku/folder</a></li>
+  <li><a href="#mapowanie-dysku-za-pomocą-zasad-grupy" id="toc-mapowanie-dysku-za-pomocą-zasad-grupy" class="nav-link" data-scroll-target="#mapowanie-dysku-za-pomocą-zasad-grupy"><span class="header-section-number">7.7.3</span> Mapowanie dysku za pomocą zasad grupy</a></li>
+  <li><a href="#sec-uprawnienia-sieciowe-windows" id="toc-sec-uprawnienia-sieciowe-windows" class="nav-link" data-scroll-target="#sec-uprawnienia-sieciowe-windows"><span class="header-section-number">7.7.4</span> Uprawnienia dla udostępnianego folderu</a></li>
+  </ul></li>
+  <li><a href="#konfiguracja-drukarki-lokalnie" id="toc-konfiguracja-drukarki-lokalnie" class="nav-link" data-scroll-target="#konfiguracja-drukarki-lokalnie"><span class="header-section-number">7.8</span> Konfiguracja drukarki lokalnie</a>
+  <ul class="collapse">
+  <li><a href="#dodawanie-drukarki" id="toc-dodawanie-drukarki" class="nav-link" data-scroll-target="#dodawanie-drukarki"><span class="header-section-number">7.8.1</span> Dodawanie drukarki</a></li>
+  <li><a href="#udostępnianie-drukarki" id="toc-udostępnianie-drukarki" class="nav-link" data-scroll-target="#udostępnianie-drukarki"><span class="header-section-number">7.8.2</span> Udostępnianie drukarki</a></li>
+  <li><a href="#harmonogram-i-piorytet-drukarki" id="toc-harmonogram-i-piorytet-drukarki" class="nav-link" data-scroll-target="#harmonogram-i-piorytet-drukarki"><span class="header-section-number">7.8.3</span> Harmonogram i piorytet drukarki</a></li>
+  <li><a href="#uprawnienia-drukarki" id="toc-uprawnienia-drukarki" class="nav-link" data-scroll-target="#uprawnienia-drukarki"><span class="header-section-number">7.8.4</span> Uprawnienia drukarki</a></li>
+  <li><a href="#sec-piorytety-drukarki-trik" id="toc-sec-piorytety-drukarki-trik" class="nav-link" data-scroll-target="#sec-piorytety-drukarki-trik"><span class="header-section-number">7.8.5</span> Ustawianie piorytetów drukarki dla grup/użytkowników</a></li>
+  </ul></li>
+  <li><a href="#sec-putty-windows-ssh" id="toc-sec-putty-windows-ssh" class="nav-link" data-scroll-target="#sec-putty-windows-ssh"><span class="header-section-number">7.9</span> Łączenie się z SSH za pomocą PuTTY</a></li>
+  </ul></li>
+  <li><a href="#różne-z-linuxa" id="toc-różne-z-linuxa" class="nav-link" data-scroll-target="#różne-z-linuxa"><span class="header-section-number">8</span> Różne z Linuxa</a>
+  <ul>
+  <li><a href="#sec-karta-sieciowa-gui-linux" id="toc-sec-karta-sieciowa-gui-linux" class="nav-link" data-scroll-target="#sec-karta-sieciowa-gui-linux"><span class="header-section-number">8.1</span> Ustawienia karty sieciowej (GUI/STACJA)</a></li>
+  <li><a href="#ustawienie-karty-sieciowej-cliserwer" id="toc-ustawienie-karty-sieciowej-cliserwer" class="nav-link" data-scroll-target="#ustawienie-karty-sieciowej-cliserwer"><span class="header-section-number">8.2</span> Ustawienie karty sieciowej (CLI/SERWER)</a></li>
+  <li><a href="#zapora-sieciowa-ufw" id="toc-zapora-sieciowa-ufw" class="nav-link" data-scroll-target="#zapora-sieciowa-ufw"><span class="header-section-number">8.3</span> Zapora sieciowa (UFW)</a></li>
+  <li><a href="#lokalne-grupy-i-użytkownicy-tworzeniezmiana" id="toc-lokalne-grupy-i-użytkownicy-tworzeniezmiana" class="nav-link" data-scroll-target="#lokalne-grupy-i-użytkownicy-tworzeniezmiana"><span class="header-section-number">8.4</span> Lokalne grupy i użytkownicy (Tworzenie/Zmiana)</a>
+  <ul class="collapse">
+  <li><a href="#sec-tworzenie-uzytkownika-linux" id="toc-sec-tworzenie-uzytkownika-linux" class="nav-link" data-scroll-target="#sec-tworzenie-uzytkownika-linux"><span class="header-section-number">8.4.1</span> Tworzenie użytkownika</a></li>
+  <li><a href="#tworzenie-grupy" id="toc-tworzenie-grupy" class="nav-link" data-scroll-target="#tworzenie-grupy"><span class="header-section-number">8.4.2</span> Tworzenie grupy</a></li>
+  <li><a href="#dodawanie-użytkownika-do-grupy" id="toc-dodawanie-użytkownika-do-grupy" class="nav-link" data-scroll-target="#dodawanie-użytkownika-do-grupy"><span class="header-section-number">8.4.3</span> Dodawanie użytkownika do grupy:</a></li>
+  <li><a href="#sec-sprawdzanie-grup-user-linux" id="toc-sec-sprawdzanie-grup-user-linux" class="nav-link" data-scroll-target="#sec-sprawdzanie-grup-user-linux"><span class="header-section-number">8.4.4</span> Sprawdzanie grup i użytkowników</a></li>
+  <li><a href="#zmiana-hasła-użytkownika" id="toc-zmiana-hasła-użytkownika" class="nav-link" data-scroll-target="#zmiana-hasła-użytkownika"><span class="header-section-number">8.4.5</span> Zmiana hasła użytkownika</a></li>
+  </ul></li>
+  <li><a href="#system-plików---uprawnienia-atrybuty-i-własciciel" id="toc-system-plików---uprawnienia-atrybuty-i-własciciel" class="nav-link" data-scroll-target="#system-plików---uprawnienia-atrybuty-i-własciciel"><span class="header-section-number">8.5</span> System plików - uprawnienia, atrybuty i własciciel</a>
+  <ul class="collapse">
+  <li><a href="#podgląd-szczegółowych-uprawnień-i-innych-cech" id="toc-podgląd-szczegółowych-uprawnień-i-innych-cech" class="nav-link" data-scroll-target="#podgląd-szczegółowych-uprawnień-i-innych-cech"><span class="header-section-number">8.5.1</span> Podgląd szczegółowych uprawnień i innych cech</a></li>
+  <li><a href="#sec-zmiana-uprawnien-pliku-linux" id="toc-sec-zmiana-uprawnien-pliku-linux" class="nav-link" data-scroll-target="#sec-zmiana-uprawnien-pliku-linux"><span class="header-section-number">8.5.2</span> Ustawienie nowych uprawnień</a></li>
+  <li><a href="#specjalne-atrybuty-plikówfolderów" id="toc-specjalne-atrybuty-plikówfolderów" class="nav-link" data-scroll-target="#specjalne-atrybuty-plikówfolderów"><span class="header-section-number">8.5.3</span> Specjalne atrybuty plików/folderów</a></li>
+  <li><a href="#zmiana-grupy-i-własciciela" id="toc-zmiana-grupy-i-własciciela" class="nav-link" data-scroll-target="#zmiana-grupy-i-własciciela"><span class="header-section-number">8.5.4</span> Zmiana grupy i własciciela</a></li>
+  </ul></li>
+  <li><a href="#zmiana-powłoki-użytkownika" id="toc-zmiana-powłoki-użytkownika" class="nav-link" data-scroll-target="#zmiana-powłoki-użytkownika"><span class="header-section-number">8.6</span> Zmiana powłoki użytkownika</a></li>
+  </ul></li>
+  <li><a href="#usługi-serwera-windows" id="toc-usługi-serwera-windows" class="nav-link" data-scroll-target="#usługi-serwera-windows"><span class="header-section-number">9</span> Usługi serwera Windows</a>
+  <ul>
+  <li><a href="#podstawy" id="toc-podstawy" class="nav-link" data-scroll-target="#podstawy"><span class="header-section-number">9.1</span> Podstawy</a>
+  <ul class="collapse">
+  <li><a href="#nazwa-serwera" id="toc-nazwa-serwera" class="nav-link" data-scroll-target="#nazwa-serwera"><span class="header-section-number">9.1.1</span> Nazwa Serwera</a></li>
+  </ul></li>
+  <li><a href="#active-directory" id="toc-active-directory" class="nav-link" data-scroll-target="#active-directory"><span class="header-section-number">9.2</span> Active Directory</a>
+  <ul class="collapse">
+  <li><a href="#instalacja" id="toc-instalacja" class="nav-link" data-scroll-target="#instalacja"><span class="header-section-number">9.2.1</span> Instalacja</a></li>
+  <li><a href="#tworzenie-jednostki-organizacyjnej-użytkowników-i-grup-domeny" id="toc-tworzenie-jednostki-organizacyjnej-użytkowników-i-grup-domeny" class="nav-link" data-scroll-target="#tworzenie-jednostki-organizacyjnej-użytkowników-i-grup-domeny"><span class="header-section-number">9.2.2</span> Tworzenie jednostki organizacyjnej, użytkowników i grup domeny</a></li>
+  <li><a href="#dodawanie-stacji-do-domeny" id="toc-dodawanie-stacji-do-domeny" class="nav-link" data-scroll-target="#dodawanie-stacji-do-domeny"><span class="header-section-number">9.2.3</span> Dodawanie stacji do domeny</a></li>
+  <li><a href="#sec-mapowanie-dysku-windows-serwer" id="toc-sec-mapowanie-dysku-windows-serwer" class="nav-link" data-scroll-target="#sec-mapowanie-dysku-windows-serwer"><span class="header-section-number">9.2.4</span> Mapowanie dysku za pomocą zasad grupy</a></li>
+  </ul></li>
+  <li><a href="#usługa-drukowania" id="toc-usługa-drukowania" class="nav-link" data-scroll-target="#usługa-drukowania"><span class="header-section-number">9.3</span> Usługa drukowania</a>
+  <ul class="collapse">
+  <li><a href="#instalacja-1" id="toc-instalacja-1" class="nav-link" data-scroll-target="#instalacja-1"><span class="header-section-number">9.3.1</span> Instalacja</a></li>
+  <li><a href="#udostępnianierozmieszczaniewdrażanie-drukarki" id="toc-udostępnianierozmieszczaniewdrażanie-drukarki" class="nav-link" data-scroll-target="#udostępnianierozmieszczaniewdrażanie-drukarki"><span class="header-section-number">9.3.2</span> Udostępnianie/Rozmieszczanie/Wdrażanie drukarki</a></li>
+  <li><a href="#harmonogram-i-piorytet-drukarki-1" id="toc-harmonogram-i-piorytet-drukarki-1" class="nav-link" data-scroll-target="#harmonogram-i-piorytet-drukarki-1"><span class="header-section-number">9.3.3</span> Harmonogram i piorytet drukarki</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#usługi-serwera-linux" id="toc-usługi-serwera-linux" class="nav-link" data-scroll-target="#usługi-serwera-linux"><span class="header-section-number">10</span> Usługi serwera Linux</a>
+  <ul>
+  <li><a href="#samba" id="toc-samba" class="nav-link" data-scroll-target="#samba"><span class="header-section-number">10.1</span> Samba</a>
+  <ul class="collapse">
+  <li><a href="#dodawanie-użytkowników" id="toc-dodawanie-użytkowników" class="nav-link" data-scroll-target="#dodawanie-użytkowników"><span class="header-section-number">10.1.1</span> Dodawanie użytkowników</a></li>
+  <li><a href="#sec-samba-udostepnianie-folderu" id="toc-sec-samba-udostepnianie-folderu" class="nav-link" data-scroll-target="#sec-samba-udostepnianie-folderu"><span class="header-section-number">10.1.2</span> Udostępnianie konkretnego folderu</a></li>
+  <li><a href="#udostępnianie-katalogów-domowych" id="toc-udostępnianie-katalogów-domowych" class="nav-link" data-scroll-target="#udostępnianie-katalogów-domowych"><span class="header-section-number">10.1.3</span> Udostępnianie katalogów domowych</a></li>
+  <li><a href="#udostępnianie-drukarek" id="toc-udostępnianie-drukarek" class="nav-link" data-scroll-target="#udostępnianie-drukarek"><span class="header-section-number">10.1.4</span> Udostępnianie drukarek</a></li>
+  <li><a href="#sec-test-poprawnosci-samba" id="toc-sec-test-poprawnosci-samba" class="nav-link" data-scroll-target="#sec-test-poprawnosci-samba"><span class="header-section-number">10.1.5</span> Test poprawności</a></li>
+  </ul></li>
+  <li><a href="#ftp" id="toc-ftp" class="nav-link" data-scroll-target="#ftp"><span class="header-section-number">10.2</span> FTP</a></li>
+  <li><a href="#apache2---www" id="toc-apache2---www" class="nav-link" data-scroll-target="#apache2---www"><span class="header-section-number">10.3</span> Apache2 - WWW</a>
+  <ul class="collapse">
+  <li><a href="#strona-w-varwww" id="toc-strona-w-varwww" class="nav-link" data-scroll-target="#strona-w-varwww"><span class="header-section-number">10.3.1</span> Strona w /var/www/</a></li>
+  <li><a href="#strona-w-niestandardowej-lokalizacji" id="toc-strona-w-niestandardowej-lokalizacji" class="nav-link" data-scroll-target="#strona-w-niestandardowej-lokalizacji"><span class="header-section-number">10.3.2</span> Strona w niestandardowej lokalizacji</a></li>
+  <li><a href="#zmiany-portu-w-apache2" id="toc-zmiany-portu-w-apache2" class="nav-link" data-scroll-target="#zmiany-portu-w-apache2"><span class="header-section-number">10.3.3</span> Zmiany portu w Apache2</a></li>
+  </ul></li>
+  <li><a href="#dns---bind9" id="toc-dns---bind9" class="nav-link" data-scroll-target="#dns---bind9"><span class="header-section-number">10.4</span> DNS - bind9</a>
+  <ul class="collapse">
+  <li><a href="#sec-deklaracja-dns-linux" id="toc-sec-deklaracja-dns-linux" class="nav-link" data-scroll-target="#sec-deklaracja-dns-linux"><span class="header-section-number">10.4.1</span> Deklaracja strefy (tworzenie domeny)</a></li>
+  <li><a href="#sec-tworzenie-bazy-domen-bind9" id="toc-sec-tworzenie-bazy-domen-bind9" class="nav-link" data-scroll-target="#sec-tworzenie-bazy-domen-bind9"><span class="header-section-number">10.4.2</span> Tworzenie bazy danych domeny</a></li>
+  <li><a href="#sec-bind9-ttl-negative-ttl" id="toc-sec-bind9-ttl-negative-ttl" class="nav-link" data-scroll-target="#sec-bind9-ttl-negative-ttl"><span class="header-section-number">10.4.3</span> Zmiana czasu TTL/Negative TTL strefy</a></li>
+  <li><a href="#parametry-bazy-domen-bind9" id="toc-parametry-bazy-domen-bind9" class="nav-link" data-scroll-target="#parametry-bazy-domen-bind9"><span class="header-section-number">10.4.4</span> Parametry bazy domen bind9</a></li>
+  </ul></li>
+  <li><a href="#ssh" id="toc-ssh" class="nav-link" data-scroll-target="#ssh"><span class="header-section-number">10.5</span> SSH</a>
+  <ul class="collapse">
+  <li><a href="#zmiana-portu" id="toc-zmiana-portu" class="nav-link" data-scroll-target="#zmiana-portu"><span class="header-section-number">10.5.1</span> Zmiana portu</a></li>
+  <li><a href="#blokowanie-logowania-na-konto-root" id="toc-blokowanie-logowania-na-konto-root" class="nav-link" data-scroll-target="#blokowanie-logowania-na-konto-root"><span class="header-section-number">10.5.2</span> Blokowanie logowania na konto root</a></li>
+  <li><a href="#ograniczenia-logowania---białaczarna-lista" id="toc-ograniczenia-logowania---białaczarna-lista" class="nav-link" data-scroll-target="#ograniczenia-logowania---białaczarna-lista"><span class="header-section-number">10.5.3</span> Ograniczenia logowania - Biała/Czarna lista</a></li>
+  <li><a href="#restart-serwera-ważne" id="toc-restart-serwera-ważne" class="nav-link" data-scroll-target="#restart-serwera-ważne"><span class="header-section-number">10.5.4</span> Restart serwera (Ważne)</a></li>
+  <li><a href="#łączenie-się-z-serwerem-ssh" id="toc-łączenie-się-z-serwerem-ssh" class="nav-link" data-scroll-target="#łączenie-się-z-serwerem-ssh"><span class="header-section-number">10.5.5</span> Łączenie się z serwerem SSH</a></li>
+  </ul></li>
+  <li><a href="#dhcp" id="toc-dhcp" class="nav-link" data-scroll-target="#dhcp"><span class="header-section-number">10.6</span> DHCP</a></li>
+  </ul></li>
+  <li><a href="#duża-sciągawa" id="toc-duża-sciągawa" class="nav-link" data-scroll-target="#duża-sciągawa"><span class="header-section-number">11</span> Duża sciągawa</a>
+  <ul>
+  <li><a href="#komendy-linux" id="toc-komendy-linux" class="nav-link" data-scroll-target="#komendy-linux"><span class="header-section-number">11.0.0.1</span> Komendy linux</a></li>
+  <li><a href="#komendy-windows" id="toc-komendy-windows" class="nav-link" data-scroll-target="#komendy-windows"><span class="header-section-number">11.0.0.2</span> Komendy windows</a></li>
+  <li><a href="#netplan" id="toc-netplan" class="nav-link" data-scroll-target="#netplan"><span class="header-section-number">11.0.0.3</span> Netplan</a></li>
+  <li><a href="#apache2" id="toc-apache2" class="nav-link" data-scroll-target="#apache2"><span class="header-section-number">11.0.0.4</span> APACHE2</a></li>
+  <li><a href="#bind9" id="toc-bind9" class="nav-link" data-scroll-target="#bind9"><span class="header-section-number">11.0.0.5</span> BIND9</a></li>
+  <li><a href="#ssh-1" id="toc-ssh-1" class="nav-link" data-scroll-target="#ssh-1"><span class="header-section-number">11.0.0.6</span> SSH</a></li>
+  <li><a href="#isc-dhcp-server" id="toc-isc-dhcp-server" class="nav-link" data-scroll-target="#isc-dhcp-server"><span class="header-section-number">11.0.0.7</span> ISC-DHCP-SERVER</a></li>
+  <li><a href="#samba-1" id="toc-samba-1" class="nav-link" data-scroll-target="#samba-1"><span class="header-section-number">11.0.0.8</span> SAMBA</a></li>
+  <li><a href="#vsftpd" id="toc-vsftpd" class="nav-link" data-scroll-target="#vsftpd"><span class="header-section-number">11.0.0.9</span> VSFTPD</a></li>
+  <li><a href="#windows-serwer" id="toc-windows-serwer" class="nav-link" data-scroll-target="#windows-serwer"><span class="header-section-number">11.0.0.10</span> WINDOWS SERWER</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Inne formaty</h2><ul><li><a href="egzamin-12.06.2026-przeglad.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analiza Zadań Praktycznych - Egzamin INF.02</h1>
+<p class="subtitle lead">Opracowanie zagadnień i zadań testowych od 12.06.2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor</div>
+    <div class="quarto-title-meta-contents">
+             <p>Vulpi </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Opublikowano</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">16 czerwca 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="wstęp" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Wstęp</h1>
+<p>Cześć! To opracowanie to szybkie podsumowanie przed egzaminem <strong>INF.02</strong>. Materiały zebrałem na bazie nieoficjalnych fotek arkuszy, które latały teraz na discordzie, oraz z opisu ludzi, którzy już przez to przechodzili. Krótko i na temat.</p>
+</section>
+<section id="montaż" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Montaż</h1>
+<p>Na jednym z arkuszy pojawiło się zadanie z montażu zapasowego dysku twardego. Pamiętaj, że dyski mogą być w różnych formatach (np. małe M.2 bezpośrednio na płytę albo klasyczne, większe dyski HDD/SSD podpinane kablami), warto się spytać nauczyciela jaki format będzie miała wasza szkoła w przypadku egzaminu.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ostrzeżenie</span>Podstawy BHP (Za to są punkty)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Zanim w ogóle otworzysz komputer, <strong>zawsze</strong> musisz wykonać te kroki:<br>
+1. Odłącz kabel zasilający od komputera.<br>
+2. Przełącz włącznik na zasilaczu na pozycję <strong>O</strong> (wyłączony).<br>
+3. Załóż opaskę antystatyczną (ESD) i wepnij ją do metalowej obudowy.</p>
+</div>
+</div>
+<section id="dysk-m.2" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="dysk-m.2"><span class="header-section-number">2.1</span> Dysk M.2</h2>
+<p>Będziesz potrzebował śrubokręt krzyżakowy. Sam montaż dysku M.2 jest prosty, robimy to tak:</p>
+<ol type="1">
+<li><strong>Miejsce:</strong> Znajdź wolny slot M.2 na płycie głównej.</li>
+<li><strong>Kąt:</strong> Wsuń dysk do slotu pod lekkim kątem (ok. 30 stopni).</li>
+<li><strong>Docisk i montaż:</strong> Dociśnij dysk delikatnie do płyty głównej.</li>
+<li><strong>Zabezpieczenie:</strong> Przykręć małą śrubkę mocującą, która utrzyma dysk na miejscu.</li>
+</ol>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">1. Wygląd slotu</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">2. Przygotowanie</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">3. Instalacja (30°)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">4. Mocowanie</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false" href="">5. Gotowe!</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Na płycie głównej szukaj gniazda z opisem M.2 lub PCIe. Obok gniazda zobaczysz otwory na śruby montażowe.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="slot-m.2.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Widok na pusty slot M.2 na płycie</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Pierwszy krok to wykręcenie małej śrubki zabezpieczającej przy słupku dystansowym.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="m2-krok1.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Krok 1: Wykręcanie śrubki zabezpieczającej</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Wsuń dysk M.2 do gniazda pod kątem około 30 stopni. Styki muszą całkowicie schować się w slocie. Dysk będzie lekko odstawał do góry, to normalne.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="m2-krok2.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Krok 2: Wkładanie dysku pod kątem 30 stopni</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>Delikatnie dociśnij dysk do słupka dystansowego i przykręć wykręconą wcześniej śrubkę. Nie dokręcaj na siłę, ma po prostu stabilnie trzymać dysk.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="m2-krok3.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Krok 3: Dokręcanie śruby mocującej</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<p>Prawidłowo zamontowany dysk powinien leżeć równolegle do płyty głównej i nie ruszać się w slocie.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="zamontowany-m.2.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Widok na poprawnie zamontowany dysk M.2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>A tu krótki filmik, jak to zrobić poprawnie:</p>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/6bABb-ziZTk?start=4" title="Montaż dysku M.2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</section>
+<section id="dysk-hdd" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="dysk-hdd"><span class="header-section-number">2.2</span> Dysk HDD</h2>
+<p>Jeśli dostaniesz starszy dysk 2,5” lub 3,5”, procedura wygląda trochę inaczej, bo potrzebujesz kabli:</p>
+<ol type="1">
+<li><strong>Wsuń dysk</strong> do odpowiedniej kieszeni w obudowie komputera i zabezpiecz go śrubami, żeby nie latał.</li>
+<li><strong>Podepnij zasilanie:</strong> Podłącz szeroką wtyczkę zasilania SATA (idzie prosto z zasilacza).</li>
+<li><strong>Podepnij dane:</strong> Podłącz węższy kabel SATA (SATA data) do dysku, a drugi koniec wepnij do wolnego portu SATA na płycie głównej.</li>
+</ol>
+<p>A tu krótki filmik, jak to zrobić poprawnie:</p>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/bM2yKslPW7Q?start=7" title="Montaż dysku HDD" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+</iframe>
+</section>
+<section id="rj-45-kabel" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="rj-45-kabel"><span class="header-section-number">2.3</span> RJ-45 Kabel</h2>
+<p>Są trzy rodzaje kabli które musisz zapamiętać: w schemacie A i B i skrosowany. W przypadku skosowanego kabla wystarczy że na jednym końcu będzie A a na drugim B.</p>
+<p>Jak zapamiętać kolory?<br>
+Zapamietaj sobie że wszystkie kolory zaczynają się białym wariantem oprócz niebieskiego, pózniej zapamiętujesz że różnicą między A i B jest pomarańcz i zielony.</p>
+<p>Jak zapamiętasz te zasady to musisz pamiętać tylko że w B kolor początkowy to pomarańcz, w środku jest odwrócony niebieski a na kończu zawsze brązowy.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Wskazówka</span>Jak masz mało czasu.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Na egzaminie raczej będziesz miał gotowy kabel w kat. B, wiec możesz skopiować wszystkie kolory i w razie kat. A jedynie zamienić pomarańcz i zielony.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="identyfikacja-parametrów-systemu-linux" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Identyfikacja parametrów systemu Linux</h1>
+<p>Na egzaminie dostaniesz zadanie, żeby sprawdzić i zapisać w arkuszu parametry stacji roboczej z Linuxem (najczęściej Ubuntu). Egzaminatora nie obchodzi jak to zrobisz, liczy się poprawny wynik. Masz dwie drogi: wyklikać to graficznie albo wykonać szybkie komendy w Terminalu (wymagane w przypadku serwera linux).</p>
+<section id="polecam-każdemu-nauczyć-się-podstawowych-komend-pokazują-one-więcej-danych-niż-to-co-znajdziemy-graficznie-i-często-jest-to-szybsze-i-pewniejsze-rozwiązanie." class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="polecam-każdemu-nauczyć-się-podstawowych-komend-pokazują-one-więcej-danych-niż-to-co-znajdziemy-graficznie-i-często-jest-to-szybsze-i-pewniejsze-rozwiązanie."><span class="header-section-number">3.1</span> <strong>Polecam</strong> każdemu nauczyć się podstawowych komend, pokazują one więcej danych niż to co znajdziemy graficznie, i często jest to szybsze i pewniejsze rozwiązanie.</h2>
+</section>
+<section id="wersja-jądra-i-nazwa-dystrybucji" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="wersja-jądra-i-nazwa-dystrybucji"><span class="header-section-number">3.2</span> Wersja jądra i nazwa dystrybucji</h2>
+<p>Zaczynamy od podstaw, czyli co to w ogóle za system i jakie ma jądro (kernel).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Metoda GUI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Metoda CLI (Terminal)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<ol type="1">
+<li>Otwórz <strong>Ustawienia</strong> systemu.</li>
+<li>Zjedź na sam dół i kliknij zakładkę <strong>System</strong> -&gt; <strong>Informacje</strong> (About).</li>
+<li>Zobaczysz tam pełną nazwę dystrybucji (np. <em>Ubuntu 24.04 LTS</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="systeminfo-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące informacje o systemie</figcaption>
+</figure>
+</div>
+<p>Można tam też zmienić nazwę komputera.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Są na to różne komendy, ja polecam zapamiętać jedną <code>hostnamectl</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hostnamectl</span> <span class="co"># Pokazuje wersję jądra i dystrybucji</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">hostnamectl</span> hostname test <span class="co"># Zmienia nazwę komputera na test</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="systeminfo-linux-cli2.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z wynikiem komendy hostnamectl pokazuje informacje o systemie</figcaption>
+</figure>
+</div>
+<p>Jak widać ta komenta jest bardzo uniwersalna i kluczowa w niektórych zadaniach. Pokazuje ona m.in. nazwę komputera (hostname), wersję jądra (kernel), i wersję dystrybucji (operating system)</p>
+<p>Można też użyć innych komend:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">uname</span> <span class="at">-r</span> <span class="co"># Pokazuje wersję jądra (np. 6.8.0-generic)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /etc/os-release <span class="co"># Pokazuje pełne info o dystrybucji (ale nie o jądrze)</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="systeminfo-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendami pokazującymi informacje o systemie</figcaption>
+</figure>
+</div>
+<p>W teorii można odczytać również wersje Ubuntu poprzez komende: <strong>uname -a</strong>, ale jest to trudniejsze.</p>
+<p>Żeby zmienić nazwe stacji: <code>sudo hostnamectl hostname nowa-nazwa</code> Dane można zweryfikować za pomocą: <code>hostnamectl</code></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="procesor-nazwa-model-taktowanie" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="procesor-nazwa-model-taktowanie"><span class="header-section-number">3.3</span> Procesor (Nazwa, model, taktowanie)</h2>
+<p>Musisz wyciągnąć pełną nazwę (np. Intel Core i5…) oraz jego bazowe prędkości.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Metoda GUI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Metoda CLI (Terminal)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ostrzeżenie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Graficznie sprawdzisz tylko producenta i model - użyj komendy <code>lscpu</code></p>
+</div>
+</div>
+<ol type="1">
+<li>Wejdź w <strong>Ustawienia</strong> -&gt; <strong>System</strong> -&gt; <strong>Informacje</strong> (About).</li>
+<li>Tam znajdziesz linijkę <strong>Procesor</strong> gdzie jest podany model i producent</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cpu-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące informacje o systemie z procesorem</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>To jest absolutny klasyk, zapamiętaj tę komendę:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lscpu</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Po wpisaniu szukaj linijek: * <code>Model name:</code> (pełna nazwa procesora)<br>
+* <code>CPU max MHz</code> (taktowanie maksymalne)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cpu-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendami pokazującymi informacje o procesorze</figcaption>
+</figure>
+</div>
+<p>Można również przeczytać <strong>obecne</strong> taktowanie w pliku <code>/proc/cpuinfo</code> za pomocą <code>cat /proc/cpuinfo</code></p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="pamięć-ram-ilość-i-parametry" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="pamięć-ram-ilość-i-parametry"><span class="header-section-number">3.4</span> Pamięć RAM (Ilość i parametry)</h2>
+<p>Czasem są pytania o to ile masz gigabajtów i jak szybkie są kości.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Metoda GUI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Metoda CLI (Terminal)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ostrzeżenie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Graficznie sprawdzisz tylko wielkość RAM - użyj komendy <code>dmidecode --type memory</code></p>
+</div>
+</div>
+<ol type="1">
+<li>Ponownie <strong>Ustawienia</strong> -&gt; <strong>System</strong> -&gt; <strong>Informacje</strong> (About).</li>
+<li>Szukaj linijki <strong>Pamięć</strong> podana jest tam łączna ilość pamięci RAM (np. <em>16,0 GiB</em>).</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ram-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z informacjami o pamięci RAM</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Szybkie sprawdzenie ilości RAM-u w ludzkim formacie (flaga <code>-h</code> pokaże np. 8Gi, 16Gi):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">free</span> <span class="at">-h</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ram-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendami pokazującymi wielkości RAM</figcaption>
+</figure>
+</div>
+<p>Jeśli potrzebujesz szczegółów technicznych (częstotliwość, typ DDR):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> dmidecode <span class="at">--type</span> memory</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ram-linux-cli2.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendą dmidecode ukazujące szczegółowe dane RAM</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="karta-graficzna-i-rozdzielczość-monitora" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="karta-graficzna-i-rozdzielczość-monitora"><span class="header-section-number">3.5</span> Karta graficzna i rozdzielczość monitora</h2>
+<p>Tutaj sprawdzamy model GPU oraz rozdzielczości monitora</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Metoda GUI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Metoda CLI (Terminal)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ostrzeżenie
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Graficznie nie sprawdzisz producenta i modelu - użyj komendy `lspci’</p>
+</div>
+</div>
+<ul>
+<li><strong>Rozdzielczość monitora:</strong> Wejdź w <strong>Ustawienia</strong> -&gt; <strong>Ekrany</strong> (Displays). Kliknij na pole <em>Rozdzielczość</em> (Resolution) - najwyższa wartość na liście to Twoja maksymalna rozdzielczość.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="monitor-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące ustawienia ekranu z wyborem rozdzielczości</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Wyciąganie modelu karty graficznej (szukaj linijki <code>VGA compatible controller</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">lspci</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Sprawdzenie dostępnych rozdzielczości monitora (ta z gwiazdką <code>*</code> lub najwyższa na samej górze to twoja max rozdzielczość):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">xrandr</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="monitor-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendami pokazującymi informacje o systemie</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ważne
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Zignoruj <code>Screen 0</code>, to jest wirtualny ekran od systemu a nie fizyczny monitor.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="dyski---rozmiar-i-wolne-miejsce" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="dyski---rozmiar-i-wolne-miejsce"><span class="header-section-number">3.6</span> Dyski - Rozmiar i wolne miejsce</h2>
+<p>W poprzednich arkuszach pojawiały się pytania o identyfikacje wolnego miejsca na dysku.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Metoda GUI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Metoda CLI (Terminal)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>W GUI najlepiej uruchomić aplikacje <code>Dyski</code>. W niej znajdziemi wszystkie dyski które występują na systemie, kliknij na wybrany dysk i przeczytaj dane. Czasem trzeba kliknąć na konkretny wolumin aby przeczytać wolne miejsce tego woluminu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dyski-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące aplikacje “dyski” z zaznaczonym dyskiem i woluminem</figcaption>
+</figure>
+</div>
+<p>W tej aplikacji można również formatować dysk, usuwać woluminy, zmieniać ustawienia montowania itp.</p>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>W konsoli najlepiej sprawdzą się dwie komendy:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span> <span class="co"># Pokazuje rozmiar i wolne/użyte miejsce</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> lshw <span class="at">-class</span> disk <span class="co"># Pokazuje producenta, model i punkt montowania</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Niestety <code>lshw</code> nie pokazuje nam wolnego i użytego miejsca a raczej samą wielkość dysku, dlatego musimy użyć <code>df -h</code> do tego celu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dyski-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z komendami lshw i df ukazujące dane o dyskach</figcaption>
+</figure>
+</div>
+<p>Jak widać na zdjęciu mamy różne dane: producenta, model, rozmiar i nawet możliwości dysku. Jeśli musimy przeczytać dane z <code>df -h</code> dla konkretnego dysku to możemy użyć <code>lshw</code> i dopasować dyski.</p>
+<p>W moim przypadku to jest dysk wirtualny, na prawdziwej maszynie producentem może być np. Samsung itp.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="najważniejsze-komendy-do-identyfikacji" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="najważniejsze-komendy-do-identyfikacji"><span class="header-section-number">3.7</span> Najważniejsze komendy do identyfikacji</h2>
+<p>Te komendy załatwiają 90% pytań sprzętowych na Linuxie.</p>
+<ul>
+<li><code>hostnamectl</code> - Sprawdzanie jądra, dystrybucji i zmiana nazwy komputera
+<ul>
+<li>Alternatywy:</li>
+<li><code>uname -r</code> - Wersja jądra (np. <code>6.5.0-27-generic</code>)</li>
+<li><code>cat /etc/os-release</code> - Dokładna nazwa dystrybucji (szukaj <code>PRETTY_NAME</code>)</li>
+</ul></li>
+<li><code>lshw -class disk</code> - Różne dane o dyskach (bez wolnego/użytego miejsca)</li>
+<li><code>lscpu</code> - Wszystko o procesorze (szukaj <code>Model name</code> oraz <code>CPU MHz</code>)</li>
+<li><code>lspci</code> - Producent i model karty graficznej (szukaj linii z <code>VGA</code>)</li>
+<li><code>df -h</code> - Sprawdzanie rozmiaru lub wolnego/użytego miejsca na dysku</li>
+<li><code>dmidecode --type memory</code> - Dokładne dane o kościach pamięci RAM</li>
+<li><code>xrandr</code> - Rozdzielczości ekranu (szukaj linii z napisem <code>connected</code>)</li>
+<li><code>free -h</code> - Ilość pamięci RAM ogólnie ale również użytej i wolnej</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Wskazówka</span>Brak uprawnień? Sudo.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Czasem wykonująć komendy nie pokazują się wszystkie opcje albo komendy w ogóle nie da się uruchomić. Dodaj wtedy <code>sudo</code> przed komendą np. <code>sudo lscpu</code> i wpisz hasło. Teraz wykonując za pomocą sudo nie trzeba już podawać hasła.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="identyfikacja-parametrów-systemu-windows" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Identyfikacja parametrów systemu Windows</h1>
+<p>W przypadku Windowsa sprawa jest prosta, ponieważ zawsze jest graficzny a narzędzia do tego podają dokładne dane. Wiec i na serwerze i na stacji windows można łatwo te parametry zidentyfikować.</p>
+<p>Tak naprawde warto zapamiętać pare programów:<br>
+- Menadżer zadań - Informacje o systemie - Dxdiag - Ustawienia</p>
+<p>Trzeba troche poszukać, jedyne co warto też zapamiętać to <code>Dxdiag</code>, bo pokaże on wersje DirectX o którą czasem pytają. Inne programy są raczej nam zname.</p>
+</section>
+<section id="konfiguracja-routera" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Konfiguracja routera</h1>
+<p>W prawie każdym arkuszu egzaminacyjnym pojawiło się jakieś zadanie o routerze, od prostego ustawienia IP i maski interfejsu LAN po VLANy, serwery DHCP i inne. Omówimy to tutaj.</p>
+<p>Będę korzystał z routera MikroTik w wersji 6.49.10 (long-term). Obraz .iso tego routera można też pobrać na stronie mikrotika.</p>
+<section id="ustawienie-ip-interfejsu-lan" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="ustawienie-ip-interfejsu-lan"><span class="header-section-number">5.1</span> Ustawienie IP interfejsu LAN</h2>
+<p>To można ustawić odrazu w zakładce <code>Quick Set</code>, jest to pierwsza strona po zalogowaniu na stronie Routera.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-interfejs-lan.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące konfigurację interfejsu LAN w routerze MikroTik</figcaption>
+</figure>
+</div>
+</section>
+<section id="ustawienia-serwera-dhcp" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="ustawienia-serwera-dhcp"><span class="header-section-number">5.2</span> Ustawienia serwera DHCP</h2>
+<p>Także w zakładce <code>Quick Set</code> możemy ustawić <strong>podstawowe</strong> opcje DHCP.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-podstawowy-dhcp.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące DHCP w zakładce Quick Set na routerze MikroTik</figcaption>
+</figure>
+</div>
+<p>Do bardziej skomplikowanych opcji takich jak dzierżawy i rezerwacja IP musimy przejść do zakładki <code>WebFig</code> -&gt; <code>IP</code> -&gt; <code>DHCP Server</code></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ważne</span>Zawsze odswieżaj IP po zmianach w DHCP
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Często będziesz polegał na IP z DHCP przy badaniu połączeń, lub przy zwykłych połączeniach z serwerem. Dlatego zawsze pamietaj o tym aby po zmianie czegoś w DHCP odswieżyć swoją karte aby ta wzieła najnowszy adres IP.</p>
+<p>W windowsie zrobisz to za pomocą komendy:<br>
+<code>ipconfig /renew</code></p>
+<p>W linuxie zrobisz z komendą <code>sudo netplan apply</code></p>
+</div>
+</div>
+<section id="ustawienia-opcji-dzierżawy-i-rezerwacje" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="ustawienia-opcji-dzierżawy-i-rezerwacje"><span class="header-section-number">5.2.1</span> Ustawienia opcji dzierżawy i rezerwacje</h3>
+<p><strong>Wymagany WebFig</strong></p>
+<section id="czas-dzierżawy" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="czas-dzierżawy"><span class="header-section-number">5.2.1.1</span> Czas dzierżawy</h4>
+<p>W zakładce <code>DHCP Server</code> -&gt; <code>DHCP</code> powinieneś znaleźć przynajmniej jeden rekord z konfiguracją DHCP, kliknij na niego.</p>
+<p><strong>Czas dzierżawy</strong> ustawimy wpisując poprawną wartość w okienku <code>Lease Time</code>, domyślą wartością jest 10 minut. Co oznacza że urządzenie będzie odpytywać router o adres IP co 10 minut, a jeśli nie odpyta to adres wróci to puli.</p>
+<p>Format w okienku to <strong>hh:mm:ss</strong>, gdzie:</p>
+<ul>
+<li>hh to godziny,<br>
+</li>
+<li>mm to minuty,<br>
+</li>
+<li>ss to sekundy</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-czas-dzierzawy.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące konfiguracje czasu dzierżawy na 1 godzine i 30 minut</figcaption>
+</figure>
+</div>
+<p>Po konfiguracji nie zapomnij kliknąć <code>Apply</code>, w przeciwnym wypadku konfiguracja sie nie zapisze i będzie błąd w konfiguracji.</p>
+</section>
+<section id="rezerwacje-adresów-ip" class="level4" data-number="5.2.1.2">
+<h4 data-number="5.2.1.2" class="anchored" data-anchor-id="rezerwacje-adresów-ip"><span class="header-section-number">5.2.1.2</span> Rezerwacje adresów IP</h4>
+<p>Aby zarezerwować adres IP w DHCP musimy przejść do zakładki <code>Leases</code>. Najłatwiej jest podłączyć <strong>tylko</strong> komputer dla którego chcemy zarezerować adres IP do routera, powinieneś ustawić podany IP dla interfejsu tego komputera i dopiero wtedy połączyć się z Routerem. Zrobienie tego w taki sposób zagwarantuje że zakładka <code>Leases</code> będzie miała tylko jeden rekord - podłączonego komputera.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Krok 1 - Wejście na podany rekord lub stworzenie nowego.</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Krok 2 - Rezerwacja Adresu</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Krok 3 - Usuwanie rekordu</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-4" role="tab" aria-controls="tabset-7-4" aria-selected="false" href="">Porada w przypadku wielu połączeń</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-5" role="tab" aria-controls="tabset-7-5" aria-selected="false" href="">Identyfikacja czy rekord jest dynamiczny czy statyczny</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>Kliknij w rekord lub stwórz nowy, w przypadku stworzenia nowego wpisz adres MAC (adres fizyczny) i adres IP jaki chcesz.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-rekord.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak wejść na rekord dzierżawy w routerze MikroTik</figcaption>
+</figure>
+</div>
+<p>Czasem musimy stworzyć rekord bez połączenia urządzenia. Zrobimy to po kliknięciu w przycisk <code>Add New</code> i wpisaniu adresu MAC (adres fizyczny) i żądanego adresu IP.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-rekord-nowy.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak stworzyć nową rezerwacje</figcaption>
+</figure>
+</div>
+<p>W windowsie MAC (adres fizyczny) znajdziecie wchodząc na szczegóły karty sieciowej:</p>
+<ol type="1">
+<li>Wejdz na panel sterowania</li>
+<li>Wejdz w Centrum sieci i udostępniania</li>
+<li>Na lewym pasku <code>Zmień ustawnienia karty sieciowej</code></li>
+<li>Kliknij dwa razy na podaną karte i kliknij <code>Szczegóły...</code></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mac-windows-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące adres MAC/Fizyczny w Windowsie</figcaption>
+</figure>
+</div>
+<p>W linuxie MAC (adres fizyczny) znajdziecie wpisując <code>ip a</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mac-linux-cli.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące adres MAC po wykonaniu ip a</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Po kliknięciu w rekord, możesz upewnić się że MAC adress jest poprawny i kliknąć przycisk <code>Make Static</code>. To spowoduje rezerwacje podanego tam adresu IP.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-static.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak zrobić statyczną rezerwacje adresu IP dla urządzenia</figcaption>
+</figure>
+</div>
+<p>Jednak my chcemy również zmienić adres IP rezerwacji na inny, niestety musimy wyjść z rekordu i wejść ponownie aby MikroTik poprawnie załadował możliwośc edycji.</p>
+<p>Po tym możemy łatwo wpisać adres IP który chcemy żeby był zarezerwowany dla tego urządzenia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-rezerwacja.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak ustawić inny adres IP dla rezerwacji</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<p>Czasem pomylimy komputery i trzeba usunąć rekord, jest to proste, wystarczy kliknąć znak minusa <code>-</code> przy rekordzie.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-usuwanie.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak usunąć rekord rezerwacji</figcaption>
+</figure>
+</div>
+<p>Aby rekord pojawił się znowu tam możemy w systemie zarządać nowego IP, najlepiej po prostu wyłączyć i właczyć kartę.</p>
+</div>
+<div id="tabset-7-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-4-tab">
+<p>Najlepiej żeby konfigurować router będąc podłączonym tylko z jednym urządzeniem, tym który też konfiguracja obchodzi.</p>
+<p>Jednak jakbyś był leniwy warto sprawdzić czy w twojej wersji routera nie ma zakładki <code>Active Host Name</code>. Za pomocą podanej tam wartości można łatwo zidentyfikować połączenie.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-wiele.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące dwa połączenia w zakładce leases na MikroTiku</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-5-tab">
+<p>Żeby zidentyfikować czy rekord w <code>Leases</code> jest dynamiczny czy statyczny w MikroTiku wystarczy spojrzeć na litere w drugiej kolumnie. Jeśli jest tam litera <code>D</code> to rekord jest dynamiczny. Czyli IP zostało przypisane dynamicznie, jeśli jednak nie ma tam żadnej litery to oznacza to, że jest to statyczna rezerwacja adresu IP.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-leases-identyfikacja.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak zidentyfikować typ dzierżawy</figcaption>
+</figure>
+</div>
+<p>Widzimy na obrazku że przy rekordzie z adresem IP <code>192.168.88.11</code> jest litera D, to oznacza że adres ten został przypisany dynamicznie, w przypadku rekordu z adresem IP <code>192.168.88.18</code>, jest to adres przypisany z statycznej rezerwacji, którą dokonaliśmy w kroku 2, przy ręcznym tworzeniu rekordów.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ustawienie-puli-adresów-w-webfig" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="ustawienie-puli-adresów-w-webfig"><span class="header-section-number">5.2.2</span> Ustawienie puli adresów w WebFig</h3>
+<p>Pule adresów DHCP najłatwiej ustawić w zakładce <code>Quick Set</code>, ale da się również zrobić to w zakładce <code>WebFig</code></p>
+<p>Musisz wejść w <code>WebFig</code> -&gt; <code>Ip</code> -&gt; <code>Pool</code>, a tam kliknąć na rekord puli która jest przypisana do serwera DHCP (domyślnie pula ta nazywa się <code>dhcp</code>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-pula-dhcp.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące gdzie jest pula adresów w zakładce WebFig routera MikroTik</figcaption>
+</figure>
+</div>
+<p>Po kliknięciu przejdziemy do strony konfiguracyjnej, na której trzeba zmienić wartość w polu <code>Addresses</code>. Wartość ta jest w formacie: IPv4(start)-Ipv4(koniec), gdzie IPv4 jest podawane w 4 oktetach: np. 192.168.88.2</p>
+<p>Przykład: 192.168.88.50-192.168.88.120,<br>
+To oznacza że serwer DHCP będzie przydzielał adresy tylko w przedziale od 192.168.88.50 do przedziału 192.168.88.120.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="router-pula-dhcp-konfiguracja.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące konfiguracje puli adresów w zakładce WebFig routera MikroTik</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="konfiguracja-switcha" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Konfiguracja switcha</h1>
+<p>Często trzeba skonfigurować podstawy w switchu, dość często zdarza się również VLAN. Do tego użyje emulatora TP-Link TL-SG2216 na ich stronce, spróbuje jednak wyjaśnić to w uniwersalny sposób. Niestety przełączniki rzadko mają symulatory więc nie bedziemy w stanie zasymulować go w VMie.</p>
+<section id="ustawienie-podstaw-przełącznika" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="ustawienie-podstaw-przełącznika"><span class="header-section-number">6.1</span> Ustawienie podstaw przełącznika</h2>
+<p>Żeby ustawić IP, maske i brame domyślną switcha musimy znaleźć jakieś systemowe opcje. Często znajduje się to w zakładce system. W przypadku tego modelu znajduje się to w <code>System -&gt; System info -&gt; System IP</code>, ale to zależy od modelu i producenta.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="switch-config-ip.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak skonfigurować podstawy switcha</figcaption>
+</figure>
+</div>
+<p>Jak widać na obrazku jesteśmy w stanie wybrać również opcje DHCP i BOOTP, tą ostatnią możemy pominąć bo raczej nie występuje na egzaminie. Zazwyczaj będzie static IP, ale może być sytuacja z DHCP.</p>
+<p>Z DHCP, możemy zostać poproszeni o rezerwację jakiegoś IP dla MAC adresu switcha z routera który ma ten serwer DHCP.</p>
+</section>
+<section id="ustawienia-vlan" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="ustawienia-vlan"><span class="header-section-number">6.2</span> Ustawienia VLAN</h2>
+<p>Bardzo często trzeba stworzyć jakieś nowe VLANy i ustawić tryb tagowania. Switche maja własny standard VLAN: 802.1Q, nie trzeba tego kodu zapamiętywać.</p>
+<p>Warto wiedzieć czym jest tagowanie i co one robi, są różne tagowania w tym, untagged, tagged i not member:</p>
+<ul>
+<li>Untagged ustawia się przed urządzeniami które nie obsługują VLANów np. zwykłe PC, drukarki itp. Oznacza to tyle że switch nie przekaże dalej specyficzne dla VLAN.</li>
+<li>Tagged ustawia się przed innymi switchami, np. jak jest jakiś LAG. Na egzaminie raczej tego nie ma bo zazwyczaj jest wykorzystywany tylko jeden switch. Ale może być w zadaniu żeby dać port tagged, to daj żeby był tagged.</li>
+<li>NotMember po prostu oznacza że port nie jest częścią wybranego VLANu.</li>
+</ul>
+<p>Zazwyczaj są zadania żeby stworzyć pare VLANów i przypisać jakieś porty do jakiegoś VLANa.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="switch-config-vlan.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak skonfigurować VLAN switcha</figcaption>
+</figure>
+</div>
+<p>Niestety nie jestem w stanie stworzyć nowych VLANów ponieważ jest to emulator a nie prawdziwy switch. Jednak robi się to prosto. Podajemy ID vlanu tak jak jest napisane w zadaniu, i nazwe vlanu, jak nie jest podane możemy wybrać jaką chcemy. np. VLAN(NUMER ID).</p>
+<p>Pózniej mamy VLAN Membership które pozwala na przydzielenie portom VLAN, czasami w niektórych modelach switcha te kreatory i zarządanie są w osobnych zakładkach.</p>
+<p>PVID to jest selektor ID naszego VLANu kliknij i wybierz podany w zadaniu VLAN, Tagowanie wybierzemy za pomocą przycisku pod ID portu, jeśli port nie ma podanego VLANu to zostaw 1.</p>
+</section>
+<section id="ustawienia-portów---wyłączaniewłączanie" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="ustawienia-portów---wyłączaniewłączanie"><span class="header-section-number">6.3</span> Ustawienia portów - Wyłączanie/Włączanie</h2>
+<p>Zazwyczaj wyłączanie i właczanie portów robi się poprzez jakąś zakładke Port/Ports, zaznaczenie tam podanych portów i wybranie statusu “disabled” aby wyłączyć lub “enabled” aby właczyć. Zazwyczaj trzeba również kliknąć <code>Apply</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="switch-config-port.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak skonfigurować porty switcha</figcaption>
+</figure>
+</div>
+<p>Trzeba uważać żeby nie zaznaczyć <code>Port config</code> jakieś innej zakładki, gdzie porty dotyczą tej zakładki a nie ogólnej konfiguracji portów w switchu. Jeśli istnieją zakładki to wybierz taką która jest najbardziej ogólna. Np. w przypadku tego switcha jest to <code>Switching</code> o wiele bardziej ogólniejsza nazwa niż np. <code>Spanning tree</code></p>
+</section>
+</section>
+<section id="różne-z-windowsa" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Różne z Windowsa</h1>
+<p>W windowsie na stacji i na serwerze często są podobno rzeczy które trudno sklasyfikować. Zazwyczaj będzie konfiguracja karty sieciowej, tworzenie kont i grup. Czasem znajdą się też przydziały dyskowe lub konfiguracja dysków.</p>
+<p>Najlepszym jednym narzędziem do tego jest <code>Zarządzanie komputerem</code>:<br>
+Dodamy tam użytkowników i grupy, można tam też zarządzać dyskami.</p>
+<p>Warto też zapamiętać <code>gpedit.msc</code>, po uruchomieniu którego będziemy mogli edytować zasady użytkowników i komputera, czyli np. długość haseł, blokowanie panelu sterowania itp.</p>
+<section id="ustawienia-karty-sieciowej" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="ustawienia-karty-sieciowej"><span class="header-section-number">7.1</span> Ustawienia karty sieciowej</h2>
+<p>Ustawianie kart sieciowych w windowsie znajduje się chyba w każdym arkuszu. Najlepiej wejść w <code>Panel sterowania</code> -&gt; <code>Centrum sieci ...</code> i kliknąć <code>Zmień ustawienia karty sieciowej</code> gdzie możemy edytować karty które nas obchodzą.</p>
+<p>Często tutaj będziemy musieli ustawić nazwe interfejsu, lub przypisanie IP, maski, lub bramy domyślnej. Czasem trzeba też ustawić IP serwera DNS, zazwyczaj jest to 8.8.8.8 ale czasem trzeba ustawić tam IP od serwera linux albo windows, lub w przypadku ustawiania w serwerze trzeba wpisać <code>adres loopback</code> czyli <code>127.0.0.1</code> który wskazuje na własną maszyne.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="karta-sieciowa-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące konfiguracje karty sieciowej w Windowsie</figcaption>
+</figure>
+</div>
+<p>W jednym z okien można też łatwo zmienić nazwę karty albo wyłączyć ją.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="zmiana-nazwy-karty-sieciowej-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak zmienić nazwe karty sieciowej lub wyłączyć ją w Windowsie</figcaption>
+</figure>
+</div>
+</section>
+<section id="tworzenie-lokalnych-grup-i-użytkowników" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="tworzenie-lokalnych-grup-i-użytkowników"><span class="header-section-number">7.2</span> Tworzenie lokalnych grup i użytkowników</h2>
+<p>Te zadanie często się pojawia, wystarczy wejść w <code>Zarządzanie komputerem</code> i tam przejść do zakładki <code>Użytkownicy i grupy lokalne</code> -&gt; <code>Użytkownicy</code> lub <code>Grupy</code> gdzie klikająć prawym jesteśmy w stanie stworzyć nowego użytkownika lub grupe. Klikając na użytkownika jesteśmy w stanie dodać go do grupy, lub zmienić jakieś ustawienia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dodawanie-uzytkownika-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące jak stworzyć użytkownika w Windowsie</figcaption>
+</figure>
+</div>
+<p>Warto wiedzieć że to tworzy lokalnego użytkownika lub grupe, czyli użytkowników na komputerze w którym to tworzymy. Nie tworzy to jednak domeny (Active Directory) jaka może być w windows server.</p>
+</section>
+<section id="zasady-lokalnych-grup-w-gpedit.msc" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="zasady-lokalnych-grup-w-gpedit.msc"><span class="header-section-number">7.3</span> Zasady lokalnych grup w gpedit.msc</h2>
+<p>W tą aplikacje można wejść po wpisaniu <code>gpedit.msc</code> (pamiętaj o .msc!). Tutaj skonfigurujemy różne opcje komputera lub użytkownika. Można zabronić dostępu do panelu sterowania, lub wymagać długości hasła itp.</p>
+<p>Nie da się zapamiętać wszystkich tutaj ustawień wiec najlepiej zapamiętać tylko tgo najczęstsze.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="gpedit-konfiguracja.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie ukazujące aplikacje gpedit.msc w Windowsie</figcaption>
+</figure>
+</div>
+</section>
+<section id="uprawnienia-dla-folderów-w-systemie-ntfs" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="uprawnienia-dla-folderów-w-systemie-ntfs"><span class="header-section-number">7.4</span> Uprawnienia dla folderów w systemie NTFS</h2>
+<p>Często albo udostępniamy plik albo lokalnie chcemy aby inny użytkownik z komputera mógł mieć specyficzne uprawnienia. Możemy to zrobić klikając prawym przyciskiem na folder lub dysk i wchodząc do <code>Właściwości</code>. Tam wybieramy zakładke <code>Zabezpieczenia</code> i możemy edytować.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="uprawnienia-ntfs-folderow.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak ustawić uprawnienia NTFS folderu</figcaption>
+</figure>
+</div>
+<p>Są jeszcze uprawnienia sieciowe jeśli folder jest udostępniany w sieci. Ustawianie uprawnień wygląda bardzo podobnie, z mniejszą ilością uprawnień do wyboru <a href="#sec-uprawnienia-sieciowe-windows" class="quarto-xref">Sekcja&nbsp;7.7.4</a></p>
+<p>Trzeba pamiętać że system wybierze najbardziej restrykcyjne uprawnienia pomiędzy sieciowymi a NTFS w przypadku łączenia się z folderem w sieci.</p>
+</section>
+<section id="konfiguracja-dysków" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="konfiguracja-dysków"><span class="header-section-number">7.5</span> Konfiguracja dysków</h2>
+<p>Czasem trzeba sformatować jakiś dysk, lub przypisać jakąś litere lub etykiete woluminowi. Możemy to również zrobić w <code>Zarządzanie komputerem</code> -&gt; <code>Zarządzanie dyskami</code>.</p>
+<p>Tutaj możemy zmienić litere woluminu, sformatować dysk, stworzyć nowe woluminy itp.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="zarzadzanie-dyskami-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące konfiguracje litery woluminu dysku w Windowsie</figcaption>
+</figure>
+</div>
+</section>
+<section id="przydziały-dyskowe" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="przydziały-dyskowe"><span class="header-section-number">7.6</span> Przydziały dyskowe</h2>
+<p>Przydziały można skonfigurować klikając prawym na dysk w ekploratorze plików i poprzez wejście w <code>Właściwości</code> i zakładke <code>Przydział</code>.</p>
+<p>Tam włączymy zarządzanie przydziałami i jesteśmy w stanie ustawić domyślny limit. Możemy też stworzyć nowe wpisy przydziałow, dzięki czemu możemy wpisać podany w zadaniu limit.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="przydzialy-dysku-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące gdzie znajdziesz przydziały dyskowe w Windowsie</figcaption>
+</figure>
+</div>
+</section>
+<section id="udostępnianie-folderów-lub-dysku-w-sieci" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="udostępnianie-folderów-lub-dysku-w-sieci"><span class="header-section-number">7.7</span> Udostępnianie folderów lub dysku w sieci</h2>
+<p>Czasem są zadania w których musisz udostępnić dysk lub folder w sieci. Robisz to wchodząc w właściwości dysku lub folderu i przechodząc do zakładki <code>Udostępnianie</code>.</p>
+<p>Tam klikasz <code>Udostępnianie zaawansowane...</code> i udostępniasz.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="udostepnianie-dysku-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące udostępnianie dysku w Windowsie</figcaption>
+</figure>
+</div>
+<p>Na dysk wejdziesz poprzez scieżke sieciową podaną w tamtej zakładce.</p>
+<section id="folder-macierzysty-folder-domowy" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="folder-macierzysty-folder-domowy"><span class="header-section-number">7.7.1</span> Folder macierzysty (folder domowy)</h3>
+<p>Teraz rzadkość ale łatwo to ustawić, więc warto zapamiętać. Wchodząć na użytkownika w <code>Zarządzaj komputerem</code> można wejść w jego ustawienia i ustawić mu folder macierzysty ze scieżką na udostepniony folder.</p>
+<p>To spowoduje że ten użytkownik będzie miał ten udostępniany w sieci folder odrazu w eksploratorze plików, jednak jest do folder domowy i przez to system może zmienić jakieś ustawienia przez co inni użytkownicy nie będą mogli w niego wejść chyba że są administratorami.</p>
+<p>Zazwyczaj jeśli chodzi o mapowanie to chodzi o domene active directory albo ręczne zmapowanie które omówiłem dalej.</p>
+</section>
+<section id="ręczne-mapowanie-dyskufolder" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="ręczne-mapowanie-dyskufolder"><span class="header-section-number">7.7.2</span> Ręczne mapowanie dysku/folder</h3>
+<p>Aby ręcznie zmapować dysk/folder w Windowsie trzeba kliknąć prawym na <code>Ten komputer</code> i wybrać <code>Mapuj dysk sieciowy</code>. W kreatorze podajemy wybraną litere dysku i lokalizacje sieciową dysku/folderu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mapowanie-dysku-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak zmapować dysk sieciowy w Windowsie</figcaption>
+</figure>
+</div>
+</section>
+<section id="mapowanie-dysku-za-pomocą-zasad-grupy" class="level3" data-number="7.7.3">
+<h3 data-number="7.7.3" class="anchored" data-anchor-id="mapowanie-dysku-za-pomocą-zasad-grupy"><span class="header-section-number">7.7.3</span> Mapowanie dysku za pomocą zasad grupy</h3>
+<p>Aby zmapować dysk za pomocą zasad grupy potrzebujemy serwer windows i domene Active Directory. Instalacja tej usługi jest w sekcji <code>Usługi serwera Windows</code></p>
+<p>Jak to zrobić znajdziesz w <a href="#sec-mapowanie-dysku-windows-serwer" class="quarto-xref">Sekcja&nbsp;9.2.4</a></p>
+</section>
+<section id="sec-uprawnienia-sieciowe-windows" class="level3" data-number="7.7.4">
+<h3 data-number="7.7.4" class="anchored" data-anchor-id="sec-uprawnienia-sieciowe-windows"><span class="header-section-number">7.7.4</span> Uprawnienia dla udostępnianego folderu</h3>
+<p>Zazwyczaj trzeba również skonfigurować uprawnienia dla podanego folderu. Musimy ustawić uprawnienia zarówno w zakładce <code>Zabezpieczenia</code> jak i również w uprawnieniach sieciowych, aby to zrobić trzeba wejść w zakładke <code>Udostępnianie</code> a pózniej kliknąć w <code>Udostępnianie zaawansowane</code> gdzie możemy dalej kliknąć <code>Uprawnienia</code>.</p>
+<p>W finalnym oknie możemy dodawać, usuwać i ustawiać uprawnienia grup i użytkowników.</p>
+<p>System wybierze bardziej restrykcyjne uprawnienia między <code>Zabezpieczenia</code> (uprawnienia systemu NTFS) a uprawnieniami sieciowymi ustawionymi w udostępnianiu (uprawnienia udziału).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="uprawnienia-sieciowe-folderu-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak uprawnienia sieciowe folderów</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="konfiguracja-drukarki-lokalnie" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="konfiguracja-drukarki-lokalnie"><span class="header-section-number">7.8</span> Konfiguracja drukarki lokalnie</h2>
+<section id="dodawanie-drukarki" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="dodawanie-drukarki"><span class="header-section-number">7.8.1</span> Dodawanie drukarki</h3>
+<p>Zazwyczaj jest jakiś program który automatycznie tworzy drukarke i instaluje sterowniki. Jednak da się to również zrobić, wejdz na <code>Panel Sterowania</code> -&gt; <code>Urządzenia i drukarki</code> i kliknij <code>Dodaj drukarkę</code>. System będzie chciał automatycznie znaleźć drukarke, jeśli jest tam to wybierz ją w innym wypadku wybierz <code>Drukarki której szukam nie ma na liście</code> i zależnie od drukarki wybierz dodanie przez IP, nazwy, udostępnioną, lub ręcznie dodaj lokalną/udostępnioną drukarke.</p>
+<p>Przejdz przez konfigurator drukarki wybierając właściwe opcje i drukarka się doda.</p>
+<div id="fig-dodawanie-drukarki-windows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dodawanie-drukarki-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="dodawanie-drukarki-windows.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dodawanie-drukarki-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;1: Zdjęcie pokazujące jak dodać nową drukarke ręcznie
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="udostępnianie-drukarki" class="level3" data-number="7.8.2">
+<h3 data-number="7.8.2" class="anchored" data-anchor-id="udostępnianie-drukarki"><span class="header-section-number">7.8.2</span> Udostępnianie drukarki</h3>
+<p>Często trzeba udostępnić drukarkę w sieci można to zrobić w <code>Panel sterowania</code> -&gt; <code>Urządzenia i drukarki</code>, w tym oknie klikasz prawym na drukarke i zaznaczasz <code>Właściwości Drukarki</code> wchodzisz na zakładke <code>Udostępnianie</code></p>
+<div id="fig-udostepnianie-drukarki-windows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-udostepnianie-drukarki-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="udostepnianie-drukarki-windows.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-udostepnianie-drukarki-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;2: Zdjęcie pokazujące jak udostępnić drukarke w windowsie
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="harmonogram-i-piorytet-drukarki" class="level3" data-number="7.8.3">
+<h3 data-number="7.8.3" class="anchored" data-anchor-id="harmonogram-i-piorytet-drukarki"><span class="header-section-number">7.8.3</span> Harmonogram i piorytet drukarki</h3>
+<p>Aby ustawić harmonogram i piorytet drukarki wejdz w <code>Panel sterowania</code> -&gt; <code>Urządzenia i drukarki</code>, kliknij prawym na drukarke i <code>Właściwości drukarki</code>. Po czym w zakładce <code>Zaawansowane</code> ustawisz harmonogram i piorytet. Harmonogram jest w formacie AM i PM a nie w zegarze typu 24 godziny. Zapamiętaj że 12AM to jest 00:00 i od 1 to 11AM godziny są 1:00 do 11:00, po czym idzie PM, gdzie 12PM to 12:00, a 1PM to 13, 2PM to 14 itd…</p>
+<div id="fig-harmonogram-piorytet-drukarka-windows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-harmonogram-piorytet-drukarka-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="harmonogram-piorytet-drukarki.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-harmonogram-piorytet-drukarka-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;3: Zdjęcie pokazujące ustawienia zaawansowane drukarki gdzie da sie ustawic harmonogram i piorytet
+</figcaption>
+</figure>
+</div>
+<p>Na zdjęciu widać piorytet drukarki ustawiony na 2, i harmonogram od 8AM do 4PM, co oznacza godziny dostępności od 8:00 do 16:00. Czym większy jest piorytet tym ważniejsza jest ta drukarka.</p>
+</section>
+<section id="uprawnienia-drukarki" class="level3" data-number="7.8.4">
+<h3 data-number="7.8.4" class="anchored" data-anchor-id="uprawnienia-drukarki"><span class="header-section-number">7.8.4</span> Uprawnienia drukarki</h3>
+<p>Aby ustawić uprawnienia wchodzimy w właściwości drukarki tak jak w poprzednich sekcjach. Wchodzimy w zakładke <code>Zabezpieczenia</code> i tutaj już konfiguracja jest podobna do uprawnień NTFS tylko z innymi uprawnieniami.</p>
+<div id="fig-uprawnienia-drukarka-windows" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uprawnienia-drukarka-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="uprawnienia-drukarki-windows.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uprawnienia-drukarka-windows-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;4: Zdjęcie pokazujące jak ustawić uprawnienia drukarki w Windowsie
+</figcaption>
+</figure>
+</div>
+<p>Uprawnienia pozwalają nam na pewny trik który umożliwia piorytety między grupami i użytkownikami. Co zobaczysz w <a href="#sec-piorytety-drukarki-trik" class="quarto-xref">Sekcja&nbsp;7.8.5</a></p>
+</section>
+<section id="sec-piorytety-drukarki-trik" class="level3" data-number="7.8.5">
+<h3 data-number="7.8.5" class="anchored" data-anchor-id="sec-piorytety-drukarki-trik"><span class="header-section-number">7.8.5</span> Ustawianie piorytetów drukarki dla grup/użytkowników</h3>
+<p>Czasem zdarzają się pytania o to żeby ustawić większy piorytet dla np. grupy <code>Dyrektorzy</code> niż dla domyślnej grupy <code>Drukarze</code>.</p>
+<p>Niestety robi się to poprzez zduplikowanie drukarki i nazwanie jej w inny sposób oraz przypisanie praw tylko dla tej grupy jaką chcemy.</p>
+<p>To co musimy zrobić to stworzyć jeszcze jedną drukarke, często da się to zrobić przez uruchomienie ponownie kreatora drukarki. Przy stworzeniu jeszcze raz drukarki nazywamy ją unikalnie ale odpowiednio z zadaniem i przypisujemy prawa tak aby tylko grupy wypisane mogły z niej korzystać. Ustawiamy piorytet, czym większy jest piorytet tym ważniejszy jest druk z tej drukarki.</p>
+<p>Lokalnie drukarka będzie widoczna dla każdego ale może z niej korzystać tylko przypisana grupa.</p>
+<p>W active directory trzeba udostępnić drukarkę i rozmieścić ją w domenie dla grup/użytkowników.</p>
+</section>
+</section>
+<section id="sec-putty-windows-ssh" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="sec-putty-windows-ssh"><span class="header-section-number">7.9</span> Łączenie się z SSH za pomocą PuTTY</h2>
+<p>Łączenie sie z SSH za pomocą PuTTY jest mega łatwe. Uruchamiamy PuTTY i w pierwszym oknie odrazu wpisujemy IP serwera i port na którym mamy SSH (domyślnie 22), po czym poniżej wybieramy SSH (connection type). Klikamy <code>Open</code> i logujemy się na jakiegoś użytkownika. Bam jesteśmy na serwerze.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="putty-ssh-linux-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak połączyć się z serwerem SSH za pomocą PuTTY w windowsie</figcaption>
+</figure>
+</div>
+<p>Można też się połączyć za pomocą konsoli przy użyciu <code>ssh nazwa@ip -p port</code></p>
+<div id="fig-laczenie-komenda-ssh" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-laczenie-komenda-ssh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ssh-komenda-laczenie.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-laczenie-komenda-ssh-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;5: Zdjęcie pokazujące jak połączyć się z serwerem SSH za pomocą konsoli w windowsie
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="różne-z-linuxa" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Różne z Linuxa</h1>
+<section id="sec-karta-sieciowa-gui-linux" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec-karta-sieciowa-gui-linux"><span class="header-section-number">8.1</span> Ustawienia karty sieciowej (GUI/STACJA)</h2>
+<p>Jeśli chodzi o stacje lub metode z GUI to IP i maskę, jak i zarówno inne opcje ustawimy w <code>Ustawienia</code> -&gt; <code>Sieć</code> i klikając na zębatke obok karty która nas interesuje otworzy to okno w której mamy zakładke <code>IPv4</code>. Graficznie nie ma problemu z ustawieniem karty sieciowej.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="karta-sieciowa-linux-gui.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące gdzie ustawić opcje karty sieciowej w linuxie na stacji (z GUI)</figcaption>
+</figure>
+</div>
+</section>
+<section id="ustawienie-karty-sieciowej-cliserwer" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="ustawienie-karty-sieciowej-cliserwer"><span class="header-section-number">8.2</span> Ustawienie karty sieciowej (CLI/SERWER)</h2>
+<p>Tutaj chodzi o ustawienie netplanu, czyli usługi która konfiguruje sieć. <strong>POLECAM</strong> sprawdzić scieżke <code>/usr/share/doc/netplan/examples/</code>, tam są przykłady konfiguracji netplan, np. statyczny: static.yaml, wifi: wireless.yaml!</p>
+<p>Plik konfiguracyjny znajduje się w <code>/etc/netplan/</code> i zazwyczaj nazywa się <code>50-cloud-init.yaml</code> Ale zależnie czy jest to stacja czy serwer pliki mogą się różnić, lub może być ich więcej, dlatego na stacji warto po prostu użyć metody GUI którą zobaczysz w <a href="#sec-karta-sieciowa-gui-linux" class="quarto-xref">Sekcja&nbsp;8.1</a> Warto przypomnieć sobie <code>sudo netplan apply</code> która aplikuje zmiany dokonane w pliku. To sie też przydaje przy stacji gdy chcemy pobrać nowy adres z serwera DHCP.</p>
+<p>Do konfiguracji netplanu przyda się także <code>ip a</code> tam sprawdzimy nazwę interfejsu jak i również aktualną ip, maske i inne ustawienia.</p>
+<p>Podam tutaj przykładową konfiguracje 2 kart, jedną wifi a drugą kablową</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Zawsze pamiętaj tutaj przerwy są spacjami</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">network:</span> <span class="co"># Powinno być w domyślnej konfiguracji</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="ex">version:</span> 2 <span class="co"># Powinno być w domyślnej konfiguracji</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">ethernets:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">enp0s3:</span> <span class="co"># nasza karta kablowa</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="ex">optional:</span> true <span class="co"># WAŻNE (przy restarcie nie ma oczekiwania)</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dhcp4:</span> true <span class="co"># Jeśli chcemy IP z dhcp (wtedy nie trzeba podawać innych opcji)</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="ex">addresses:</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> 192.168.88.12/24 <span class="co"># Statyczny IP i maska (/24) którą przypisujemy do karty</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="ex">nameservers:</span> <span class="co"># Serwery DNS</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="ex">addressses:</span> [8.8.8.8, 192.168.88.2]</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="ex">routes:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> to: default <span class="co"># Wymagane przez netplana</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>          <span class="ex">via:</span> 192.168.88.1 <span class="co"># Brama domyślna</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="ex">wifis:</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">wlp2s0b1:</span> <span class="co"># nasza karta wifi </span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="ex">optional:</span> true <span class="co"># WAŻNE (przy restarcie nie ma oczekiwania)  </span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dhcp4:</span> no</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>      <span class="ex">dhcp6:</span> no</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="ex">addresses:</span> <span class="pp">[</span><span class="ss">192.168.88.24/24</span><span class="pp">]</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      <span class="ex">nameservers:</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="ex">addresses:</span> [192.168.88.2, 8.8.8.8]</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>      <span class="ex">access-points:</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="st">"nazwa_ssid_sieci_wifi"</span><span class="ex">:</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>          <span class="ex">password:</span> <span class="st">"haslo_sieci_wifi"</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>      <span class="ex">routes:</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        <span class="ex">-</span> to: default <span class="co"># Wymagane przez netplan</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>          <span class="ex">via:</span> 192.168.88.1 <span class="co"># Brama domyślna</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    </span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Przykłady konfiguracji można sprawdzić <a href="https://netplan.readthedocs.io/en/0.105/examples.html">Tutaj</a></p>
+</section>
+<section id="zapora-sieciowa-ufw" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="zapora-sieciowa-ufw"><span class="header-section-number">8.3</span> Zapora sieciowa (UFW)</h2>
+<p>Może być zadanie z UFW, gdzie trzeba blokować, pozwalać, włączać i wyłączać zapore.</p>
+<p>Zadanie może brzmieć: „Zablokuj cały ruch, zezwól tylko na SSH i WWW”.</p>
+<ul>
+<li>sudo <strong>ufw</strong> default deny incoming (blokada wszystkiego z zewnątrz).</li>
+<li>sudo <strong>ufw</strong> allow 22/tcp (albo zmieniony port SSH, np. 2222/tcp).</li>
+<li>sudo <strong>ufw</strong> allow 80/tcp (Apache).</li>
+<li>sudo <strong>ufw</strong> enable (włączenie zapory).</li>
+</ul>
+</section>
+<section id="lokalne-grupy-i-użytkownicy-tworzeniezmiana" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="lokalne-grupy-i-użytkownicy-tworzeniezmiana"><span class="header-section-number">8.4</span> Lokalne grupy i użytkownicy (Tworzenie/Zmiana)</h2>
+<section id="sec-tworzenie-uzytkownika-linux" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="sec-tworzenie-uzytkownika-linux"><span class="header-section-number">8.4.1</span> Tworzenie użytkownika</h3>
+<p>Użytkownika tworzy się za pomocą komendy <code>adduser nazwa-użytkownika</code>. Jest to przyjaźniejsza wersja od <code>useradd</code> wiec najlepiej z niej korzystać. Spyta się ona po wykonaniu komendy o hasło i inne dane.</p>
+<p>Aby usunąć użytkownika piszemy <code>deluser nazwa-uzytkownika</code></p>
+</section>
+<section id="tworzenie-grupy" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="tworzenie-grupy"><span class="header-section-number">8.4.2</span> Tworzenie grupy</h3>
+<p>Grupe stworzymy za pomocą <code>sudo addgroup nazwa-grupy</code>.<br>
+Aby usunąć grupe piszemy <code>delgroup nazwa-grupy</code></p>
+</section>
+<section id="dodawanie-użytkownika-do-grupy" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="dodawanie-użytkownika-do-grupy"><span class="header-section-number">8.4.3</span> Dodawanie użytkownika do grupy:</h3>
+<p>Zrobimy to za pomocą <code>adduser uzytkownik grupa</code><br>
+Można też zrobić to za pomocą: <code>sudo usermod -aG grupa uzytkownik</code></p>
+</section>
+<section id="sec-sprawdzanie-grup-user-linux" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="sec-sprawdzanie-grup-user-linux"><span class="header-section-number">8.4.4</span> Sprawdzanie grup i użytkowników</h3>
+<p>Sprawdzimy jacy są użytkownicy za pomocą <code>cat /etc/passwd</code><br>
+Sprawdzimy jakie są grupy za pomocą <code>cat /etc/group</code></p>
+</section>
+<section id="zmiana-hasła-użytkownika" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="zmiana-hasła-użytkownika"><span class="header-section-number">8.4.5</span> Zmiana hasła użytkownika</h3>
+<p>Hasło zmienimi za pomocą <code>sudo passwd nazwa</code> po czym wpisujemy nowe hasło</p>
+</section>
+</section>
+<section id="system-plików---uprawnienia-atrybuty-i-własciciel" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="system-plików---uprawnienia-atrybuty-i-własciciel"><span class="header-section-number">8.5</span> System plików - uprawnienia, atrybuty i własciciel</h2>
+<section id="podgląd-szczegółowych-uprawnień-i-innych-cech" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="podgląd-szczegółowych-uprawnień-i-innych-cech"><span class="header-section-number">8.5.1</span> Podgląd szczegółowych uprawnień i innych cech</h3>
+<p>Można wykonać za pomocą <code>ls -l</code> , ważna jest tu flaga <code>-l</code>.</p>
+</section>
+<section id="sec-zmiana-uprawnien-pliku-linux" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="sec-zmiana-uprawnien-pliku-linux"><span class="header-section-number">8.5.2</span> Ustawienie nowych uprawnień</h3>
+<p>Uprawnienia zmieniamy z <code>chmod</code>, w zadaniu mogą zostać podane po kolei lub podane w sposób cyfrowy lub literowy np. 770, albo rwxrwx—, warto zapamiętać że r to read - 1, w to write - 2 x to execute - 4. kod cyfrowy dostaniemy po dodaniu liczb ktore przypisane są uprawnieniom. Ze względu na to jak wygląda format nie powtórzą sie inne kombinacje. Wiec np. 5 zawsze będzie się odnosiło do opcji R i X. Trzeba zapamiętać że są 3 kombinacje rwx, w formacie UGO - User, Group, Others. Czyli np. 751 ustawi uprawnienia pliku/folderu 7 dla własciciela, 5 dla grupy (do której nalezy folder), 1 dla innych (nie w grupie).</p>
+<p>Przykład: <code>chmod 000 folder</code> - usunie wszystkie uprawnienia dla wlasciciela, grupy i innych.</p>
+</section>
+<section id="specjalne-atrybuty-plikówfolderów" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="specjalne-atrybuty-plikówfolderów"><span class="header-section-number">8.5.3</span> Specjalne atrybuty plików/folderów</h3>
+<p>Ustawia się za pomocą <code>chattr</code> np. <code>chattr +i plik</code> aby zamrozić plik przed usunięciem. Sprawdź <code>man chattr</code> po więcej opcji.</p>
+</section>
+<section id="zmiana-grupy-i-własciciela" class="level3" data-number="8.5.4">
+<h3 data-number="8.5.4" class="anchored" data-anchor-id="zmiana-grupy-i-własciciela"><span class="header-section-number">8.5.4</span> Zmiana grupy i własciciela</h3>
+<p>Zrobimy to wykonując <code>chown uzytkownik:grupa nazwa-pliku</code>, zmieni to wlasciciela na podanego użytkownika i grupe na podaną grupe.</p>
+</section>
+</section>
+<section id="zmiana-powłoki-użytkownika" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="zmiana-powłoki-użytkownika"><span class="header-section-number">8.6</span> Zmiana powłoki użytkownika</h2>
+<p>Zrobimy to za pomocą <code>chsh -s /sciezka/do/powloki</code> np. <code>/bin/zsh</code>. Uwaga zmieni to powłoke użytkownika na którym jesteście zalogowani.</p>
+<p>Aby zmienić powłoke dla jakiegoś użytkownika trzeba wykonać: <code>sudo chsh -s /sciezka/do/powloki uzytkownik</code></p>
+<p>Można też sprawdzić dostępne powłoki za pomocą <code>cat /etc/shells</code></p>
+</section>
+</section>
+<section id="usługi-serwera-windows" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Usługi serwera Windows</h1>
+<section id="podstawy" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="podstawy"><span class="header-section-number">9.1</span> Podstawy</h2>
+<section id="nazwa-serwera" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="nazwa-serwera"><span class="header-section-number">9.1.1</span> Nazwa Serwera</h3>
+<p>Serwer ma swoją nazwe, który często się wykorzystuje przy scieżkach w sieci np. przy konfiguracji AD i udostępnianiu drukarek, folderów i dysków.</p>
+<p>Nazwe serwera to tak naprawde nazwa komputera na którym jest uruchomiony serwer. Znajdziesz ją m.in w <code>Menadżer Serwera</code> -&gt; <code>Serwer lokalny</code>. Tam równiesz znajdziesz domene w której się znajduje serwer.</p>
+<div id="fig-nazwa-domena-windows-serwer" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nazwa-domena-windows-serwer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="nazwa-domena-windows-serwer.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nazwa-domena-windows-serwer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;6: Zdjęcie pokazujące gdzie można odczytać nazwe komputera i domeny w której jest on.
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="active-directory" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="active-directory"><span class="header-section-number">9.2</span> Active Directory</h2>
+<p>Będę używał skrótu <strong>AD</strong> co oznacza <strong>Active Directory</strong><br>
+Często musimy zainstalować role AD, ustawić nazwe lasu, pozmieniać jakieś ustawienia grupy i użytkowników domeny lub dodać nowe grupy i użytkowników do domeny.</p>
+<section id="instalacja" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="instalacja"><span class="header-section-number">9.2.1</span> Instalacja</h3>
+<p>Instalacja jest łatwa. W <code>Menadżer Serwera</code> klikamy <code>Dodaj role i funkcje</code> dajemy dalej aż dojdziemy do sekcji <code>Role serwera</code> gdzie wybieramy <code>Usługi domenowe Active Directory</code>, klikamy dodaj funkcje i przechodzimy dalej.</p>
+<div id="fig-instalacja-roli-serwera" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-instalacja-roli-serwera-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="instalacja-ad-windows.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-instalacja-roli-serwera-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;7: Zdjęcie pokazujące jak dodać Active Directory w Windows Serwer
+</figcaption>
+</figure>
+</div>
+<p>Na ostatniej karcie klikamy <code>Zainstaluj</code> i czekamy.</p>
+<p>Po zainstalowaniu serwer pokaże nam powiadomienie (taka ikona flagi z trójkącikiem). Gdzie jak klikniemy, piszę że musimy skonfigurować AD. Klikamy niebieski przycisk <code>Podnieś poziom tego serwera...</code> i przechodzimy do konfiguracji lasu.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="konfiguracja-ad-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak skonfigurować AD po instalacji w Windows Serwer</figcaption>
+</figure>
+</div>
+<p>W oknie kreatora konfiguracji będziemy musieli dodać nowy las za pomocą opcji <code>Dodaj nowy las</code>. Podajemy również nazwe domeny głownej podanej w zadaniu. Nazwą może być np. egzamin.local itp.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="las-ad-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące dodawanie lasu domeny AD po instalacji w Windows Serwer</figcaption>
+</figure>
+</div>
+<p>W dalszych kartach trzeba ustawić hasło przywracania podane w zadaniu.<br>
+Nazwa NetBIOS zostanie sama przypisana automatycznie, zostaw ją chyba że w zadaniu pisze inaczej.</p>
+<p>Głownie klikamy <code>Dalej</code>, chyba że system coś od nas chce np. <code>Zainstaluj</code><br>
+Na koncu serwer uruchomi się ponownie i AD został skonfigurowany.</p>
+</section>
+<section id="tworzenie-jednostki-organizacyjnej-użytkowników-i-grup-domeny" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="tworzenie-jednostki-organizacyjnej-użytkowników-i-grup-domeny"><span class="header-section-number">9.2.2</span> Tworzenie jednostki organizacyjnej, użytkowników i grup domeny</h3>
+<p>Aby dodać jednostkę organizacyjną, użytkownika albo grupe wejdź w <code>Narzędzia</code> i kliknij na <code>Użytkownicy i komputery usługi Active Directory</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="las-ad-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące dodawanie jednoski organizacyjnej, użytkowników i grupy domeny AD w windows serwer</figcaption>
+</figure>
+</div>
+<p>Tutaj klikając prawym na las jesteśmy w stanie stworzyć komputery, grupy, użytkowników i jednoski. Zazwyczaj w zadaniu egzaminacyjnym musimy stworzyć jednostke organizacyjną i jakiś użytkowników których pózniej dodajemy do nowych lub istniejących grup.</p>
+<p>Nie będę pokazywał jak sie tworzy wszystko, ale jest to logiczne, klikasz prawym i szukasz odpowiedniej opcji. Czasem trzeba kliknąć dwukrotnie lewym.</p>
+</section>
+<section id="dodawanie-stacji-do-domeny" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="dodawanie-stacji-do-domeny"><span class="header-section-number">9.2.3</span> Dodawanie stacji do domeny</h3>
+<p>Bardzo często trzeba dodać stacje do domeny AD. Wchodzimy w <code>Wyświetl zaawansowane ustawienia systemu</code> na stacji.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="zaawansowane-ustawienia-systemu-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie z tym jak ta opcja wygląda</figcaption>
+</figure>
+</div>
+<p>Tam przechodzimy w zakładke <code>Nazwa komputera</code> i klikamy przycisk <code>Zmień</code>, gdzie możemy ustawić nazwe komputera i członkostwo do domeny. Wpisujemy tam naszą domene (np. <code>egzamin</code> w przypadku lasu <code>egzamin.local</code>), pamietaj że stacja musi być podłączona z serwerem żeby to zadziałało.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Ważne</span>DNS i połączenie z serwerem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>W karcie sieciowej na komputerze których chcesz dołączyć do domeny musisz ustawić IP DNS serwera na której jest Active Directory. No i oczywiscie musisz mieć połączenie z serwerem żeby to zrobić. Sprawdzaj sobie <code>ipconfig /all</code> i <code>ping</code> czy masz łączność.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dodawanie-do-ad.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak dodać komputer do domeny Active Directory</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-mapowanie-dysku-windows-serwer" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="sec-mapowanie-dysku-windows-serwer"><span class="header-section-number">9.2.4</span> Mapowanie dysku za pomocą zasad grupy</h3>
+<p>Zakładam że masz albo potrafisz stworzyć jednostkę i użytkownika/grupe<br>
+Wchodzisz teraz w <code>Narzędzia</code> i klikasz na <code>Zarządzanie zasadami grupy</code></p>
+<p>Tam klikamy w las i naszą domene, w domenie znajdziemy naszą jednostkę organizacyjną, klikamy w nią prawym i tworzymy nowy obiekt zasad grupy, w zadaniu często pisze jak nazwać ten obiekt! My nazwiemy ją <code>mapowanie dysku</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tworzenie-zasad-ad.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące tworzenie obiektu zasad grupy w domenie</figcaption>
+</figure>
+</div>
+<p>Po stworzeniu zasady pojawi się ona w jednostce klikamy na nią prawym i klikamy <code>Edytuj</code>. To otworzy edytor w którym możemy konfigurować opcje</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mapowanie-dysku-zasada.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące gdzie wejść aby skonfigurować dysk mapowany</figcaption>
+</figure>
+</div>
+<p>Po wejsciu podajemy lokalizacje i oznaczenie dysku literą.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mapowanie-dysku-ad-windows.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące tworzenie nowego dysku zamapowanego w obiekcie zasad</figcaption>
+</figure>
+</div>
+<p>W zadaniu może też być podane że mapowanie ma być wykonywane tylko dla podanej grupy/jednoski lub użytkownika. Są różne opcje. Wchodzisz wtedy w zakładke <code>Wspólne</code> i zaznaczasz <code>Określ wartość docelową na poziomie elementu</code> i klikasz w przycisk obok. Tak dodajesz nowy element np. Grupe Zabezpieczeń w przypadku konfiguracji mapowania dla grupy. Wybierasz grupe i opcje i masz.</p>
+<div id="fig-filtry-gpo-wspolne" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-filtry-gpo-wspolne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="mapowanie-filtrowane-ad.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-filtry-gpo-wspolne-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;8: Zdjęcie pokazujące filtry mapowania dysku
+</figcaption>
+</figure>
+</div>
+<p>Za pomocą takiej konfiguracji logując się na jakiegoś użytkownika z grupy <code>egzaminatorzy</code> widzimy odrazu podpięty dysk sieciowy z literą <code>Z</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="mapowanie-rezultat-ad.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące wynik mapowania</figcaption>
+</figure>
+</div>
+<p>Czasem trzeba zweryfikować uprawnienia tak aby ta grupa mogła np. wykonywayć albo odczytywać. Sprawdź do tego <a href="#sec-uprawnienia-sieciowe-windows" class="quarto-xref">Sekcja&nbsp;7.7.4</a></p>
+</section>
+</section>
+<section id="usługa-drukowania" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="usługa-drukowania"><span class="header-section-number">9.3</span> Usługa drukowania</h2>
+<section id="instalacja-1" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="instalacja-1"><span class="header-section-number">9.3.1</span> Instalacja</h3>
+<p>Żeby skonfigurować drukarki i wdrażać ją w AD trzeba dodać role <code>Usługi drukowania i zarządzania dokumentami</code>, przechodzimy dalej i instalujemy. Wystarczy zaznaczona usługa <code>Serwer wydruku</code>. Po instalacji możemy wejść w <code>Narzędzia</code> -&gt; <code>Zarządzanie drukowaniem</code>. Robisz identyczne kroki jak przy instalacji AD tutaj: <a href="#fig-instalacja-roli-serwera" class="quarto-xref">Obrazku&nbsp;7</a> tylko zaznaczasz <code>Usługi drukowania ...</code></p>
+</section>
+<section id="udostępnianierozmieszczaniewdrażanie-drukarki" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="udostępnianierozmieszczaniewdrażanie-drukarki"><span class="header-section-number">9.3.2</span> Udostępnianie/Rozmieszczanie/Wdrażanie drukarki</h3>
+<p>Wchodzimy w <code>Narzędzia</code> -&gt; <code>Zarządzanie drukowaniem</code>, tutaj skonfigurujemy i również rozmieścimy drukarki w domenie Active Directory.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Zagrożenie</span>Uwaga na obrazkach widać jak konfiguruje PDF
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>W praktyce ta drukarka jest drukarką wirtualną, i nie da się jej udostępnić. Z prawdziwą drukarką na egzaminie możecie spokojnie robić te same kroki.</p>
+<p>Właściwie to w następnych krokach tworze sztuczną drukarkę aby zasymulować udostępnianie.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rozmieszczenie-drukarki-ad.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące gdzie jest opcja do rozmieszczania drukarki w przystawce Zarządzanie drukowaniem</figcaption>
+</figure>
+</div>
+<p>Klikając w <code>Rozmieść za pomocą zasad grupy...</code> możemy wybrać obiekt GPO który będzie tym wdrożeniem/rozmieszczeniem zarządzał, jeśli nie mamy tego obiektu to możemy również skorzystać z przycisku który ten obiekt stworzy.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rozmieszczenie-drukarki-wybor-gpo.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak wybrać obiekt GPO dla drukarki</figcaption>
+</figure>
+</div>
+<p>Po wybraniu obiektu GPO wybieramy albo Użytkownicy albo Komputery zależnie od zadania, rozmieszczenie albo bedzie dotyczyły poszczególnych komputerów albo użytkowników.</p>
+<p>Po tym musimy wejść i zedytować obiekt GPI, zrobimy to w zarządzaniu zasadami grupy po kliknięciu prawym na obiekt i wybraniu <code>Edytuj</code>. Załóżmy że chcemy udostępnić drukarkę dla grupy <code>Drukarze</code>.</p>
+<p>Przed w rozmieszczeniem drukarki należy ją udostępnić, można to zrobić w <code>Panel sterowania</code> -&gt; <code>Urządzenia i drukarki</code>, w tym oknie klikasz prawym na drukarke i zaznaczasz <code>Właściwości Drukarki</code> wchodzisz na zakładke <code>Udostępnianie</code>, Zobaczysz jak to zrobić na <a href="#fig-udostepnianie-drukarki-windows" class="quarto-xref">Obrazku&nbsp;2</a>. Zapamiętaj nazwę udziału, bo będziemy ją wykorzystywać w następnym kroku.</p>
+<p>Wchodzimy w <code>Konfiguracje użytkownika</code> -&gt; <code>Preferencje</code> -&gt; <code>Ustawienia Panelu Sterowania</code> -&gt; <code>Drukarki</code>. W nowym oknie klikamy prawym przyciskiem i zaznaczamy <code>Nowy</code> -&gt; <code>Drukarka udostępniona</code> i zaznacz <code>Udostępnij tę drukarkę</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="udostepnianie-drukarki-gpo-ad.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak stworzyć nową drukarkę udostępnioną w edytorze GPO</figcaption>
+</figure>
+</div>
+<p>W nowym oknie zmieniasz <code>Akcje</code> na <code>Utwórz</code> i ustawiasz scieźke udziału w formacie: <code>\\</code> + Nazwa Serwera + <code>\</code> Nazwa Udziału.</p>
+<p>Nazwe serwera to nazwa komputera na którym jest ten serwer. W moim przypadku jest to <code>Windows-Server</code>. Jeśli chodzi o drukarke to stworzyłem nową <code>Drukarka_Egzamin</code>. A więc w moim przypadku scieżka udziału wyglądała by tak:<br>
+<code>\\Windows-Server\Drukarka_Egzamin</code>. Nazwe komputera znajdziesz na <a href="#fig-nazwa-domena-windows-serwer" class="quarto-xref">Obrazku&nbsp;6</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rozmieszczanie-drukarki-wlasciwosci.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące właściwości rozmieszczanej drukarki w GPO</figcaption>
+</figure>
+</div>
+<p>Żeby rozmieścić ją dla specyficznych użytkowników lub grupy, wchodzimy w zakładke <code>Wspólne</code>, i tak to konfigurujemy. Wygląda to tak samo jak przy mapowaniu dysków co zobaczysz na <a href="#fig-filtry-gpo-wspolne" class="quarto-xref">Obrazku&nbsp;8</a></p>
+</section>
+<section id="harmonogram-i-piorytet-drukarki-1" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="harmonogram-i-piorytet-drukarki-1"><span class="header-section-number">9.3.3</span> Harmonogram i piorytet drukarki</h3>
+<p>Ustawia się tak samo jak na zwykłym Windowsie, wejdz w <code>Panel sterowania</code> -&gt; <code>Urządzenia i drukarki</code>, kliknij prawym na drukarke i <code>Właściwości drukarki</code>. Po czym w zakładce <code>Zaawansowane</code> ustawisz harmonogram i piorytet.</p>
+<p>Zobacz zdjęcie z zwykłego windowsa na <a href="#fig-harmonogram-piorytet-drukarka-windows" class="quarto-xref">Obrazku&nbsp;3</a></p>
+</section>
+</section>
+</section>
+<section id="usługi-serwera-linux" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Usługi serwera Linux</h1>
+<p>W tej sekcji omówimy najważniejsze usługi w serwerze Ubuntu linux. Porozmawiamy również o tym jak skonfigurować opcje tych usług itp.</p>
+<section id="samba" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="samba"><span class="header-section-number">10.1</span> Samba</h2>
+<p>Szybka przypominajka: usługa nazywa się <code>smbd</code>, w konsoli używa się <code>samba</code>, trzeba włączyć <code>nmbd</code> żeby działały nazwy sieciowe. Usługe możemy aktywować za pomocą <code>systemctl enable nazwa-usługi</code> i włączyć za pomocą <code>systemctl start nazwa-usługi</code>. Plik konfiguracyjny jest w <code>/etc/samba/smb.conf</code></p>
+<p>Na egzaminie Samba będzie już zainstalowany, jedyne co to będzie trzeba go włączyć za pomocą <code>systemctl enable smbd</code>, musimy też włączyć <code>nmbd</code> czyli usługa NetBIOS Name, jeśli chcemy żeby w windowsie serwer był widoczny pod nazwą komputera <code>\\Serwer-Linux</code>.</p>
+<p>Najważniejszą częścią samby jest plik konfiguracyjny <code>/etc/samba/smb.confg</code>, w nim definujemy uprawnienia, udostępniane pliki i ustawienia zabezpieczeń. Możemy edytowac plik za pomocą np. <code>nano</code></p>
+<section id="dodawanie-użytkowników" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="dodawanie-użytkowników"><span class="header-section-number">10.1.1</span> Dodawanie użytkowników</h3>
+<p>Zanim dodamy użytkownika do Samby musimy go dodać użytkownika do systemu linux co robiliśmy w <a href="#sec-tworzenie-uzytkownika-linux" class="quarto-xref">Sekcja&nbsp;8.4.1</a> a weryfikowaliśmy w <a href="#sec-sprawdzanie-grup-user-linux" class="quarto-xref">Sekcja&nbsp;8.4.4</a> Po weryfikacji do samby dodamy użytkownika za pomocą komendy: <code>sudo smbpasswd -a uzytkownik</code></p>
+</section>
+<section id="sec-samba-udostepnianie-folderu" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="sec-samba-udostepnianie-folderu"><span class="header-section-number">10.1.2</span> Udostępnianie konkretnego folderu</h3>
+<p>Aby udostępnić folder w samba najpierw musimy ten folder stworzyć. Oczywiście to robimy za pomocą <code>mkdir /pliki</code>. Możemy też przypisać uprawnienia co robiliśmy w <a href="#sec-zmiana-uprawnien-pliku-linux" class="quarto-xref">Sekcja&nbsp;8.5.2</a> Pózniej edytujemy <code>/etc/samba/smb.conf</code> gdzie dodajemy nową sekcje <code>[pliki]</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Wskazówka</span>Ustaw read only albo writeable
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ważnym krokiem w konfiguracji jest ustawienie <code>read only = no</code> albo <code>writeable = yes</code>, zależnie od zadania, jeśli nie podamy <code>read only = no</code> to domyślnie folder bedzie tylko do odczytu.</p>
+</div>
+</div>
+<p>Sekcja może wyglądać tak:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[pliki]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">comment</span> = Testowy folder zeby sprawdzic sambe <span class="co"># komentarz.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">path</span> = /pliki <span class="co"># sciezka do folderu</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Czy folder można odkryć czy jest ukryty/widoczny</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">browseable</span> = yes</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tylko do odczytu, ważne bo w innym wypadku jest readonly by default</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">only</span> <span class="op">=</span> <span class="va">no</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># domyślne uprawnienia dla nowych plików stworzonych przez użytkownika</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="ex">create</span> mask = 0770 </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># domyślne uprawnienia dla nowych folderów stworzonych przez użytkownika</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="ex">directory</span> mask = 0770</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wymusza że w uprawnieniach nowych plików czy folderów grupą bedzie 'pracownicy'</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="ex">force</span> group = pracownicy</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pozwala na wejscie bez logowania</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="ex">guest</span> ok = yes </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Kto może wejść a kto ma zakaz</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="ex">invalid</span> users = haker</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="ex">valid</span> users = dyrektor, @pracownicy, @kadry, @praktykanci</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Podział na prawa do zapisu i odczytu</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">list</span> <span class="op">=</span> @praktykanci</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write</span> list = dyrektor, @kadry</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Polecam na końcu zrobić test poprawnosci tak jak w <a href="#sec-test-poprawnosci-samba" class="quarto-xref">Sekcja&nbsp;10.1.5</a><br>
+Zrestartuj również sambe i nmbd z <code>sudo systemctl restart smbd nmbd</code></p>
+</section>
+<section id="udostępnianie-katalogów-domowych" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="udostępnianie-katalogów-domowych"><span class="header-section-number">10.1.3</span> Udostępnianie katalogów domowych</h3>
+<p>Robimy to za pomocą sekcji <code>[homes]</code> w <code>/etc/samba/smb.conf</code>. Tam ustawiamy znane nam już ustawienia z <a href="#sec-samba-udostepnianie-folderu" class="quarto-xref">Sekcja&nbsp;10.1.2</a>. I ważne! dodajemy: valid users ustawiony na %S</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[homes]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">comment</span> = <span class="st">"Katalogi domowe użytkowników"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">browseable</span> = no <span class="co"># Blokujemy odkrywanie</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">only</span> <span class="op">=</span> <span class="va">no</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="ex">create</span> mask = 0700</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="ex">directory</span> mask = 0700</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># te %S oznacza bieżacego użytkownika, przez co np. tylko janek dostanie się do folderu domowego janka.</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="ex">valid</span> users = %S</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Polecam na końcu zrobić test poprawnosci tak jak w <a href="#sec-test-poprawnosci-samba" class="quarto-xref">Sekcja&nbsp;10.1.5</a><br>
+Zrestartuj również sambe i nmbd z <code>sudo systemctl restart smbd nmbd</code></p>
+</section>
+<section id="udostępnianie-drukarek" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="udostępnianie-drukarek"><span class="header-section-number">10.1.4</span> Udostępnianie drukarek</h3>
+<p>Raczej nie bedzie udostępniania prawdziwej drukarki, ale może być zadanie żeby skonfigurować coś w sambie.</p>
+<p>W Sambie jest już sekcja pod drukarki, jedyne co musimy zrobić to troche pozmieniac opcje np. kto może używać drukarki. Ale żeby drukarka była udostępniona trzeba ją dodać w systemie CUPS linuxa. używamy komendy <code>lpadmin</code> (line printer …)</p>
+<p>Jeśli byłby CUPS to można wykorzystać taką komende:<br>
+sudo lpadmin -p “HP_Biuro” -v “socket://192.168.1.50:9100” -m raw -E</p>
+<p>Możemy zmienić np. <code>guest ok = yes</code> albo <code>valid users = @drukarze</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[printers]</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   <span class="ex">comment</span> = Wszystkie drukarki sieciowe</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>   <span class="ex">path</span> = /var/spool/samba</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Ukrywa samą sekcję "printers", ale pokazuje konkretne drukarki</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>   <span class="ex">browseable</span> = no</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Czy goście mogą drukować bez logowania</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   <span class="ex">guest</span> ok = yes</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Zawszed no tutaj</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>   <span class="ex">writable</span> = no</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>   <span class="co"># KLUCZOWE: mówi sambie że to jest drukarka</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>   <span class="ex">printable</span> = yes</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sec-test-poprawnosci-samba" class="level3" data-number="10.1.5">
+<h3 data-number="10.1.5" class="anchored" data-anchor-id="sec-test-poprawnosci-samba"><span class="header-section-number">10.1.5</span> Test poprawności</h3>
+<p>Sprawdź czy nie popełniłeś jakieś literówki za pomocą <code>testparm</code>. Program przeanalizuje plik smb.conf i powie ci czy jest OK czy nie.</p>
+</section>
+</section>
+<section id="ftp" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="ftp"><span class="header-section-number">10.2</span> FTP</h2>
+<p>W FTP korzystamy z usługi <code>vsftpd</code>, tak samo ją włączamy i resetujemy <code>systemctl enable/restart vsftpd</code> jak w przypadku innych usług. <code>vsftpd</code> ma plik konfiguracyjny w scieżce <code>/etc/vsftpd.conf</code>, to jest scieżka odrazu w <code>/etc/</code> a nie w osobnym folderze. Zapamietaj sobie głównie <code>allow_writeable_chroot=YES</code>, bo tego nie ma w podstawowym <code>vsftpd.conf</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Udostępnia cały system plików od roota /</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="va">local_root</span><span class="op">=</span>/</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zezwalaj na logowanie lokalnym użytkownikom Linuxa (np. janek)</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="va">local_enable</span><span class="op">=</span>YES</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Zezwalaj na zapis/wygrywanie plików na serwer </span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (domyślnie FTP jest tylko do odczytu!)</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="va">write_enable</span><span class="op">=</span>YES</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Blokada użytkowników w ich katalogach domowych</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Dzięki temu 'janek' nie wyjdzie wyżej i nie zobaczy plików roota</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="va">chroot_local_user</span><span class="op">=</span>YES</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Pozwala na zapis w zamkniętym katalogu zdefiniowanym w opcji /\</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="va">allow_writeable_chroot</span><span class="op">=</span>YES</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Po odjęciu po kolei cyframi z 777 decyduje z jakimi </span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co"># uprawnieniami w linux sie pojawią pliki wrzucane przez np. Janka.</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="va">local_umask</span><span class="op">=</span>022</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="apache2---www" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="apache2---www"><span class="header-section-number">10.3</span> Apache2 - WWW</h2>
+<p>Apache2 to usługa pozwalająca na konfiguracje stron internetowych WWW. Na początku musimy stworzyć folder w której się znajdzie strona np. <code>sudo mkdir -p /var/www/strona/</code>. Tam tworzymy albo umieszczamy strone <code>index.html</code>. Musimy ustawić te foldery aby włascicielem i grupą był www-data Teraz trzeba skonfigurować Apache2 w <code>/etc/apache2/apache2.conf</code>.</p>
+<section id="strona-w-varwww" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="strona-w-varwww"><span class="header-section-number">10.3.1</span> Strona w /var/www/</h3>
+<p>Jeśli storna jest w <code>/var/www/</code> to apache2 automatycznie wie że może odczytywać tam istniejące pliki i dzięki temu nie trzeba ustawiać innych opcji oprócz <code>DocumentRoot</code> po którym podajemy dokładną lokalizacje np. <code>/var/www/strona</code></p>
+<div id="fig-konfiguracja-podstawowa-apache2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-konfiguracja-podstawowa-apache2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="apache2-linux-varwww.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-konfiguracja-podstawowa-apache2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;9: Zdjęcie pokazujące jak ustawić apache2.conf jeśli strona jest w /var/www/
+</figcaption>
+</figure>
+</div>
+<p>Jak widac na zdjęciu w pliku da się również zmienić port, domyślnie jest to port 80. Oprócz portu ustawiamy tam też DocumentRoot który wskazuje root gdzie są pliki strony. W przypadku gdzie tam będzie <code>index.html</code> apache wyświeli tą strone domyślnie, chyba ze podamy inną scieżke.</p>
+<p>Możemy też ustawić nazwe serwera za pomocą <code>ServerName www.egzamin.com</code>, to się czasem wykorzystuje w sytuacjach gdzie również konfiguruje się serwer DNS .</p>
+</section>
+<section id="strona-w-niestandardowej-lokalizacji" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="strona-w-niestandardowej-lokalizacji"><span class="header-section-number">10.3.2</span> Strona w niestandardowej lokalizacji</h3>
+<p>W wiekszości sytuacji folder i pliki strony będzie trzeba umieścić w jakimś folderze <code>/var/www</code>, ale może przydarzyć się sytuacja gdzie będzie trzeba stworzyc nowy folder i tam umieścić pliki np. <code>/strona</code> w root. Aby to zrobić trzeba również dodać dyrektywe <code>&lt;Directory /strona&gt;Require all granted&lt;/Directory&gt;</code> co pozwala Apache na wyświetlanie stron w tamtej lokalizacji. W innym wypadku strona wyświetli <code>Forbidden</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="apache2-linux-root.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak ustawić apache2.conf jeśli strona jest w niestandardowej lokalizacji np. w root</figcaption>
+</figure>
+</div>
+</section>
+<section id="zmiany-portu-w-apache2" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="zmiany-portu-w-apache2"><span class="header-section-number">10.3.3</span> Zmiany portu w Apache2</h3>
+<p>Aby zmienić port strony, musimy zmienić wartości po <code>:</code> w VirtualHost konfiguracji który zobaczysz na początku <a href="#fig-konfiguracja-podstawowa-apache2" class="quarto-xref">Obrazku&nbsp;9</a> Oprócz tego trzeba również wejść w <code>/etc/apache2/ports.conf</code> i zmienić tam Listen z 80 na podany port.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="apache2-linux-porty.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak ustawić inny port w Apache2 ports.conf</figcaption>
+</figure>
+</div>
+<p>Warto wiedzieć że możemy dodać nowe <code>Listen</code> i naprzykład mieć:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Listen</span> 80</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Listen</span> 8080</span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="dns---bind9" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="dns---bind9"><span class="header-section-number">10.4</span> DNS - bind9</h2>
+<p>Przez DNS jesteśmy wstanie stworzyć jakąś domene. Często robi się to jeśli jest jeszcze strona WWW ale nie musi być strony aby skonfigurować DNS. Sama usługa nazywa się <code>bind9</code> więc właczamy i restartujemy ją za pomocą <code>systemctl enable/restart bind9</code>. Pliki konfiguracyjne znajdziemy w <code>/etc/bind/</code></p>
+<section id="sec-deklaracja-dns-linux" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="sec-deklaracja-dns-linux"><span class="header-section-number">10.4.1</span> Deklaracja strefy (tworzenie domeny)</h3>
+<p>Aby stworzyć domene musimy zedytować <code>/etc/bind/named.conf.local</code> i dodać tam strefe której konfiguracja wygląda tak:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode csharp code-with-copy"><code class="sourceCode cs"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>zone <span class="st">"egzamin.local"</span> <span class="op">{</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  type master<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  file <span class="st">"/etc/bind/db.egzamin.local"</span><span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div><button title="Kopiuj do schowka" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Po zone to nazwa naszej domeny, czyli <code>egzamin.local</code>, nie ma tutaj pod domen np. www. Pamiętaj aby stosować <code>;</code> średnik po klamrach i linijkach w klamrze.</p>
+<p>W górnym skrypcie napisaliśmy <code>file "/etc/bind/db.egzamin.local";</code> jest to plik bazy danych naszej domeny. Do tego najlepiej jednak skopiować szablon który jest w tym samym folderze <code>/etc/bind/db.local</code>. Kopiujemy go za pomocą <code>sudo cp /etc/bind/db.local /etc/bind/db.egzamin.local</code></p>
+<p>Także teraz przechodzimy do konfiguracji bazy <code>db.egzamin.local</code></p>
+</section>
+<section id="sec-tworzenie-bazy-domen-bind9" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="sec-tworzenie-bazy-domen-bind9"><span class="header-section-number">10.4.2</span> Tworzenie bazy danych domeny</h3>
+<p>Aby domena działała po konfiguracji deklaracji strefy którą zrobiliśmy w <a href="#sec-deklaracja-dns-linux" class="quarto-xref">Sekcja&nbsp;10.4.1</a> trzeba ustawić baze danych zgodnie z tym co wpisaliśmy w deklaracji w <code>file</code> w moim przypadku wpisałem tam <code>/etc/bind/db.egzamin.local</code>, czyli w tym miejscu tworze tą baze, ale kopiuje <strong>szablon</strong> który jest w <code>/etc/bind/db.local</code></p>
+<p>Skopiujemy go za pomocą <code>sudo cp /etc/bind/db.local /etc/bind/db.egzamin.local</code></p>
+<p>Po wykonaniu kopiu wchodzimy w edycje naszej bazy. Jest tutaj kilka rzeczy które powinniśmy zmienić, w moim przypadku domena nazywa się <code>egzamin.local</code> dlatego taką też wpisuje, awięc:</p>
+<p><strong>Po pierwsze</strong> zmieniamy w linijce SOA <code>localhost.</code> na <code>egzamin.local.</code> Pamietaj o tej kropce na końcu, ona jest wymagana!</p>
+<p><strong>Po drugie</strong>, we wszystkich linijkach gdzie jest <code>localhost.</code> zmieniamy wartość na <code>egzamin.local.</code> (również tam gdzie jest <code>root.localhost.</code>)</p>
+<p><strong>Po trzecie</strong>, tam gdzie mamy IP <code>127.0.0.1</code> i <code>A</code> zmieniamy adres na adres naszego serwera, który pewnie ustawiliśmy w konfiguracji netplana.</p>
+<p>Po takiej konfiguracji mamy podstawową domene gotową, jednak zazwyczaj w DNS trzeba stworzyć poddomeny np. <code>www</code>, w takim przypadku tak naprawde wystarczy skopiować to co było w linijce z literą <code>A</code> zmieniająć tylko <code>@</code> na <code>www</code></p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">Poprawne opcje bazy danych domeny db.egzamin.local</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Orginalne opcje szablonu db.local</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div id="fig-ustawione-opcje-bind9" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ustawione-opcje-bind9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="baza-bind9-linux.png" class="img-fluid quarto-figure quarto-figure-center figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ustawione-opcje-bind9-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Rysunek&nbsp;10: Zdjęcie pokazujące ustawione opcje w bazie bind9 db.egzamin.local
+</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="baza-bind9-linux-szablon.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące opcje w szablonie bazy bind9 db.local</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Jak widać na zdjęciu:</p>
+<ul>
+<li>Zmieniony localhost na egzamin.local</li>
+<li>Zmieniony localhost przy linijce z NS (ważne)</li>
+<li>Zmieniony adres loopback 127.0.0.1 w linijce z A na ip serwera</li>
+<li>Dodane linijek z www i ftp zamiast @ z tym samym IP serwera</li>
+</ul>
+</section>
+<section id="sec-bind9-ttl-negative-ttl" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="sec-bind9-ttl-negative-ttl"><span class="header-section-number">10.4.3</span> Zmiana czasu TTL/Negative TTL strefy</h3>
+<p>TTL oznacza <code>Time To Live</code>, czyli czas życia adresu w pamięci podręcznej klienta. Zasada typu “Możesz trzymać ten adres u siebie w cache przez X sekund, po czym skasuj go i zapytaj mnie ponownie”. Ustawia się go przy $TTL w bazie.</p>
+<p>Czas TTL ustawia się w bazie bind9 którą tworzyliśmy w <a href="#sec-tworzenie-bazy-domen-bind9" class="quarto-xref">Sekcja&nbsp;10.4.2</a> i widać to też na <a href="#fig-ustawione-opcje-bind9" class="quarto-xref">Obrazku&nbsp;10</a> są tam zaznaczone Negative Cache TTL i $TTL po których jest wpisana liczba.</p>
+<p>Ta liczba to ilość sekund, wyjaśniliśmy sobie już TTL ale nie <code>Negative Cache TTL</code>, działa to odwrotnie do TTL, czyli jest to czas po którym komputer/klient zapomina o tym że jakaś domena <strong>NIE</strong> istnieje. Czyli komputer zapytał DNS o domene, DNS odpowiedział, że domena nie istnieje a teraz komputeraz zapamietał w pamięci to na zapisany czas w <code>Negative Cache TTL</code></p>
+<p>Czas TTL można ustawić za pomocą sekund (domyślna wartość), lub za pomocą: m (minuty), h(godziny), d (dni), w (tygodnie).</p>
+<p>Np. <code>$TTL 2h</code> - ustawienie czasu TTL na 2 godziny.</p>
+</section>
+<section id="parametry-bazy-domen-bind9" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="parametry-bazy-domen-bind9"><span class="header-section-number">10.4.4</span> Parametry bazy domen bind9</h3>
+<p>Oprócz podstaw np. <strong>TTL</strong> które w kontekscie DNS pojawiają się często, są jeszcze inne parametry które zobaczymy udokumentowane przy linijce <code>SOA</code> na <a href="#fig-ustawione-opcje-bind9" class="quarto-xref">Obrazku&nbsp;10</a> Są to:</p>
+<ul>
+<li><strong>Serial</strong> - To jest licznik wersji bazy domen, zwiększając ten licznik inne usługi i serwer zapasowy zrozumieją że zostały wprowadzone zmiany i dokonają aktualizacji, w innym wypadku jeśli nie zmieniono licznika serwer może być ignorowany.</li>
+<li><strong>Refresh</strong> - Jeśli bylibyśmy w posiadaniu drugiego zapasowego serwera DNS to wartość refresh mówi temu serwerowi jak często ma sprawdzać zmiany w naszym DNS.</li>
+<li><strong>Retry</strong> - Jeśli główny serwer padnie, to wartość mówi serwerowi zapasowemu jak szybko ma ponawiać próby kontaktu z nim.<br>
+</li>
+<li><strong>Expire</strong> - Jeśli głowny serwer padnie i nie podniesie się przez dłuższy czas to po zdefiniowanym tu czasie serwer zapasowy ma całkowicie przestać obsługiwać tę domene.</li>
+</ul>
+<p><strong>TTL i Negative Cache TTL</strong> omówiliśmy już w <a href="#sec-bind9-ttl-negative-ttl" class="quarto-xref">Sekcja&nbsp;10.4.3</a></p>
+<p>Dobrą praktyką jest zwiekszenie licznika <strong>Serial</strong> o 1 po każdej modyfikacji.</p>
+<p>Większości z tych funkcji nie użyjemy i nie zobaczymy efektów zmiany, ale egzamin ma sprawdzić czy umiemy to zrobić.</p>
+</section>
+</section>
+<section id="ssh" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="ssh"><span class="header-section-number">10.5</span> SSH</h2>
+<p>SSH jest bardzo częstym zadaniem na egzaminie w przypadku serwera linux, pozwala nam ono bezpieczną zdalną komunikacje ze serwerem. Usługa nazywa się <code>ssh</code> i musimy ją oczywiście włączyć i uruchomić za pomocą <code>systemctl enable ssh</code> i <code>systemctl start ssh</code>, plik konfiguracyjny znajdziemy w <code>/etc/ssh/sshd_config</code>. Czasami usługa sie nazywa <code>sshd</code> jesli nie działa <code>ssh</code> to spróbuj <code>sshd</code></p>
+<p>Hitami zadań są, zmiana portów, blokowanie logowania na konto root, ograniczenia logowania (biała lista).</p>
+<section id="zmiana-portu" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="zmiana-portu"><span class="header-section-number">10.5.1</span> Zmiana portu</h3>
+<p>Na samym początku pliku <code>/etc/ssh/sshd_config</code> znajdziesz zakomentowany <code>Port 22</code>, usuj <code>#</code> i zmień liczbe na podany w zadaniu port.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sshd_config-zmiana-portu.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak zmienić port w sshd_config</figcaption>
+</figure>
+</div>
+<p>Ja zmieniłem port z 22 na 2222.</p>
+</section>
+<section id="blokowanie-logowania-na-konto-root" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="blokowanie-logowania-na-konto-root"><span class="header-section-number">10.5.2</span> Blokowanie logowania na konto root</h3>
+<p>W pliku <code>/etc/ssh/sshd_config</code> znajdziesz zakomentowany <code>#PermitRootLogin</code> z wartością <code>prohibid-password</code> albo no/yes. usuwasz hasztag i dajesz zdecydowane <code>no</code></p>
+<p><code>PermitRootLogin no</code></p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="sshd_config-blokada-root.png" class="img-fluid figure-img"></p>
+<figcaption>Zdjęcie pokazujące jak zablokować root w sshd_config</figcaption>
+</figure>
+</div>
+</section>
+<section id="ograniczenia-logowania---białaczarna-lista" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="ograniczenia-logowania---białaczarna-lista"><span class="header-section-number">10.5.3</span> Ograniczenia logowania - Biała/Czarna lista</h3>
+<p>Można ustawić że tylko niektórzy z użytkowników mogą się logować za pomocą ssh, robimy to także w <code>/etc/ssh/sshd_config</code> i wpisujemy tam <code>AllowUsers</code>. Po czym wpisujemy tam nazwy użytkowników rodzielone spacjami.</p>
+<p>np. <code>AllowUsers janek admin</code></p>
+<p>Nikt inny nie będzie w stanie sie zalogować oprócz janka i admina.</p>
+</section>
+<section id="restart-serwera-ważne" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="restart-serwera-ważne"><span class="header-section-number">10.5.4</span> Restart serwera (Ważne)</h3>
+<p>Po zmianie portu lub niektórych ustawień wymagane jest to abyś zrestartował usługe, jednak jest to bardziej skompilowane niż restart zamego <code>ssh</code>, musimy wykonać <code>systemctl daemon-reload</code> i zrestartować <code>ssh</code> i <code>ssh.socket</code>.</p>
+<p>Jest to też napisane na prawie samym początku w konfiguracji <code>sshd_config</code></p>
+</section>
+<section id="łączenie-się-z-serwerem-ssh" class="level3" data-number="10.5.5">
+<h3 data-number="10.5.5" class="anchored" data-anchor-id="łączenie-się-z-serwerem-ssh"><span class="header-section-number">10.5.5</span> Łączenie się z serwerem SSH</h3>
+<p>Na innym linuxie możemy się połączyć z takowym serwerem SSH za pomocą komendy <code>ssh nazwa@ip -p port</code>, robiliśmy to na <a href="#fig-laczenie-komenda-ssh" class="quarto-xref">Obrazku&nbsp;5</a>. W windowsie możesz się połaczyć za pomocą <code>PuTTY</code>, co robiliśmy w <a href="#sec-putty-windows-ssh" class="quarto-xref">Sekcja&nbsp;7.9</a></p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Zagrożenie</span>UWAGA -p port a nie :port!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Uwaga żeby nie pomylić się przy połączeniu z komendą <code>ssh</code> port dajemy po fladze <code>-p</code> a nie tak jak w ekploratorze albo przeglądarce po dwukropku za IP.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="dhcp" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="dhcp"><span class="header-section-number">10.6</span> DHCP</h2>
+<p>Nazwa usługi to <code>isc-dhcp-server</code>, a plik konfiguracyjny jest w <code>/etc/default/isc-dhcp-server</code>. Musisz wybrać według zadania poprawną karte za pomocą <code>ip a</code>. Wchodzimy na <code>/etc/default/isc-dhcp-server</code> i wpisujemy nazwe naszej karty w <code>INTERFACESv4="enp0s8"</code>, zamiast enp0s8, wpisz tam nazwe swojej karty. Pózniej przechodzimy do pliku <code>/etc/dhcp/dhcpd.conf</code> gdzie ustawiamy opcje serwera DHCP.</p>
+<p>W opcjach <code>/etc/dhcp/dhcpd.conf</code>, można ustawić m.in: sieć z maską, zakres rozdawanych adresów, brame domyślną (router), IP serwera DNS dla klientów, nazwe domeny dla klientów, czas dzierżawy, maksymalny czas dzierżawy w sekundach.</p>
+</section>
+</section>
+<section id="duża-sciągawa" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Duża sciągawa</h1>
+<p>Szybko i na temat, komendy, usługi, pliki konfiguracyjne</p>
+<section id="komendy-linux" class="level4" data-number="11.0.0.1">
+<h4 data-number="11.0.0.1" class="anchored" data-anchor-id="komendy-linux"><span class="header-section-number">11.0.0.1</span> Komendy linux</h4>
+<ul>
+<li>man <em>komenda</em><br>
+</li>
+<li>ip a</li>
+<li>chage</li>
+<li>chown</li>
+<li>chsh</li>
+<li>chmod</li>
+<li>chattr</li>
+<li>adduser</li>
+<li>addgroup</li>
+<li>deluser</li>
+<li>delgroup</li>
+<li>passwd <em>nazwa</em></li>
+<li>ls -l</li>
+<li>cat /etc/shells</li>
+<li>cat /etc/passwd</li>
+<li>ufw (default deny / allow / disallow) (incoming / 22/tcp / 80/tcp …)</li>
+<li>ssh <code>nazwa@ip</code> -p PORT</li>
+<li>hostnamectl</li>
+<li>uname</li>
+<li>cat /etc/os-release</li>
+<li>dmidecode (–type memory)</li>
+<li>free -h</li>
+<li>lscpu</li>
+<li>lspci</li>
+<li>xrandr</li>
+<li>lshw -class “memory/processor/disk”</li>
+<li>df -h</li>
+<li>tar</li>
+<li>ping</li>
+</ul>
+</section>
+<section id="komendy-windows" class="level4" data-number="11.0.0.2">
+<h4 data-number="11.0.0.2" class="anchored" data-anchor-id="komendy-windows"><span class="header-section-number">11.0.0.2</span> Komendy windows</h4>
+<ul>
+<li>ipconfig /all</li>
+<li>ipconfig /release</li>
+<li>ipconfig /renew</li>
+<li>ipconfig /flushdns</li>
+<li>nslookup nazwa.domeny</li>
+<li>nslookup nazwa.domeny IP_SERWERA</li>
+<li>netsh int ip reset (całkowity reset tcp/ip)</li>
+<li>ping</li>
+<li>tracert</li>
+</ul>
+<p>/usr/share/doc - folder z dokumentacją programów np. netplan<br>
+/etc/ - zazwyczaj tutaj są pliki konfiguracyjne /var/www - strony apache2</p>
+</section>
+<section id="netplan" class="level4" data-number="11.0.0.3">
+<h4 data-number="11.0.0.3" class="anchored" data-anchor-id="netplan"><span class="header-section-number">11.0.0.3</span> Netplan</h4>
+<p>Plik: <code>/etc/netplan/*.yaml</code><br>
+- dhcp4: false<br>
+- addresses: [192.168.88.123]<br>
+- routes: \n - to: default \n via: 192.168.88.1 (brama)<br>
+- nameservers: \n - addresses: [8.8.8.8]<br>
+- sudo netplan apply</p>
+</section>
+<section id="apache2" class="level4" data-number="11.0.0.4">
+<h4 data-number="11.0.0.4" class="anchored" data-anchor-id="apache2"><span class="header-section-number">11.0.0.4</span> APACHE2</h4>
+<p>Pliki: <code>/etc/apache2/</code> a tam <code>ports.conf</code> i <code>sites-available/000-default.conf</code><br>
+Nazwa: <code>apache2</code><br>
+- Listen <em>port</em><br>
+- <code>&lt;VirtualHost *:80&gt; lub &lt;VirtualHost ip:port&gt;</code><br>
+- DocumentRoot /var/www/html (sciezka)<br>
+- <code>&lt;Directory /sciezka&gt;</code> i Require all granted</p>
+</section>
+<section id="bind9" class="level4" data-number="11.0.0.5">
+<h4 data-number="11.0.0.5" class="anchored" data-anchor-id="bind9"><span class="header-section-number">11.0.0.5</span> BIND9</h4>
+<p>Pliki: <code>/etc/bind/named.conf.local</code> i <code>/etc/bind/db.domena</code><br>
+nazwa: bind9<br>
+- zone “domena.local” { type master; file “/etc/bind/db.domena”; };<br>
+- $TTL 1d/3600/2h/30m<br>
+- Zamiana localhost na domena.local w db<br>
+- Zamiana 127.0.0.1 na ip serwera gdzie jest dns<br>
+- poddomeny www, ftp zamiast @<br>
+- IN NS, IN A<br>
+- <code>ftp IN CNAME domena.local.</code><br>
+- kropki na koncu nazw domen<br>
+- named-checkzone <em>domena.local</em> <em>/etc/bind/db.domena</em> - testy pliku<br>
+- nslookup domena.local - test dzialania</p>
+</section>
+<section id="ssh-1" class="level4" data-number="11.0.0.6">
+<h4 data-number="11.0.0.6" class="anchored" data-anchor-id="ssh-1"><span class="header-section-number">11.0.0.6</span> SSH</h4>
+<p>Plik: <code>/etc/ssh/sshd_config</code><br>
+Nazwa: ssh/sshd<br>
+- Port 22<br>
+- PermitRootLogin no<br>
+- AllowUsers janek adam<br>
+- sudo systemctl <em>daemon-reload</em><br>
+- sudo systemctl restart <em>ssh shh.socket</em><br>
+- <code>ssh user@IP -p PORT</code> - laczenie<br>
+- <code>scp -P PORT plik.txt user@IP:/sciezka/</code> - kopiowanie</p>
+</section>
+<section id="isc-dhcp-server" class="level4" data-number="11.0.0.7">
+<h4 data-number="11.0.0.7" class="anchored" data-anchor-id="isc-dhcp-server"><span class="header-section-number">11.0.0.7</span> ISC-DHCP-SERVER</h4>
+<p>NAZWA: isc-dhcp-server<br>
+Plik: <code>/etc/default/isc-dhcp-server</code> (DEFAULT!!!!) wybor kart<br>
+Plik: <code>/etc/dhcp/dhcpd.conf</code> konfiguracja<br>
+- INTERFACESv4=“enp0s8”<br>
+- Fajne przyklady w dhcpd, zamienic domene z ip<br>
+- <code>dhcpd -t -cf /etc/dhcp/dhcpd.conf</code> - testowanie konfigu</p>
+</section>
+<section id="samba-1" class="level4" data-number="11.0.0.8">
+<h4 data-number="11.0.0.8" class="anchored" data-anchor-id="samba-1"><span class="header-section-number">11.0.0.8</span> SAMBA</h4>
+<p>Nazwa: smbd i nmbd<br>
+Plik: <code>/etc/samba/smb.conf</code><br>
+- sudo smbpassw -a nazwa !!!<br>
+- workgroup - nazwa grupy roboczej<br>
+- testparm<br>
+- writeable/read only = no !!!<br>
+- [homes]<br>
+- valid users = %s<br>
+- directory/create mask<br>
+- browseable<br>
+- guest ok<br>
+- path<br>
+- force group<br>
+- printable (drukarka eh)</p>
+</section>
+<section id="vsftpd" class="level4" data-number="11.0.0.9">
+<h4 data-number="11.0.0.9" class="anchored" data-anchor-id="vsftpd"><span class="header-section-number">11.0.0.9</span> VSFTPD</h4>
+<p>Nazwa: vsftpd<br>
+Plik: <code>/etc/vsftpd.conf</code><br>
+- anonymous_enable=YES<br>
+- local_enable=YES<br>
+- local_root=/<br>
+- chroot_local_user=YES<br>
+- allow_writeable_chroot=YES !!!<br>
+- write_enable=YES (WAŻNE)<br>
+- pamietac o uprawnieniach w linuxie</p>
+</section>
+<section id="windows-serwer" class="level4" data-number="11.0.0.10">
+<h4 data-number="11.0.0.10" class="anchored" data-anchor-id="windows-serwer"><span class="header-section-number">11.0.0.10</span> WINDOWS SERWER</h4>
+<ul>
+<li>dodajesz funkcje i wybierasz usluge<br>
+</li>
+<li>zarzadzanie i klikasz logicznie</li>
+</ul>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Skopiowano!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Skopiowano!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

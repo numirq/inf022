@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" id="html-main" class="WebContainer">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="../deps/css/main.css">
+		<link rel="icon" href="../graphics/icon.svg">
+		<title>Vulpi</title>
+	</head>
+<body class="bg-white dark:bg-gray-900 dark:text-white">
+    <header class="flex justify-center w-full max-sm:justify-around">
+        <a href="./index.html" class="flex items-center p-4 sm:m-4">
+            <img src="../graphics/icon.png" class="wh-auto max-w-16 max-h-16">
+            <img src="../graphics/logo-text.png" class="max-w-12 max-h-16 animate-waving-hand">
+        </a>
+        <div class="sm:my-8 sm:border-1 animate-flip-up border-gray-500"></div>
+        <ul class="hidden sm:visible sm:flex gap-8 p-8 justify-center items-center text-xl">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projects</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+        <div class="hidden max-sm:flex">
+            <img src="../graphics/icons/outline/general/bars.svg" class="dark:filter-[brightness(0)invert(1)] dark:block hover:animate-jump text-3xl items-center w-10" id="navigation-button"></img>
+        </div>
+    </header>
+    <div id="navigation-menu" hidden>
+        <ul class="max-sm:visible max-sm:block p-8 justify-center items-center text-xl *:my-2">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projects</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+    </div>
+	<main>
+		<div class="flex justify-center flex-wrap max-sm:mx-1 mt-16" id="saved-configs">
+			<div class="p-4 rounded-2xl dark:bg-gray-800 bg-gray-100 w-2/3 max-sm:w-full">
+				<form class="flex flex-col items-center *:p-4">	
+					<label for="config" class="text-xl">Saved configurations:</label>
+					<div class="flex *:mx-2">
+						<select name="config" id="configurations" class="dark:bg-gray-700 rounded-2xl p-2 hover:animate-jump">
+							<div class="configurations">
+								<option>None</option>
+								<option>New</option>
+							</div>
+						</select>
+						<button type="button" id="del-btn" class="dark:bg-red-700 bg-red-200 rounded-2xl p-2 hover:animate-jump">DELETE</button>	
+					</div>
+				</form>
+			</div>
+		</div>
+		<form class="flex flex-col items-center justify-center mt-8">
+			<div class="flex flex-col items-center dark:bg-gray-800 bg-gray-100 py-16 *:p-4 w-2/3 max-sm:w-full rounded-2xl">
+				<div class="weights-notice">Enter weights (separated by comma): </div>
+				<div class="weights-form-elements flex max-sm:flex-col gap-4">
+					<input type="text" id="weights-input" name="weights-input" placeholder="1, 2, 3..." class="dark:bg-gray-700 bg-gray-200 rounded-2xl p-2">
+					<button id="weights-submit-button" class="rounded-2xl dark:bg-gray-700 bg-gray-200 p-4 hover:animate-jump" type="button">SUBMIT</button>
+				</div>
+			</div>
+		</form>
+	
+		<div id="output" class="flex flex-wrap my-12 mx-auto justify-center">
+
+		</div>
+
+		<div class="flex justify-center p-16">
+			<div class="result text-2xl" id="result">RESULT: ???</div>
+		</div>
+	</main>
+    <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 scranim:animate-flip-down">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../graphics/icon.svg" class="h-16" alt="Vulpi Logo" />
+                    <img src="../graphics/logo-text.svg" class="h-8" alt="Vulpi Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="./about.html" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="./projects.html" class="hover:underline me-4 md:me-6">Projects</a>
+                    </li>
+                    <li>
+                        <a href="./faq.html" class="hover:underline me-4 md:me-6">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html" class="hover:underline me-4 md:me-6">Contact</a>
+                    </li>
+                    <li>
+                        <a href="./more.html" class="hover:underline hover:">More</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/imvulpi" class="hover:underline">Vulpi</a>. All Rights Reserved.</span>
+        </div>
+    </footer> 
+</body>
+<script src="weighted-calc.js"></script>
+</html>

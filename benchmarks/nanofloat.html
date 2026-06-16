@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../deps/css/main.css">
+        <link rel="stylesheet" href="../deps/highlight/tomorrow-night-bright.min.css">
+    <link rel="icon" href="../graphics/icon.svg">
+    <title>Vulpi</title>
+    <style>
+        .toggle-btn {
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-btn.active {
+            /* Shadow for the "Pressed" look */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        /* Ensure the unit looks consistent */
+        .unit {
+            text-transform: lowercase;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans leading-relaxed p-4 md:p-12">
+    <header class="flex justify-center w-full max-sm:justify-around animate-fade-down">
+        <a href="../index.html" class="flex items-center p-4 sm:m-4 animate-fade-down">
+            <img src="../graphics/icon.png" class="wh-auto max-w-16 max-h-16">
+            <img src="../graphics/logo-text.png" class="max-w-12 max-h-16 animate-waving-hand">
+        </a>
+        <div class="sm:my-8 sm:border-1 animate-flip-up border-gray-500"></div>
+        <ul class="hidden sm:visible sm:flex gap-8 p-8 justify-center items-center text-xl">
+            <li><a href="../en/projects.html" class="hover:text-orange-600">Projects</a></li>
+            <li><a href="../en/about.html" class="hover:text-orange-600">About</a></li>
+            <li><a href="../en/faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="../en/more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+        <div class="hidden max-sm:flex">
+            <img src="../graphics/icons/outline/general/bars.svg" class="dark:filter-[brightness(0)invert(1)] dark:block hover:animate-jump text-3xl items-center w-10" id="navigation-button"></img>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto max-sm:mx-2">
+        <div class="relative py-24 px-6 overflow-hidden bg-gray-900 text-center animate-fade-up">
+            <div class="absolute inset-0 opacity-10 pointer-events-none"></div>
+
+            <div class="relative max-w-5xl mx-auto">
+                <span class="inline-block py-1 px-3 mb-6 rounded-full bg-orange-600/10 border border-orange-600/20 text-orange-500 text-[10px] font-bold uppercase tracking-[0.2em]">
+                    High-Performance Compute Analysis
+                </span>
+
+                <h1 class="text-6xl md:text-8xl max-sm:text-4xl font-black text-white mb-8 tracking-tighter italic uppercase">
+                    The <span class="text-orange-600">Abstraction</span> Cost
+                </h1>
+
+                <p class="text-gray-400 text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed mb-12">
+                    Just how much performance can a compiler squeeze out of a single core? 
+                    By locking the logic to an <span class="text-white font-bold">identical Float parsing algorithm</span>, 
+                    we open the compiler covers and test the world's most advanced optimizers against each other. 
+                    <br class="hidden md:block">
+                    <span class="text-orange-500 font-semibold">Can handmade assembly still outpace the machines?</span> Let's find out.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-2 max-w-4xl mx-auto border-t border-b border-gray-800 py-8 max-sm:gap-y-3">
+                    <div class="flex items-center gap-3 px-6 py-2 border-r border-gray-800 last:border-0 max-sm:border-none">
+                        <div class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Workload</div>
+                            <div class="text-white font-mono text-sm">IEEE 754 Float Parsing</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 px-6 py-2 border-r border-gray-800 last:border-0 max-sm:border-none">
+                        <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Control</div>
+                            <div class="text-white font-mono text-sm">Hand-Tuned x64 ASM</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 px-6 py-2 border-r border-gray-800 last:border-0 max-sm:border-none">
+                        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Targets</div>
+                            <div class="text-white font-mono text-sm">NativeAOT, GCC, LLVM+</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 px-6 py-2 border-r border-gray-800 last:border-0 max-sm:border-none">
+                        <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+                        <div>
+                            <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Hardware</div>
+                            <div class="text-white font-mono text-sm">Core i7-13650HX</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div class="bg-gray-950 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl scranim:animate-fade-right scranimup:animate-none">
+                    <div class="bg-gray-800/50 px-5 py-3 border-b border-gray-800 flex items-center justify-between">
+                        <h3 class="text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-orange-500 rounded-full"></span>
+                            Test Environment <span class="max-sm:hidden">[System-Info]</span>
+                        </h3>
+                        <span class="text-[10px] font-mono text-gray-500">v1.0.0-stable</span>
+                    </div>
+                    
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center border-b border-gray-900 pb-3">
+                            <span class="text-gray-500 text-sm italic">Processor</span>
+                            <span class="text-gray-200 font-mono text-sm uppercase">Intel Core i7-13650HX</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-900 pb-3">
+                            <span class="text-gray-500 text-sm italic">Architecture</span>
+                            <span class="text-gray-200 font-mono text-sm">x86-64-v3 (Raptor Lake)</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-900 pb-3">
+                            <span class="text-gray-500 text-sm italic">OS</span>
+                            <span class="text-gray-200 font-mono text-sm">Windows 11 (UCRT)</span>
+                        </div>
+                        <div class="flex justify-between items-center border-b border-gray-900 pb-3">
+                            <span class="text-gray-500 text-sm italic">C Toolchain</span>
+                            <span class="text-green-500 font-mono text-sm">
+                                GCC<span class="hidden max-sm:inline"> 15</span><span class="max-sm:hidden"> 15.2.0 (POSIX-SEH)</span>, 
+                                Clang <span class="hidden max-sm:inline"> 21</span><span class="max-sm:hidden"> 21.1.0</span>
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-500 text-sm italic">C# Runtime</span>
+                            <span class="text-blue-400 font-mono text-sm">.NET 8 NativeAOT/JIT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-950 border border-gray-800 rounded-2xl overflow-hidden shadow-2xl scranim:animate-fade-left scranimup:animate-none">
+                    <div class="bg-gray-800/50 px-5 py-3 border-b border-gray-800">
+                        <h3 class="text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            Methodology & Constraints
+                        </h3>
+                    </div>
+                    
+                    <div class="p-6 grid grid-cols-1 gap-6">
+                        <div class="flex gap-4">
+                            <div class="text-orange-600 font-mono text-lg font-black">01</div>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase tracking-tight">Cache Hydration</h4>
+                                <p class="text-gray-500 text-xs leading-relaxed">1 Billion+ warmup iterations performed to ensure frequency scaling is locked and instruction caches are fully primed.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="text-orange-600 font-mono text-lg font-black">02</div>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase tracking-tight">Deterministic Timing</h4>
+                                <p class="text-gray-500 text-xs leading-relaxed">
+                                    Utilizing <strong>TSC-INVARIANT</strong> clocks. Benchmarks are measured against a constant-rate hardware counter to ensure cycle-accurate precision.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4">
+                            <div class="text-orange-600 font-mono text-lg font-black">03</div>
+                            <div>
+                                <h4 class="text-white text-sm font-bold uppercase tracking-tight">Algorithmic Parity</h4>
+                                <p class="text-gray-500 text-xs leading-relaxed">Logic is hand-ported instruction-for-instruction to ensure we are measuring compiler output quality, not developer cleverness.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="mb-16 scranim:animate-fade-down">
+            <div class="bg-gray-800/30 border border-gray-700 rounded-3xl p-8 shadow-2xl max-sm:p-6">
+                <div class="max-w-3xl mb-12">
+                    <h2 class="text-3xl font-bold text-white mb-4 italic">Architectural Integrity</h2>
+                    <p class="text-gray-400 leading-relaxed">
+                        To achieve nanosecond resolution, we bypassed standard OS-level timers. 
+                        By anchoring our measurements to the <span class="text-white font-semibold">Invariant Time Stamp Counter (TSC)</span>, we ensure that frequency scaling and thermal throttling do not pollute the delta between implementations.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-gray-900/50 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-orange-500 font-bold text-xs uppercase tracking-tighter mb-4">Hardware Telemetry</h4>
+                            <p class="text-gray-400 text-sm leading-snug">
+                                Measured via <strong>TSC-INVARIANT</strong>. Unlike standard cycles, this counter remains constant across all P-states, providing a deterministic baseline on the <strong>i7-13650HX</strong> regardless of clock jitter.
+                            </p>
+                        </div>
+                        <div class="mt-6 flex gap-2">
+                            <span class="px-2 py-1 bg-gray-800 text-[11px] text-gray-400 rounded">Constant Rate</span>
+                            <span class="px-2 py-1 bg-gray-800 text-[11px] text-gray-400 rounded">Zero Jitter</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gray-900/50 rounded-2xl border border-gray-800">
+                        <h4 class="text-green-500 font-bold text-xs uppercase tracking-tighter mb-4">Encoding Mechanics</h4>
+                        <p class="text-gray-400 text-sm leading-snug mb-4">
+                            Benchmarks are normalized to <strong>1-byte ASCII</strong>. C# implementations utilize <code class="text-blue-300">Span&lt;byte&gt;</code> to eliminate the implicit UTF-16 decoding overhead.
+                        </p>
+                        <div class="p-3 bg-blue-500/5 border border-blue-500/20 rounded-lg">
+                            <span class="text-blue-400 text-[14px] font-bold block mb-1">Encoding Penalty</span>
+                            <p class="text-gray-400/95 text-[12px]">Comparing raw bytes vs. UTF-16 reveals a significant "Encoding Tax", demonstrating why high-performance parsers avoid native .NET strings.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 bg-gray-900/50 rounded-2xl border border-gray-800">
+                        <h4 class="text-purple-500 font-bold text-xs uppercase tracking-tighter mb-4">Massive Sample Size</h4>
+                        <p class="text-gray-400 text-sm leading-snug mb-4">
+                            Each variant runs <strong>1 billion warmup</strong> iterations, then <string>1 billion measurement</string> iterations. only the measurement iterations are used for benchmarking
+                        </p>
+                        <div class="p-3 bg-purple-500/5 border border-purple-500/20 rounded-lg">
+                            <span class="text-purple-400 text-[14px] font-bold block mb-1">The Goal</span>
+                            <p class="text-gray-400/95 text-[12px]">At 1 billion ops, we achieve a perfect steady-state, allowing us to capture the average instruction retirement rate with near-zero standard deviation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-24 mb-16 max-w-5xl mx-auto">
+            <div class="text-center mb-10 border-b border-gray-800 pb-10">
+                <h2 class="text-4xl font-black text-white uppercase tracking-tighter italic">Benchmark Aggregation</h2>
+                <p class="text-gray-500 mt-2 font-mono text-sm uppercase tracking-widest">IEEE 754 Float Parsing</p>
+            </div>
+
+            <div class="flex justify-end mb-6 gap-4 max-sm:justify-center max-sm:flex-wrap">
+                <div class="flex bg-gray-900 p-1 rounded-xl border border-gray-800" id="viewToggle">
+                    <button data-view="simple" class="toggle-btn active px-4 py-1.5 text-xs font-bold rounded-lg transition-all">Simple</button>
+                    <button data-view="advanced" class="toggle-btn px-4 py-1.5 text-xs font-bold text-gray-500 hover:text-white transition-all">Advanced</button>
+                </div>
+                <div class="flex bg-gray-900 p-1 rounded-xl border border-gray-800" id="metricToggle">
+                    <button data-metric="ns" class="toggle-btn active px-4 py-1.5 text-xs font-bold rounded-lg transition-all">Nanoseconds</button>
+                    <button data-metric="cyc" class="toggle-btn px-4 py-1.5 text-xs font-bold text-gray-500 hover:text-white transition-all">Cycles</button>
+                </div>
+            </div>
+
+            <div class="overflow-scroll rounded-3xl border border-gray-800 bg-gray-950/50 shadow-2xl">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-gray-900/80">
+                        <tr>
+                            <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest">Implementation</th>
+                            <th class="px-6 py-5 text-[10px] font-black text-white uppercase tracking-widest text-center">Median</th>
+                            <th class="px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Std Dev</th>
+                            <th class="adv-col md:table-cell px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center" style="display: none;">P10</th>
+                            <th class="adv-col md:table-cell px-6 py-5 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center" style="display: none;">P90</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-900 font-mono *:scranim:animate-fade-down *:scranimup:animate-fade-up">
+                        <tr class="group hover:bg-orange-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">x64 Assembly LEA</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">Clang/LLVM</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="2.976" data-cyc="7.737">
+                                <span class="value text-orange-500 font-black text-lg">2.976</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0283" data-cyc="0.0735">
+                                <span class="value">0.0283</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="2.956" data-cyc="7.685">
+                                <span class="value">2.956</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.023" data-cyc="7.859">
+                                <span class="value">3.023</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-orange-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">x64 Assembly LEA</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">GCC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="2.992" data-cyc="7.780">
+                                <span class="value text-orange-500 font-black text-lg">2.992</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0137" data-cyc="0.0357">
+                                <span class="value">0.0137</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="2.974" data-cyc="7.733">
+                                <span class="value">2.974</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.006" data-cyc="7.817">
+                                <span class="value">3.006</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-orange-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">x64 Assembly</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">GCC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="3.155" data-cyc="8.204">
+                                <span class="value text-orange-500 font-black text-lg">3.155</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0187" data-cyc="0.0487">
+                                <span class="value">0.0187</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.142" data-cyc="8.170">
+                                <span class="value">3.142</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.176" data-cyc="8.258">
+                                <span class="value">3.176</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+
+                        <tr class="group hover:bg-orange-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-orange-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">x64 Assembly</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">Clang/LLVM</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="3.159" data-cyc="8.214">
+                                <span class="value text-orange-500 font-black text-lg">3.159</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0222" data-cyc="0.0576">
+                                <span class="value">0.0222</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.142" data-cyc="8.168">
+                                <span class="value">3.142</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="3.179" data-cyc="8.266">
+                                <span class="value">3.179</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-blue-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">GCC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="4.288" data-cyc="11.148">
+                                <span class="value text-blue-500 font-black text-lg">4.288</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0677" data-cyc="0.1760">
+                                <span class="value">0.0677</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="4.226" data-cyc="10.988">
+                                <span class="value">4.226</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="4.382" data-cyc="11.394">
+                                <span class="value">4.382</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-blue-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-blue-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">Clang/LLVM</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">O3</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="4.365" data-cyc="11.350">
+                                <span class="value text-blue-500 font-black text-lg">4.365</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0445" data-cyc="0.1158">
+                                <span class="value">0.0445</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="4.300" data-cyc="11.180">
+                                <span class="value">4.300</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="4.403" data-cyc="11.449">
+                                <span class="value">4.403</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# Span&lt;byte&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">Aggressive Optimization</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">NativeAOT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                            <span class="px-1.5 py-0.5 bg-lime-600 text-gray-100 text-[11px] font-bold rounded">Trimmed</span>
+                                            <span class="px-1.5 py-0.5 bg-amber-600 text-gray-100 text-[11px] font-bold rounded">Contained</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="5.652" data-cyc="14.695">
+                                <span class="value text-purple-500 font-black text-lg">5.652</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0348" data-cyc="0.0905">
+                                <span class="value">0.0348</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.618" data-cyc="14.608">
+                                <span class="value">5.618</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.698" data-cyc="14.815">
+                                <span class="value">5.698</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# Span&lt;byte&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">Aggressive Optimization</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">NativeAOT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                            <span class="px-1.5 py-0.5 bg-lime-600 text-gray-100 text-[11px] font-bold rounded">Trimmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="5.699" data-cyc="14.817">
+                                <span class="value text-purple-500 font-black text-lg">5.699</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0457" data-cyc="0.1189">
+                                <span class="value">0.0457</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.663" data-cyc="14.725">
+                                <span class="value">5.663</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.760" data-cyc="14.975">
+                                <span class="value">5.760</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# Span&lt;byte&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">JIT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="5.733" data-cyc="14.906">
+                                <span class="value text-purple-500 font-black text-lg">5.733</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0270" data-cyc="0.0701">
+                                <span class="value">0.0270</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.720" data-cyc="14.872">
+                                <span class="value">5.720</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="5.780" data-cyc="15.027">
+                                <span class="value">5.780</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# UTF16 ReadOnlySpan&lt;char&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">Aggressive Optimization</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">NativeAOT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                            <span class="px-1.5 py-0.5 bg-lime-600 text-gray-100 text-[11px] font-bold rounded">Trimmed</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="6.082" data-cyc="15.813">
+                                <span class="value text-purple-500 font-black text-lg">6.082</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0392" data-cyc="0.1019">
+                                <span class="value">0.0392</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.061" data-cyc="15.759">
+                                <span class="value">6.061</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.103" data-cyc="15.869">
+                                <span class="value">6.103</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                        
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# UTF16 ReadOnlySpan&lt;char&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-blue-500 text-gray-100 text-[11px] font-bold rounded">Aggressive Optimization</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">NativeAOT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                            <span class="px-1.5 py-0.5 bg-lime-600 text-gray-100 text-[11px] font-bold rounded">Trimmed</span>
+                                            <span class="px-1.5 py-0.5 bg-amber-600 text-gray-100 text-[11px] font-bold rounded">Contained</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="6.150" data-cyc="15.990">
+                                <span class="value text-purple-500 font-black text-lg">6.150</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0256" data-cyc="0.0667">
+                                <span class="value">0.0256</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.126" data-cyc="15.927">
+                                <span class="value">6.126</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.184" data-cyc="16.078">
+                                <span class="value">6.184</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+
+                        <tr class="group hover:bg-purple-500/[0.05] transition-colors">
+                            <td class="px-6 py-5">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-2 h-2 rounded-full bg-purple-500 mt-1"></div>
+                                    
+                                    <div class="flex flex-col gap-2">
+                                        <span class="text-white font-bold leading-none tracking-tight">C# UTF16 ReadOnlySpan&lt;char&gt;</span>
+                                        <div class="flex flex-wrap gap-1 mt-1">
+                                            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 text-[11px] font-bold rounded">DOTNET/CSC</span>
+                                            <span class="px-1.5 py-0.5 bg-emerald-700 text-gray-100 text-[11px] font-bold rounded">JIT</span>
+                                            <span class="px-1.5 py-0.5 bg-purple-600 text-gray-100 text-[11px] font-bold rounded">Release</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-5 text-center stat-cell" data-ns="6.164" data-cyc="16.027">
+                                <span class="value text-purple-500 font-black text-lg">6.164</span>
+                                <span class="unit text-[10px] text-gray-600">ns</span>
+                            </td>
+                            <td class="px-6 py-5 text-center text-gray-400 text-sm" data-ns="0.0426" data-cyc="0.1108">
+                                <span class="value">0.0426</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.091" data-cyc="15.838">
+                                <span class="value">6.091</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                            <td class="adv-col hidden px-6 py-5 text-center text-gray-400 text-sm italic" data-ns="6.189" data-cyc="16.090">
+                                <span class="value">6.189</span>
+                                <span class="unit text-[10px] text-gray-600 ml-1">ns</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <div class="my-12 mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl shadow-lg">
+                <h3 class="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                    Format Blind Execution
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    This parser is <strong>non-validating</strong>. It assumes every byte in the input stream is a valid numeric character. If non-numeric bytes (like whitespace or letters) are present, they are processed through the same <code class="text-red-400">sub reg, '0'</code> logic as digits, resulting in a mathematical transformation of the raw ASCII value rather than an error.
+                </p>
+            </div>
+
+            <div class="bg-gray-900/50 border border-gray-800 p-6 rounded-2xl shadow-lg">
+                <h3 class="text-white font-bold text-sm mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                    Arbitrary Mantissa Length
+                </h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Unlike many "fast" parsers limited to fixed-width decimals, this implementation supports <strong>variable-length</strong> sequences for both integer and fractional parts, constrained only by the precision limits of the IEEE 754 single-precision float format.
+                </p>
+            </div>
+        </div>
+
+        <div class="space-y-6 *:scranim:animate-fade-down *:scranimup:animate-fade-up">
+            <div class="bg-gray-800 rounded-3xl border border-gray-700 overflow-hidden shadow-2xl transition-all hover:border-orange-500/40">
+                
+                <div class="p-8 flex flex-wrap justify-between items-center gap-6">
+                    <div class="flex-1 min-w-[280px]">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                            <h2 class="text-3xl font-mono font-black text-white tracking-tighter uppercase leading-none">01. x64 Assembly</h2>
+                        </div>
+                        <p class="text-gray-400 text-sm font-medium leading-relaxed max-w-md">
+                            Manual register allocation using <code class="text-orange-400 text-xs">LEA</code>-shifting logic. 
+                            Focused on maximizing instruction density by eliminating redundant micro-ops and unnecessary data movement.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-950/80 border border-gray-700 rounded-2xl p-1 flex items-stretch shadow-inner">
+                        <div class="px-6 py-3 text-center border-r border-gray-800">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Time / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-orange-500 tracking-tighter">2.98</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">ns</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 text-center bg-gray-900/40 rounded-r-xl">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Cycles / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-white tracking-tighter">7.74</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">cyc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <details class="group border-t border-gray-700/50">
+                    <summary class="flex items-center justify-between px-8 py-4 cursor-pointer bg-gray-900/30 hover:bg-gray-800/50 transition-all select-none">
+                        <span class="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                            <svg class="w-3 h-3 text-orange-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            Assembly & Implementation Details
+                        </span>
+                        <span class="text-[10px] font-mono text-gray-600 group-open:text-orange-600/50 uppercase tracking-tighter">Raw Assembly</span>
+                    </summary>
+                    
+                    <div class="bg-gray-950 border-t border-gray-700">
+                        <div class="max-h-[500px] overflow-auto scrollbar-thin scrollbar-thumb-gray-800">
+                            <pre class="m-0 p-8"><code class="language-x86asm text-[13px] leading-relaxed whitespace-pre">section .rodata
+align 16
+invPow10:
+dd 1.0
+dd 0.1
+dd 0.01
+dd 0.001
+dd 0.0001
+dd 0.00001
+dd 0.000001
+dd 0.0000001
+dd 0.00000001
+dd 0.000000001
+dd 0.0000000001
+dd 0.00000000001
+dd 0.000000000001
+dd 0.0000000000001
+dd 0.00000000000001
+dd 0.000000000000001
+dd 0.0000000000000001
+
+section .text
+; Arguments:
+;   RCX = buffer pointer (const char*)
+;   RDX = length (uint)
+; Return:
+;   XMM0 = parsed value
+global parse_float_strict
+align 32
+parse_float_strict:
+movzx r10, byte [rcx]
+cmp r10b, '-'
+je .negative_sign
+sub r10b, '0'
+mov rax, r10
+mov r9d, 1
+cmp rdx, 1
+je .return_integer
+mov r8, 2
+movzx r10, byte [rcx + 1]
+.loop1:
+cmp r10b, '.'
+je .loop2_setup
+sub r10b, '0'
+imul rax, rax, 10
+add rax, r10
+movzx r10, byte [rcx + r8]
+inc r8d
+cmp r8d, edx
+jle .loop1
+
+cvtsi2ss xmm0, rax
+cvtsi2ss xmm1, r9d
+mulss xmm0, xmm1
+ret
+.loop2_setup:
+cvtsi2ss xmm1, rax
+mov rax, rdx
+sub rax, r8
+xor r11, r11
+.loop2:
+lea r10, [r11 + r11*4]
+movsx r11, byte [rcx + r8]
+lea r11, [r11 + r10*2 - 0x30]
+inc r8d
+cmp r8d, edx
+jl .loop2
+
+cvtsi2ss xmm0, r11
+lea r11, [rel invPow10]
+mulss xmm0, [r11 + rax*4]
+addss xmm0, xmm1
+cvtsi2ss xmm1, r9d
+mulss xmm0, xmm1
+ret
+.negative_sign:
+cmp rdx, 1
+je .early_return
+mov r9d, -1
+movzx r10, byte [rcx + 1]
+sub r10b, '0'
+mov rax, r10
+cmp rdx, 2
+je .return_integer
+mov r8, 3
+movzx r10, byte [rcx + 2]
+jmp .loop1
+.early_return:
+pxor xmm0, xmm0
+ret
+.return_integer:
+cvtsi2ss xmm0, rax
+cvtsi2ss xmm1, r9d
+mulss xmm0, xmm1    
+ret
+</code></pre>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="bg-gray-800 rounded-3xl border border-gray-700 overflow-hidden shadow-2xl transition-all hover:border-blue-500/40">    
+                <div class="p-8 flex flex-wrap justify-between items-center gap-6">
+                    <div class="flex-1 min-w-[280px]">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <h2 class="text-3xl font-mono font-black text-white tracking-tighter uppercase leading-none">02. C (GCC -O3)</h2>
+                        </div>
+                        <p class="text-gray-400 text-sm font-medium leading-relaxed max-w-md">
+                            Standard aggressive optimization level. Typically results in clean, but conservative, register rotation.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-950/80 border border-gray-700 rounded-2xl p-1 flex items-stretch shadow-inner">
+                        <div class="px-6 py-3 text-center border-r border-gray-800">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Time / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-blue-500 tracking-tighter">4.29</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">ns</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 text-center bg-gray-900/40 rounded-r-xl">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Cycles / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-white tracking-tighter">11.15</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">cyc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <details class="group border-t border-gray-700/50">
+                    <summary class="flex items-center justify-between px-8 py-4 cursor-pointer bg-gray-900/30 hover:bg-gray-800/50 transition-all select-none">
+                        <span class="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                            <svg class="w-3 h-3 text-blue-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            Implementation Details
+                        </span>
+                    </summary>                    
+                    <div class="bg-gray-950 border-t border-gray-700">
+                        <div class="max-h-[500px] overflow-auto scrollbar-thin scrollbar-thumb-gray-800">
+                            <pre class="m-0 p-8"><code class="language-c text-[13px] leading-relaxed whitespace-pre">static float invPow10[] = { 1.0, 1e-1, 1e-2, 1e-3, 1e-4, 1e-5, 1e-6, 1e-7, 1e-8, 
+                            1e-9, 1e-10, 1e-11, 1e-12, 1e-13, 1e-14, 1e-15, 1e-16 };
+
+__attribute__((noinline))
+float parse_float_strict(const char* str, size_t length){
+float result = 0;
+int i = 0;
+int sign = 1;
+
+if(str[0] == '-'){
+    i++;
+    sign = -1;
+}
+
+while (i < length && str[i] != '.')
+    result = result * 10 + (str[i++] - '0');
+
+if (i < length && str[i] == '.')
+{
+    i++;
+    long frac = 0;
+    int amount = 0;
+    while (i < length)
+    {
+        frac = frac * 10 + (str[i++] - '0');
+        amount += 1;
+    }
+    result += frac * invPow10[amount];
+}
+
+return result * sign;
+}</code></pre>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="bg-gray-800 rounded-3xl border border-gray-700 overflow-hidden shadow-2xl transition-all hover:border-purple-500/40">    
+                <div class="p-8 flex flex-wrap justify-between items-center gap-6">
+                    <div class="flex-1 min-w-[280px]">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <h2 class="text-3xl font-mono font-black text-white tracking-tighter uppercase leading-none">03. C# NativeAOT .NET8</h2>
+                        </div>
+                        <p class="text-gray-400 text-sm font-medium leading-relaxed max-w-md">
+                            Statically compiled via RyuJIT. Includes necessary managed overhead like <code class="text-purple-400 text-xs">Span</code> boundary checks, demonstrating the performance cost of memory safety in a pre-compiled binary.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-950/80 border border-gray-700 rounded-2xl p-1 flex items-stretch shadow-inner">
+                        <div class="px-6 py-3 text-center border-r border-gray-800">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Time / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-purple-500 tracking-tighter">5.65</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">ns</span>
+                            </div>
+                        </div>
+                        <div class="px-6 py-3 text-center bg-gray-900/40 rounded-r-xl">
+                            <div class="text-[9px] text-gray-500 uppercase font-black tracking-[0.15em] mb-1">Cycles / Op</div>
+                            <div class="flex items-baseline justify-center gap-1">
+                                <span class="text-3xl font-mono font-bold text-white tracking-tighter">14.7</span>
+                                <span class="text-[10px] text-gray-600 font-bold uppercase">cyc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <details class="group border-t border-gray-700/50">
+                    <summary class="flex items-center justify-between px-8 py-4 cursor-pointer bg-gray-900/30 hover:bg-gray-800/50 transition-all select-none">
+                        <span class="text-gray-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                            <svg class="w-3 h-3 text-purple-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            Implementation Details
+                        </span>
+                    </summary>
+                    
+                    <div class="bg-gray-950 border-t border-gray-700">
+                        <div class="max-h-[500px] overflow-auto scrollbar-thin scrollbar-thumb-gray-800">
+                            <pre class="m-0 p-8"><code class="language-csharp text-[13px] leading-relaxed whitespace-pre">static readonly float[] invPow10 = [ 1.0f, 1e-1f, 1e-2f, 1e-3f, 1e-4f, 1e-5f, 1e-6f, 1e-7f, 1e-8f,
+                                    1e-9f, 1e-10f, 1e-11f, 1e-12f, 1e-13f, 1e-14f, 1e-15f, 1e-16f ];
+
+const byte MINUS = 0x2D;
+const byte DOT = 0x2E;
+const byte ZERO = 0x30;
+
+[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.AggressiveOptimization)]
+public static float ParseFloatStrict(Span&lt;byte&gt; bytes)
+{
+float result = 0;
+int i = 0;
+int sign = 1;
+
+if (bytes[i] == MINUS)
+{
+    i++;
+    sign = -1;
+}
+
+while (i < bytes.Length && bytes[i] != DOT)
+    result = result * 10 + (bytes[i++] - ZERO);
+
+if (i < bytes.Length && bytes[i] == DOT)
+{
+    i++;
+    long frac = 0;
+    int amount = 0;
+    while (i < bytes.Length)
+    {
+        frac = frac * 10 + (bytes[i++] - ZERO);
+        amount += 1;
+    }
+    result += frac * invPow10[amount];
+}
+
+return result * sign;
+}</code></pre>
+                        </div>
+                    </div>
+                </details>
+            </div>              
+        </div>
+        
+        <div class="mx-auto mt-16 scranim:animate-fade-left">
+            <div class="flex items-center gap-3 p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
+                <svg class="w-5 h-5 text-yellow-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    <strong class="text-yellow-500 uppercase tracking-wide">Note on Disassembly:</strong> 
+                    The following C# and C Assembly outputs have been annotated with labels and comments for clarity, explanation and learning experience. The underlying 
+                    <span class="text-gray-200">instructions remain identical</span> to the raw compiler output. 
+                    No instructions were added, removed, or reordered during the labeling process.
+                </p>
+            </div>
+        </div>
+        
+        <section class="my-16 mt-2 scranim:animate-fade-left">
+            <div class="flex items-center gap-4 mb-6 max-sm:justify-center">
+                <h2 class="text-2xl font-bold text-white tracking-tight max-sm:text-center">Compiler Output: <br class="hidden max-sm:block"><span class="text-green-400">C (GCC 15.2 -O3)</span></h2>
+                <div class="h-px flex-grow bg-gray-800 max-sm:hidden"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">                    
+                <div class="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-green-400 font-bold uppercase text-[10px] tracking-widest mb-4">Deep Dive: ASM vs. C Optimization</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">Zero-Stack Architecture</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Both C and the ASM implementation use <strong>zero stack space</strong>. With Assembly by reusing <code class="text-green-300">rcx/rdx</code> directly instead of moving them to <code class="text-green-300">r8/r9</code>, we eliminate unnecessary register pressure and memory traffic.
+                            </p>
+                        </div>
+
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">Branch Prediction & Loop Entry</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                GCC generates "jump-into-loop" labels from setup blocks. ASM pre-loads the first value and enters the loop naturally. This reduces branch predictor aliasing and avoids redundant length/i checks like: <code class="text-green-300">i < length</code> outside the loop.
+                            </p>
+                        </div>
+
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">XMM Register Efficiency</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                C/C++ compilers frequently clear <code class="text-green-300">XMM0</code> via <code class="text-green-300">xorps</code> before <code class="text-green-300">CVTSI2SS</code>. ASM skips this "safety clearing" and uses GPRs (General Purpose Registers) for the bulk of the parsing, only hitting the FPU for the final float conversion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-950 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl flex flex-col">
+                        <div class="bg-gray-800/80 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+                            <span class="text-gray-400 text-[10px] font-mono uppercase tracking-widest">x64 Disassembly (GCC -O3)</span>
+                            <span class="text-gray-500 text-[10px] font-mono">Scroll to view full output</span>
+                        </div>
+                        
+                        <div class="max-h-[450px] overflow-auto scrollbar-thin scrollbar-thumb-gray-700">
+                <pre class="m-0 p-4"><code class="language-x86asm whitespace-pre text-[13px]">.float_converstion: ; (char * str, size_t length)
+; Moves the 1st character from RCX(str) to EAX
+MOVSX   EAX,byte ptr [RCX]
+; Moves RCX(str) to R8, RDX(length) to R9
+MOV     R8,RCX
+MOV     R9,RDX
+; Compares lower 1 byte of EAX to '-' (negative floats)
+CMP     AL,0x2d ('-' character)
+
+; Inside: Moved str[1] to EAX, Makes RCX(loop1 i) and R10D(i before increment) = 1
+;   Sets R11D(sign) to -1 
+;   Checks length < 2 and returns or skips to .loop1_setup
+JZ .negative_sign
+
+; below up to loop1_setup runs only if str[0] != '-'
+; Clears R10D(i before increment)
+XOR     R10D,R10D
+; Sets R11D(sign) to 1
+MOV     R11D,0x1
+; Clears XMM0 and RCX
+PXOR    XMM0,XMM0 ; is 0.0
+XOR     RCX,RCX
+; Tests RDX(length) and jumps to return 0.0 if length == 0
+TEST    RDX,RDX
+JZ      .direct_return
+
+.loop1_setup:
+; [!] From here RCX and RDX don't store str or length anymore.
+; Moves RCX+1 into RDX
+LEA     RDX, [RCX + 0x1] ; RCX is either 1 or 0 depending on sign
+
+; Moves 10 into XMM2 (For multiplications with 10)
+MOVSS   XMM2,dword ptr [FLOAT_addr_10] ; = 10.0
+
+; Clears XMM1 and truncates RDX to int (32bit) (movsxd RDX, edx)
+PXOR    XMM1,XMM1
+MOVSXD  RDX,RDX
+
+; Jumps to CMP of the main loops
+JMP     .loop1_inner
+
+; RDX = i in this loop
+; RCX is also i but for the next loop
+; R10 is i before the last increment (used after exit)
+.loop1:
+; Multiplies XMM1(result) and XMM2 (value: 10), which is our RESULT * 10
+MULSS    XMM1,XMM2
+; Subrcacts 0x30 (48 ('0' character)) from the current char.
+SUB      EAX,0x30
+; Clears XMM0
+PXOR     XMM0,XMM0
+; Loads EAX(str[i]-0x30) into XMM0
+CVTSI2SS XMM0,EAX
+
+; Adds XMM0 (str[i] - 0x30) into XMM1 (result * 10)
+; This finishes the result = result * 10 + (str[i] + 0x30) with result in XMM1
+ADDSS    XMM1,XMM0
+
+; Compares RDX(i) to R9(length) and jumps if RDX is above or equal
+CMP      RDX,R9
+JNC      return_integer
+
+; Moves new character into EAX (technically AL - because of 1 byte) with RDX(i)
+MOVSX    EAX,byte ptr [R8 + RDX(i)*0x1]
+
+; loads RDX i into R10
+MOV      R10,RDX  ; rdx = i
+
+; Adds 1 to RCX and RDX(i)
+ADD      RCX,0x1
+ADD      RDX,0x1 ; increment i
+.loop1_inner:
+; Compares AL (lowest byte of EAX - since char is 1B) to '.', and jumps back if is not '.'
+CMP      AL,0x2e
+JNZ      .loop1 ; Goes back to start or 
+
+; Compares R10(RDX = i before increment in the loop above) and R9(length) and returns if i >= r9
+CMP      R10,R9
+JNC      return_integer ; Returns
+
+; Compares str[i] to '.' and jumps if matches
+CMP      byte ptr [R8 + R10*0x1],0x2e ; 0x2e = ('.')
+JZ       .loop2_setup ; jumps or returns below
+
+.return_integer:
+; Clears XMM0
+PXOR     XMM0,XMM0
+
+; Loads R11D (sign (-1/1)) into XMM0
+CVTSI2SS XMM0,R11D
+
+; Multiplies XMM0 (sign) and XMM1 (result)
+MULSS    XMM0,XMM1
+
+.direct_return:
+RET
+
+.negative_sign:
+; Writes 0.0 into XMM0 (for return being 0), Compares RDX(length) with 1, Jumps to return if RDX(length) < 2
+MOVSS     XMM0,dword ptr [FLOAT_addr_00] ; = -0.0
+CMP       RDX(length),0x1
+JBE       .direct_return ; Returns 0.0
+
+; Sets eax to str[1], r10d to 1 and r11d(sign) to -1, sets RCX(str) to 1 (from this point RCX is not str), and jumps 
+MOVSX     EAX,byte ptr [RCX(str) + 0x1]
+MOV       R10D,0x1
+MOV       R11D,0xffffffff
+MOV       RCX,0x1
+JMP       .loop1_setup
+
+.loop2_setup:
+; Moves RCX + 1 to R10D, basically R10D = i
+LEA       R10D,[RCX + 0x1]
+
+; Moves R10D into R10 (converts int32 to int64)
+MOVSXD    R10,R10D
+
+; Compares R10(RDX = i before increment in the 1st loop) and R9(length) and returns if i >= r9
+; /\ I assume it does that again because of the conversion to int64
+; R10 is also a '.' location if one exists in the string.
+CMP       R10,R9
+
+; Jumps if R10 >= length
+JNC       .return_integer2_1 ; returns result * sign
+
+; Truncates RCX to 32bit int
+MOVSXD    RCX,RCX
+
+; Clears RDX
+XOR       RDX,RDX
+
+; Moves the address of str[rcx + 1] into RAX
+LEA       RAX,[R8 + RCX*0x1 + 0x1]
+
+; Adds R9(length) into R8(str), moves the pointer to str to the end of the buffer
+ADD       R8,R9
+
+; NOP / Padding / Alignment
+NOP
+NOP
+NOP
+
+; RAX is a pointer to str[i+1], increasing it means iterating a string
+.loop2:
+; Multiplies RDX address by 5 (RCX = RDX * 5)
+LEA       RCX,[RDX + RDX*0x4]
+
+; Loads 1 byte from RAX into RDX
+MOVSX     RDX,byte ptr [RAX]
+
+; Adds 1 into RAX (essentially mvoing str by 1)
+ADD       RAX,0x1
+
+; Computes what essentially is result = char * 10 + (str[RAX] - '0'); 
+; RDX is smartly saved into RCX before loading char
+LEA       RDX,[RDX + RCX*0x2 + -0x30]
+
+; Checks whether RAX (iterator) is at the pointer str buffer end.
+CMP       RAX,R8
+
+; Jumps back in if RAX can be still advanced
+JNZ       .loop2
+
+; Substracts R9(length) and R10('.' position)
+SUB       R9,R10
+
+; Clears XMM0 (result)
+PXOR      XMM0,XMM0
+
+; Gets address of invPow10 table into RAX
+LEA       RAX,[invPow10]
+
+; Truncates R9 into 32 bit int
+MOVSXD    R9,R9D
+
+; Loads RDX (our fractional number (which technically isn't a fraction here)) into XMM0
+CVTSI2SS  XMM0,RDX
+
+; Multiplies XMM0 (frac number) with a number from invPow10 at index of RAX + R9
+; R9 fractional size, 0x4 because floats are 4 bytes.
+MULSS     XMM0,dword ptr [RAX + R9*0x4]=>invPow10
+
+.return_integer2_2:
+; Adds (XMM0 = our fractional) to result(XMM1 = our integer), result in XMM1
+; Clears XMM0, loads sign into XMM0, 
+; multiplies result (XMM1) with the sign (XMM0) (result of operation being in XMM0)
+; Returns with XMM0 as output being result * sign
+ADDSS     XMM1,XMM0
+PXOR      XMM0,XMM0
+CVTSI2SS  XMM0,sign
+MULSS     XMM0,XMM1
+JMP       .direct_return
+
+.return_integer2_1:
+; Clears XMM0
+PXOR      XMM0,XMM0
+JMP       return_integer2_2</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="mx-auto mt-16 scranim:animate-fade-right">
+            <div class="flex items-center gap-3 p-4 bg-yellow-500/5 border border-yellow-500/20 rounded-xl">
+                <svg class="w-5 h-5 text-yellow-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    <strong class="text-yellow-500 uppercase tracking-wide">Note on Disassembly:</strong> 
+                    The following C# and C Assembly outputs have been annotated with labels and comments for clarity, explanation and learning experience. The underlying 
+                    <span class="text-gray-200">instructions remain identical</span> to the raw compiler output. 
+                    No instructions were added, removed, or reordered during the labeling process.
+                </p>
+            </div>
+        </div>
+
+        <section class="my-12 mt-2 scranim:animate-fade-right">
+            <div class="flex items-center gap-4 mb-6 max-sm:justify-center">
+                <h2 class="text-2xl font-bold text-white tracking-tight max-sm:text-center">Compiler Output: <br class="hidden max-sm:block"><span class="text-blue-400">C# NativeAOT</span></h2>
+                <div class="h-px flex-grow bg-gray-800 max-sm:hidden"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-gray-800/50 border border-gray-700 p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-blue-400 font-bold uppercase text-[10px] tracking-widest mb-4">Deep Dive: RyuJIT Bottlenecks</h3>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">The "Safety Tax" (Bound Checks)</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                NativeAOT still enforces <code class="text-blue-300">IndexOutOfRangeException</code> safety. ASM assumes trusted inputs, omitting the <code class="text-blue-300">text/je</code> instructions that stall the pipeline during high-speed iteration.
+                            </p>
+                        </div>
+
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">Integer-Primary Parsing Path</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                ASM performs the base-10 accumulation using only GPRs and converts to the FPU only at the end. This keeps execution on the fastest integer units
+                            </p>
+                        </div>
+
+                        <div>
+                            <span class="text-white text-sm font-semibold block mb-1">Register Truncation Noise</span>
+                            <p class="text-gray-400 text-xs leading-relaxed">
+                                Managed compilers often emit <code class="text-blue-300">movsxd</code> to truncate 64-bit registers to 32-bit for index safety. ASM stays in 64-bit mode throughout, utilizing <code class="text-blue-300">movzx</code> for byte loads to keep the upper bits clean without extra instructions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-950 rounded-2xl border border-gray-700 overflow-hidden shadow-2xl">
+                        <div class="bg-gray-800/80 px-4 py-2 flex items-center justify-between border-b border-gray-700">
+                            <span class="text-gray-400 text-[10px] font-mono uppercase tracking-widest">x64 Disassembly (NativeAOT)</span>
+                            <span class="text-gray-500 text-[10px] font-mono">Scroll to view full output</span>
+                        </div>
+                        
+                        <div class="max-h-[450px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
+                <pre class="m-0 p-4"><code class="language-x86asm whitespace-pre text-[13px]">.parse_float_strict: ; (Span&lt;byte&gt; bytes)
+; Substracts 28h for alignment and home space
+sub     rsp, 28h
+; Moves the rcx (pointer to bytes) into rax
+mov     rax, qword ptr [bytes{._reference} (rcx)]
+; Moves rcx+8 into ecx, this is length (8 offset for pointer)
+mov     ecx, dword ptr [rcx+8]
+; Clears xmm0 and edx
+xorps   xmm0, xmm0
+xor     edx, edx
+; Moves 1 into r8d
+mov     r8d, 1
+; Test the length and jump for "IndexOutOfRangeException"
+test    ecx, ecx
+je      .exception_index_out_of_range
+; Compares 1st character in span<byte> to 2D (-)
+cmp     byte ptr [rax], 2Dh
+; Jumps if not equal
+jne     .loop1_inner
+; Moves -1 into r8d (sign)
+mov     r8d, 0FFFFFFFFh
+; Moves 1 into edx (i)
+mov     edx, 1
+; Jumps to 7ff766f56d69
+jmp     .loop1_inner
+
+.loop1:
+; increments edx(i)
+inc     edx
+; "Adds" -48 to r10d (this is bytes[i] - 48)
+add     r10d, 0FFFFFFD0h
+; Clears xmm1
+xorps   xmm1, xmm1
+; Loads r10d(bytes[i] - 48) into xmm1
+cvtsi2ss xmm1, r10d
+; Multiplies result and 10
+mulss   xmm0, dword ptr [readonlydata_float_10 (7ff7670155c8)]
+; Adds xmm1(bytes[i] - 48) into xmm0 (result*10)
+addss   xmm0, xmm1
+.loop1_inner:
+; Compares edx (i) with ecx(length)
+cmp     edx, ecx
+jge     .loop2_setup
+; Moves edx(i) into r10d
+mov     r10d, edx
+; Moves the byte from rax on index r10 (i)
+movzx   r10d, byte ptr [rax+r10]
+; Compares index to '.'
+cmp     r10d, 2Eh
+; Jumps if not equal
+jne     .loop1
+
+.loop2_setup:
+; Compares edx (i) to ecx(length)
+cmp     edx, ecx
+jge     .return_integer
+; moves i into r10d
+mov     r10d, edx
+; moves the byte from span[r10(i)] while extending with 0s
+movzx   r10d, byte ptr [rax+r10]
+; Compares the byte to 2E '.'
+cmp     r10d, 2Eh
+; Jumps if not equal
+jne     .return_integer
+; Increments edx(i)
+inc     edx
+; Clears r10d and r9d 
+xor     r10d, r10d
+xor     r9d, r9d
+; Compares edx(i) and ecx(length)
+cmp     edx, ecx
+; Jumps if edx(i) is greater or equal
+jge     .return_fractional ; returns result
+
+.loop2:
+; Moves edx(i) into r11d
+mov     r11d, edx
+; Moves i+1 into edx
+lea     edx, [r11+1]
+; Moves byte from span[i] into r11d
+movzx   r11d, byte ptr [rax+r11]
+; Substracts 48 from r11d
+add     r11d, 0FFFFFFD0h
+; Truncates r11d
+movsxd  r11, r11d
+
+; Effectively this calculates frac = frac * 10 + (bytes[i++] - 48); 
+; calculates r10 = 5*r10
+lea     r10, [r10+r10*4]
+; calculates r10 = (span[i] - 48) + r10*2.  
+lea     r10, [r11+r10*2]
+
+; increments r9d
+inc     r9d
+; Compares edx(i) to ecx(length) and jumps back if edx is less than ecx
+cmp     edx, ecx
+jl      .loop2
+
+.return_fractional:
+; Moves pointer to invPow10 into RAX
+mov     rax, qword ptr [ParserCSharp_Parser::__GCSTATICS (7ff76704f208)]
+; Moves RAX + 8 into RAX (skips header to length), loads the length
+mov     rax, qword ptr [rax+8]
+; Checks whether the r9d index can be retrieved from static (11h = 17)
+cmp     r9d, 11h
+; Jumps into "IndexOutOfRangeException"
+jae     .exception_index_out_of_range
+; Moves loop2 index into ecx (lower 32bits of RCX)
+mov     ecx, r9d
+; clears xmm1
+xorps   xmm1, xmm1
+; Loads r10(fractional) into xmm1
+cvtsi2ss xmm1, r10
+
+; multiplies xmm1 with the entry from invPow10 at rcx. 
+; * 4 because floats are 4bytes long
+; + 10h to skip the header into the first element.
+mulss   xmm1, dword ptr [rax+rcx*4+10h]
+
+; Adds xmm1 into xmm0 (adds the result(integer part) + fractional part)
+addss   xmm1, xmm0
+; Moves xmm1 to xmm0 for returning.
+movaps  xmm0, xmm1
+
+.return_integer:
+; clears xmm1
+xorps   xmm1, xmm1
+; loads the r8d(sign) into xmm1
+cvtsi2ss xmm1, r8d
+; multiplies the result with the sign for final returns
+mulss   xmm0, xmm1
+; Cleans up stack 
+add     rsp, 28h
+; Returns the result (Results are in the xmm0 register for floats)
+ret
+
+.exception_index_out_of_range: 
+call    ThrowHelpers__ThrowIndexOutOfRangeException</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                
+        <div class="mt-8 flex flex-col md:flex-row items-center justify-between bg-gray-800 border border-gray-700 p-8 rounded-3xl gap-6">
+            <div>
+                <h2 class="text-2xl font-bold text-white mb-2">Verify the Benchmarks</h2>
+                <p class="text-gray-400 text-sm">Download the source, the Python builder and the runner to replicate these results on your own hardware.</p>
+            </div>
+            <a href="https://github.com/imvulpi/NanoFloat" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-orange-400 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 128 128"><g fill="#181616"><path fill-rule="evenodd" clip-rule="evenodd" d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"/><path d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"/></g></svg>                    View on GitHub
+            </a>
+        </div>
+
+        <section class="mt-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="relative overflow-hidden bg-[#5865F2]/10 border border-[#5865F2]/30 rounded-3xl p-8 md:p-12">
+                    <div class="absolute -right-10 -bottom-10 text-[#5865F2]/10 rotate-12">
+                        <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    </div>
+
+                    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Join the Vulpi Community</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Got a cool idea or noticed something interesting in your code? Come hang out with us! We talk about programming, share fun discoveries, and celebrate every tiny speedup - even <span class="text-[#5865F2] font-mono">0.01ns</span> saved.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col gap-4 items-center md:items-end">
+                            <a href="https://discord.com/invite/uzV6jNn6GZ" target="_blank" class="flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-[#5865F2]/20">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                                Join the Discord
+                            </a>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Verified coder nerds.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-20 border-t border-gray-800 pt-16">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                    <span class="text-3xl">😫</span> 
+                    The "Cost" of 2.98ns
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <p class="text-gray-400 leading-relaxed italic border-l-2 border-red-500 pl-6">
+                            "Achieving this wasn't just writing code - it was about surviving the process. After reading more compiler-generated assembly than any human should, you start dreaming about assembly instructions, No no Literally."
+                        </p>
+                        <p class="text-gray-500 text-sm leading-relaxed">
+                            I spent days staring at disassemblies, each time I thought "Ughh finally done" I had to recheck it twice, and of course in the process of doing so I had to find some unfairness between the benchmarks, then I had to recompile everything and check the disassemblies again. Repeat this a couple of times.
+                        </p>
+                    </div>
+
+                    <div class="bg-gray-900/40 p-6 rounded-2xl border border-gray-800">
+                        <h4 class="font-semibold mb-4 text-xs uppercase tracking-widest text-red-400">Battle Scars</h4>
+                        <ul class="space-y-4 text-xs text-gray-400">
+                            <li class="flex gap-3">
+                                <span class="text-red-500 font-bold">01</span>
+                                <span><strong>Dreams of Assembly:</strong> I'm not even joking when I say I dreamt about assembly instructions. See the next journal section to find out how it led up to that.
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-red-500 font-bold">02</span>
+                                <span><strong>The Unfairness:</strong> Ugh, many times I just noticed an issue between languages. For instance C# (btw OOP joke) har 2 byte long characters for their <code>char</code> or <code>strings</code> instead of 1 byte like in C</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="text-red-500 font-bold">03</span>
+                                <span><strong>Sleepless nights:</strong> Usually I slept pretty well, probably from the writing and thinking about assembly. Tonight though I'm finishing this benchmark with writing this, It's 2AM... I have to wake up at 7AM tommorow! (I really make bad decisions...)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-20">
+            <div class="max-w-4xl mx-auto bg-[#0d1117] border border-gray-700 rounded-lg overflow-hidden shadow-2xl">
+                <div class="bg-gray-800 px-4 py-2 flex items-center gap-2 border-b border-gray-700">
+                    <div class="flex gap-1.5">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono ml-2">dev_log_frustration.asm</span>
+                </div>
+                <div class="p-6 font-mono text-sm leading-relaxed">
+                    <p class="text-blue-400">; Powered by caffeine and resentment toward runtime safety checks.</p>
+                    <p class="text-gray-300 mt-6">
+                        I've decided to make this devlog section to share what I found and to <strong>complain</strong> (just a little). Let me start with how this project even came to light, because it's quite peculiar how it all started.
+                    </p>
+                    <p class="text-gray-300 mt-6">
+                        Firstly I started writing a float parsing function for a C# library I was writing. I decided it would be great idea to include benchmark for the library functions and so on. So this is what started the big benchmarking of the floating algorithm. At the start I just benchmarked C# with <span class="text-amber-500">BenchmarkDotNet</span>, but quickly curiosity got me and I chose to make a C program to test which language is faster.
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        Funnily enough <span class="text-blue-500">initially C# outperformed C</span>, because of few irregularities in the algorithm and the fact that I didn't put optimizing flags when compiling 😅 I started boasting how C# is so much better than C and triggering a couple of people in the process of doing so. However I had yet to realize the mistake I made. Today I take the boasting back from C# and place the crown on ME? Well since I wrote the assembly, it's kinda fair right?
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        Enough with the jokes :D, I started looking around for why C was slower, since I expected it to be faster. I asked around and got some good tips on how to make the algorithm fair but even with those C# was still outperforming C. It turned out it was the optimizing flags, yeah I know... 
+                    </p>
+                    <p class="text-gray-300 mt-6">
+                        With the prologue semi-finished let's discuss how it went later on. For most of the journey I was using C# <span class="text-purple-500">Visual Studio</span> but later on it proved unreliable and I switched to <span class="text-amber-500">WinDbg</span>. I can't emphasize how many issues I had with it, not because it's a bad disassembler but because I'm bad at it, though I improved a little in the end.
+                        Okay so I started disassembling C#, for C I found <span class="text-amber-500">Ghidra</span> to be more reliable. The <span class="text-red-500">GRAVE MISTAKE</span> of mistaking how dotnet compiler flags work had made me compile for JIT for a long time even though I wanted AOT. The misunderstanding is quite common I would say. When using some flags in dotnet you can't simply put the flag but it requires you to set a value for it. So in my case <span class="text-red-500">/p:PublishAot</span> was incorrect. It should've true in it <span class="text-green-500">/p:PublishAot=true</span>. I mistook it because of how the optimization flags work in C, you simply put -O3 not -O3=true. I guess this means <span class="text-blue-500">Flags 2 vs Vulpi 0, they got me again</span>
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        With the disassemblies collected I started writing the explanation of instructions, you see I wanted to understand what the Assembly was doing. For context I wasn't be biggest connoisseur of Assembly (which has changed since then). Each time I finished the assembly I would find some issue in the code which would change the assembly and I have to explain it again. This really took a toll on me, often I was writing the explanations to midnight and I would just fall asleep in my bed, instantly - probably from exhaustion. Oh yeah, <span class="text-blue-500">rememeber the dream I mentioned?</span> Well let's talk about it.
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        <span class="text-blue-500">I unironically dreamt of assembly</span>, It was after hard work with WinDbg and explaining assembly, I felt very tired and decided to take a <span class="text-red-500">"nap"</span> which was quite a long one, I wouldn't even really consider it a nap. I guess when working with these amounts of assembly you can't escape it, even while sleeping.
+                    </p>
+                    <p class="text-gray-300 mt-6">
+                        Okay let's wrap it up. I made the C# and C code, documented/explained the assembly. I'm done I thought, but then... I thought about it... <span class="text-blue-500">Let's make my own assembly that beats C</span>. Well it really wasn't like that, I asked whether I should try beating C and people encouraged me to do it which motivated me a little.
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        And so I've started, at the beginning it was terrible! <span class="text-blue-500">My assembly WAS worse than C</span> and maybe even C# (I can't recall). I think I tried to overengineer it. I opted for a simpler solution, make it work and improve on it. I made the integer conversion part and improved it so that it performs nicely. Then I moved into the float conversion, it took a while, but I made it... <span class="text-green-500">I wrote Assembly that was faster than C</span>. With my own hands. I've done it.
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        <span class="text-blue-500">Well so what's next?</span> I thought, well not really. I started optimizing the Assembly further with LEA optimizations. You see when you do multiplications, you can do some tricks with LEA and scaling to multiply by set values, in my case it was 10. It's a nice ALU optimization which can save some performance. After that <span class="text-red-500">I decided STOP</span>, let's make the benchmarks.
+                    </p>
+                    <p class="text-gray-300 mt-6">
+                        <span class="text-blue-500">But not so quickly!</span> At the start I wanted to use <span class="text-amber-500">QueryPerformanceCounter</span>, but in the end opted for <span class="text-amber-500">Time Stamp Counters</span> built in the CPU, which are perfect for microbenchmarks, not only can they <span class="text-green-500">output in cycles</span> but they're god damn it so sexy. (I love benchmark timers)
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        Okay great with this setup <span class="text-blue-500">I could benchmark C, but what about C#? I can't put assembly directly in C#</span> so I had to build a .dll which contains the functions from assembly and include those in C# <span class="text-amber-500">via P/Invoke</span>. I just made a clock library in assembly for this so I can include it into C by linking it statically.
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        <span class="text-blue-500">I created some scripts</span> for building, running and later added statistical scripts and a simple template script so I don't have to copy the statistics manually into table rows (Many mistakes with numbers - trial and error where the script won).  <span class="text-blue-500">I wanted better but got worse</span>, you see when I first ran the benchmark I made the running script set its own priority to <span class="text-amber-500">REALTIME</span> where as the benchmark executables were run with <span class="text-amber-500">HIGH priority</span>. This caused many discrepetancies and the error was massive. I didn't realize this at first so I ran the statistics got the results and started making the website and putting the statistics into the table. Fortunately I decided to loop into the discrepetancies so and found the issue. I quickly changed it so the runner script runs on a <span class="text-amber-500">NORMAL</span> priority and the executables run on <span class="text-amber-500">HIGH </span> priority (REALTIME can still cause issues even when on benchmark execs). This time the results were much better, it looked how I expected it to look like.
+                    </p>
+                    <p class="text-gray-300 mt-6">
+                        <span class="text-blue-500">With this we are coming to the end of the journey</span>, benchmarks ran, website was made, I wrote this and it was fun. A lot of assembly, a lot of benchmarking, a lot of small and bigger optimizations. This was quite a nice adventure which will take a while for me to repeat. I think the benchmarking part is very fun, but with how many assembly files I had to review and double check it was quite tiring. I often changed something in the code and BOOM I had to review and write the comments for the new assembly. Not to mention some mistakes I made with the flags and reviewing the wrong assemblies...
+                    </p>
+                    <p class="text-gray-300 mt-2">
+                        I don't expect anyone will read this far, but if you did then thanks ig. I included here some useful tips on how I did the benchmark so you're welcome to try it on your own. This was quite a difficult project for me, not because the assembly was hard to grasp, but because of how I was painstakingly writing the assembly, and how many times I had to reread stuff and rewrite stuff.
+                        This was exhausting. BTW I'm ending the writing of this at 4AM. Should I or should I not go to sleep at this point? hehe.. I really need to fix my sleep schedule after this.
+                    </p>
+                    <p class="text-gray-300 mt-8">
+                        I'm going to go stare at a tree or something that doesn't have a clock cycle.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-20">
+            <div class="max-w-4xl mx-auto">
+                <div class="relative overflow-hidden bg-[#5865F2]/10 border border-[#5865F2]/30 rounded-3xl p-8 md:p-12">
+                    <div class="absolute -right-10 -bottom-10 text-[#5865F2]/10 rotate-12">
+                        <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    </div>
+
+                    <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Join the Vulpi Community</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Got a cool idea or noticed something interesting in your code? Come hang out with us! We talk about programming, share fun discoveries, and celebrate every tiny speedup - even <span class="text-[#5865F2] font-mono">0.01ns</span> saved.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col gap-4 items-center md:items-end">
+                            <a href="https://discord.com/invite/uzV6jNn6GZ" target="_blank" class="flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] text-white px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-lg shadow-[#5865F2]/20">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+                                Join the Discord
+                            </a>
+                            <span class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Verified coder nerds.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-24 max-w-4xl mx-auto">
+            <div class="flex items-baseline gap-4 mb-10">
+                <h2 class="text-5xl font-black text-white/10 uppercase tracking-tighter select-none">The Grind</h2>
+                <p class="text-gray-400 text-sm italic">Lessons learned from 1,000,000,000 iterations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group">
+                    <h4 class="text-red-500 font-bold text-xs uppercase tracking-widest mb-3 group-hover:text-red-400 transition-colors">01 / The Assembly</h4>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        This benchmarking 'session' (closer to 'sessions') did teach me quite a lot about assembly and benchmarking. <strong class="text-white">I can now flex about it online ;p.</strong> In all seriousness, I believe it's not that bad of an idea to challenge yourself into unknown depths of Assembly, but don't be like me, sleep well.
+                    </p>
+                </div>
+
+                <div class="group">
+                    <h4 class="text-blue-500 font-bold text-xs uppercase tracking-widest mb-3 group-hover:text-blue-400 transition-colors">02 / Micro optimizations</h4>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        You haven't known boredom until you've sat through <strong class="text-white">billions of iterations </strong> just to see if swapping two <code class="text-xs bg-gray-800 p-1">LEA</code> instructions shaved off 0.01ns. Through the pain it did teach me a lot about hot paths, cost of memory, cost of instructions and a lot about CPUs and computers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-gradient-to-r from-gray-900 to-transparent border-l-4 border-gray-700">
+                <p class="text-gray-500 text-xs uppercase tracking-widest mb-2 font-bold">Conclusion of the Log:</p>
+                <p class="text-gray-400 italic text-sm font-serif">
+                    "The 2.98ns record was paid for in bloodshot eyes, questionable sleep habits, and hours of staring at assembly… all for a cool low number I'll probably never use. Totally impractical, totally worth it."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <div class="my-32"></div>
+    <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 scranim:animate-flip-down">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../graphics/icon.svg" class="h-16" alt="Vulpi Logo" />
+                    <img src="../graphics/logo-text.svg" class="h-8" alt="Vulpi Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="../en/about.html" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="../en/projects.html" class="hover:underline me-4 md:me-6">Projects</a>
+                    </li>
+                    <li>
+                        <a href="../en/faq.html" class="hover:underline me-4 md:me-6">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="../en/contact.html" class="hover:underline me-4 md:me-6">Contact</a>
+                    </li>
+                    <li>
+                        <a href="../en/more.html" class="hover:underline hover:">More</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/imvulpi" class="hover:underline">Vulpi</a>. All Rights Reserved.</span>
+        </div>
+    </footer> 
+
+    <div class="hidden animate-fade-left animate-fade-down animate-from-left animate-from-right animate-fade-down animate-jump-out"></div>
+</body>
+<script src="../deps/js/main-navigation.js"></script>
+<script src="../deps/js/slider-animations.js"></script>
+<script src="../deps/highlight/highlight.min.js"></script>
+<script>
+hljs.highlightAll();
+document.addEventListener('DOMContentLoaded', () => {
+    const metricBtns = document.querySelectorAll('#metricToggle .toggle-btn');
+    const viewBtns = document.querySelectorAll('#viewToggle .toggle-btn');
+    const statCells = document.querySelectorAll('[data-ns]');
+
+    // 1. Metric Switcher (NS <-> Cycles)
+    metricBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const metric = btn.dataset.metric;
+            
+            // Update UI buttons
+            metricBtns.forEach(b => b.classList.remove('active', 'bg-gray-800', 'bg-orange-600', 'text-white'));
+            btn.classList.add('active', 'bg-gray-800', 'text-white');
+
+            // Update Values
+            statCells.forEach(cell => {
+                const val = metric === 'ns' ? cell.dataset.ns : cell.dataset.cyc;
+                const unit = metric === 'ns' ? 'ns' : 'cyc';
+                
+                // Update main value if it has internal spans
+                if (cell.querySelector('.value')) {
+                    cell.querySelector('.value').textContent = val;
+                    cell.querySelector('.unit').textContent = unit;
+                } else {
+                    // Update simple text cells (P10/P90)
+                    cell.textContent = val;
+                }
+            });
+        });
+    });
+
+    // 2. View Switcher (Simple <-> Advanced)
+    viewBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const view = btn.dataset.view;
+            
+            // Update UI buttons
+            viewBtns.forEach(b => b.classList.remove('active', 'bg-orange-600', 'text-white'));
+            btn.classList.add('active', 'bg-orange-600', 'text-white');
+
+            // Toggle Advanced Columns
+            const advCols = document.querySelectorAll('.adv-col');
+            advCols.forEach(col => {
+                if (view === 'advanced') {
+                    col.style["display"] = "table-cell";
+                    col.classList.remove('hidden');
+                } else {
+                    col.style["display"] = "none";
+                    col.classList.add('hidden');
+                }
+            });
+        });
+    });
+});
+</script>
+</html>

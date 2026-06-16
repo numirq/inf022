@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../deps/css/main.css">
+    <link rel="icon" href="../graphics/icon.svg">
+    <title>Vulpi</title>
+</head>
+<body class="bg-white dark:bg-gray-900 dark:text-white">
+    <header class="flex justify-center w-full max-sm:justify-around">
+        <a href="./index.html" class="flex items-center p-4 sm:m-4">
+            <img src="../graphics/icon.png" class="wh-auto max-w-16 max-h-16">
+            <img src="../graphics/logo-text.png" class="max-w-12 max-h-16 animate-waving-hand">
+        </a>
+        <div class="sm:my-8 sm:border-1 animate-flip-up border-gray-500"></div>
+        <ul class="hidden sm:visible sm:flex gap-8 p-8 justify-center items-center text-xl">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projekty</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">O mnie</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQ</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">Więcej</a></li>
+        </ul>
+        <div class="hidden max-sm:flex">
+            <img src="../graphics/icons/outline/general/bars.svg" class="dark:filter-[brightness(0)invert(1)] dark:block hover:animate-jump text-3xl items-center w-10" id="navigation-button"></img>
+        </div>
+    </header>
+    <div id="navigation-menu" hidden>
+        <ul class="max-sm:visible max-sm:block p-8 justify-center items-center text-xl *:my-2">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projekty</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">O mnie</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQ</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">Więcej</a></li>
+        </ul>
+    </div>
+    <main>
+        <h1 class="text-center text-4xl animate-fade-down my-16">Najczęsciej zadawane pytania</h1>
+        <ul class="flex flex-col items-center w-1/2 max-lg:w-full px-4 mx-auto py-12 my-8 *:scranim:animate-fade-up">
+            <li class="w-full faq-section">
+                    <div class="flex justify-between dark:hover:bg-gray-800 hover:bg-gray-200 faq-btn border-gray-700 border-1 p-4 border-b-0 rounded-t-2xl" open-color-class="dark:bg-gray-800 bg-gray-200">
+                    <h1 class="text-xl px-4 py-2">Z jakich projektów jesteś najbardziej dumny?</h1>
+                    <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                    <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+                </div>
+                <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">
+                    Jestem dumny z tego, jak powstało HarmoniaUI. Uważam, że kod jest dobrze zorganizowany i stosunkowo czysty, oczywiście zawsze jest miejsce na poprawę, ale jestem z niego zadowolony. Przy HarmoniaUI było wiele trudności, dokumentacja modułów w Godocie nie była obszerna, więc musiałem zaglądać w kod źródłowy Godota, żeby dowiedzieć się, jak zrobić niektóre rzeczy.
+                </p>
+            </li> 
+            <li class="w-full faq-section">
+                    <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+                    <h1 class="text-xl px-4 py-2">Jakie są twoje największe mocne strony jako deweloper?</h1>
+                    <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                    <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+                </div>
+                <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Myślę, że moimi największymi mocnymi stronami są pasja do rozwoju. Nie poddaję się łatwo, jestem kreatywny, co pomaga mi wymyślać różne pomysły w grach i innych projektach. Potrafię dostosować się do różnych frameworków, języków i technologii, powiedziałbym, że to jedna z moich największych mocnych stron</p>
+            </li> 
+            <li class="w-full faq-section">
+                    <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+                    <h1 class="text-xl px-4 py-2">Jakich narzędzi i frameworków używasz regularnie?</h1>
+                    <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                    <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+                </div>
+                <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Najczęściej używam VSCode, Visual Studio. Do tworzenia gier korzystam z Unity lub Godota, ale chciałbym spróbować Unreal. Zwykle używam VSCode z wtyczkami, które kolorują teksty lub pomagają szybciej rozwijać projekty.</p>
+            </li> 
+            <li class="w-full faq-section">
+                    <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+                    <h1 class="text-xl px-4 py-2">Czy pracujesz zarówno w front-endzie, jak i back-endzie?</h1>
+                    <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                    <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+                </div>
+                <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Tak, ponieważ wiele moich projektów było realizowanych solo, musiałem zajmować się zarówno front-endem, jak i back-endem. Mam spore doświadczenie w UI/UX, które zdobyłem rozwijając różne strony internetowe.</p>
+            </li> 
+            <li class="w-full faq-section">
+                <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+                <h1 class="text-xl px-4 py-2">Czy specjalizujesz się w tworzeniu gier 2D czy 3D?</h1>
+                <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+            </div>
+            <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Większość moich projektów jest w 2D, ale chciałbym spróbować stworzyć więcej gier 3D.</p>
+            </li> 
+            <li class="w-full faq-section">
+                <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+                <h1 class="text-xl px-4 py-2">Czy tworzysz gry na PC, konsole, czy platformy mobilne?</h1>
+                <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+            </div>
+            <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Zależy od gry, wiele z moich gier jest tylko na PC, a niektóre na PC i urządzenia mobilne. Zwykle to albo PC, albo mobilne.</p>
+            </li> 
+            <li class="w-full faq-section">
+               <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4 border-b-0" open-color-class="dark:bg-gray-800 bg-gray-200">
+               <h1 class="text-xl px-4 py-2">Jak projektujesz angażujące mechaniki gier?</h1>
+               <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+               <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+           </div>
+           <p class="p-4 faq-content hidden border-gray-700 border-1 border-b-0">Często aktywnie wymyślam dużo pomysłów, albo szukam inspiracji w różnych grach, staram się, żeby było to zabawne dla graczy.</p>
+           </li> 
+            <li class="w-full faq-section">
+                    <div class="flex justify-between faq-btn dark:hover:bg-gray-800 hover:bg-gray-200 border-gray-700 border-1 p-4" open-color-class="dark:bg-gray-800 bg-gray-200">
+                    <h1 class="text-xl px-4 py-2">Jakich silników gier używasz?</h1>
+                    <img class="dark:filter-[brightness(0)invert(1)] faq-arrow-down" src="../graphics/icons/solid/arrows/caret-down.svg" alt="">
+                    <img class="dark:filter-[brightness(0)invert(1)] select-none faq-arrow-up" hidden src="../graphics/icons/solid/arrows/caret-up.svg" alt="">
+                </div>
+                <p class="p-4 faq-content hidden border-gray-700 border-1 border-t-0 rounded-b-2xl">Głównie używam Unity i Godota, ale chcę wkrótce spróbować Unreal.</p>
+            </li>
+        </ul>
+    </main>
+    <div class="my-32"></div>
+    <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 scranim:animate-flip-down">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="#" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../graphics/icon.svg" class="h-16" alt="Vulpi Logo" />
+                    <img src="../graphics/logo-text.svg" class="h-8" alt="Vulpi Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="./about.html" class="hover:underline me-4 md:me-6">O mnie</a>
+                    </li>
+                    <li>
+                        <a href="./projects.html" class="hover:underline me-4 md:me-6">Projekty</a>
+                    </li>
+                    <li>
+                        <a href="./faq.html" class="hover:underline me-4 md:me-6">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html" class="hover:underline me-4 md:me-6">Kontakt</a>
+                    </li>
+                    <li>
+                        <a href="./more.html" class="hover:underline hover:">Więcej</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/imvulpi" class="hover:underline">Vulpi</a>. Wszystkie prawa zastrzeżone.</span>
+        </div>
+    </footer>
+
+    <div class="hidden animate-fade-left animate-fade-down animate-from-left animate-from-right animate-fade-down animate-jump-out"></div>
+</body>
+<script src="../deps/js/main-navigation.js"></script>
+<script src="../deps/js/slider-animations.js"></script>
+<script src="../deps/js/faq.js"></script>
+</html>

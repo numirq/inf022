@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../deps/css/main.css">
+    <link rel="icon" href="../graphics/icon.svg">
+    <title>Vulpi</title>
+</head>
+<body class="bg-white dark:bg-gray-900 dark:text-white">
+    <header class="flex justify-center w-full max-sm:justify-around">
+        <a href="./index.html" class="flex items-center p-4 sm:m-4">
+            <img src="../graphics/icon.png" class="wh-auto max-w-16 max-h-16">
+            <img src="../graphics/logo-text.png" class="max-w-12 max-h-16 animate-waving-hand">
+        </a>
+        <div class="sm:my-8 sm:border-1 animate-flip-up border-gray-500"></div>
+        <ul class="hidden sm:visible sm:flex gap-8 p-8 justify-center items-center text-xl">
+            <li class="hover:animate-shake cursor-default"><a href="#" class="text-amber-400">Projects</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+        <div class="hidden max-sm:flex">
+            <img src="../graphics/icons/outline/general/bars.svg" class="dark:filter-[brightness(0)invert(1)] dark:block hover:animate-jump text-3xl items-center w-10" id="navigation-button"></img>
+        </div>
+    </header>
+    <div id="navigation-menu" hidden>
+        <ul class="hidden max-sm:visible max-sm:block p-8 justify-center items-center text-xl *:my-2">
+            <li><a href="#" class="text-amber-400 cursor-default">&gt; Projects</a></li>
+            <li><a href="./about.html" class="hover:text-orange-600">About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+    </div>
+    <main class="overflow-x-hidden">
+        <div class="flex flex-col items-center py-16 my-8">
+            <h1 class="text-3xl scranim:animate-fade-down text-center">Projects are also described inside of github.</h1>
+            <p class="text-xl py-16 scranim:animate-slide-top-left scranim-delay:500 opacity-0">
+                Here are the projects!
+            </p>
+        </div>
+        <div class="overflow-visible">
+            <div class="overflow-hidden grid grid-cols-4 max-xl:grid-cols-2 max-sm:grid-cols-1 w-4/5 mx-auto gap-10 *:border-b-2">
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">HarmoniaUI</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/cplusplus-original.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/godot.svg">    
+                                </div>
+                            </div>
+                            <p>UI library for Godot to extend the UI possibilities and simplify creation. Allows for a dynamic UI, events, animations. Based on verified web solutions.</p>    
+                            <div class="flex w-full justify-end">
+                                <img src="../graphics/icons/cursor-click.svg" class="w-8 hidden max-sm:block dark:filter-[brightness(0)invert(1)]">
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C++, Godot</h5>
+                            <p class="hidden-content">An attempt of creating a more comfortable and elastic solution to UI that's intuitive for web users.</p>
+                            <a href="https://github.com/imvulpi/HarmoniaUI/" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200" onclick="">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Falling dummy</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/godot.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/android-os.svg">
+                                </div>
+                            </div>
+                            <p>Falling dummy is a game where a dummy falls and you need to make moves to save him from hitting unsafe obstacles!</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#, Godot</h5>
+                            <p class="hidden-content">Desire to create a interesting and addictive mobile game using Godot.</p>
+                            <a href="https://github.com/imvulpi/FallingDummy" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Space Miner</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/godot.svg">  
+                                </div>
+                            </div>
+                            <p>Space Miner is a game where the player is tasked with collecting minerals and other rare materials to upgrade his base, spaceships and other elements</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#, Godot</h5>
+                            <p class="hidden-content">A try to create an interesting concept of a game for PC, gained knowledge of saving and chunking.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">BinPack</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>BinPack is a binary serializer for C#. Supports primitives, arrays with many dimensions, classes and special. It's Structurized.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">Expanding knowledge on topic of low level operations in C# language.</p>
+                            <a href="https://github.com/imvulpi/BinPack" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Discord Purger</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/python.svg">
+                                </div>
+                            </div>
+                            <p>A python program using playwright to automate deletion of your unwanted messages on discord. With changes to discord website this is outdated</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: Python</h5>
+                            <p class="hidden-content">Checking playwright for automatic web tests and other goals.</p>
+                            <a href="https://github.com/imvulpi/Discord-Purger" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Mastervault</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/rust.svg">
+                                </div>
+                            </div>
+                            <p>MasterVault is an offline password manager designed to securely store and organize user credentials. Unlike online password managers, MasterVault data remains completely local to your device, meaning it does not rely on cloud services or internet connectivity.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: Rust</h5>
+                            <p class="hidden-content">Desire to create a local password manager for easy and fast use, but also a safe storage of passwords.</p>
+                            <a href="https://github.com/imvulpi/mastervault" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">HydrateMe</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/java-original-wordmark.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/android-os.svg">
+                                </div>
+                            </div>
+                            <p>App designed to help users track their water intake and encourage better hydration habits. Measures and records daily water consumption, providing users with timely reminders and hydration goals.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: Java, Android Studio</h5>
+                            <p class="hidden-content">Desire to try Java and Android studio to create a useful application tracking users hydration.</p>
+                            <a href="https://github.com/imvulpi/HydrateMe" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">SiteCrawler</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>An app written in c# that lets you get source code and other interesting files from a provided URL. It's an old project and will strugle with complicated websites or website that contain big files.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">Allowed me to learn more of TCP protocol and operations of asynchronous functions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Hangman app</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>Hangman console application for C#, It allows you to play the famous game of hangman on your console</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">One of my first projects, helped me get to know C# and Git system more.</p>
+                            <a href="https://github.com/imvulpi/hangman" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Changelog Bot</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/python.svg">
+                                </div>
+                            </div>
+                            <p>A discord bot which allows you to create changelogs for your game. It contains commands which will open a window where you can input your changes and it will make it pretty and log the file.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: Python</h5>
+                            <p class="hidden-content">First discord bot I have created, It helped me get more experience on python and handling/hosting bots.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">ShipsGame</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>A console app for the battleship game. For online (LAN) and computer gameplays.<br><br><br></p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">One of my older projects helped me get to know C# better and allowed me to experience implementing multiplayer.</p>
+                            <a href="https://github.com/imvulpi/ShipsGame" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Random Password Generator (RanPass)</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>As the name suggests it's a random password generator, it runs locally and uses CSPRNG (Cryptographically secure pseudorandom number generator) to generate the passwords. You can generate any length</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">Desire to create a good offline password generator, helped me expand on knowledge in the sphere of random numbers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Password Checker</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                </div>
+                            </div>
+                            <p>It checks user password against common breached passwords from password lists and checked various best practices of passwords, it's local with no connection to internet.</p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#</h5>
+                            <p class="hidden-content">Testing passwords against common breaches, also helped me discover different optimization methods and working on bigger files.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-left scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Blacksmith Forge</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/vunity.svg">
+                                </div>
+                            </div>
+                            <p>Game where you are a seller/smith, you collect different minerals and create items which you then sell to adventurers.<br><br><br></p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#, Unity</h5>
+                            <p class="hidden-content">Project which helped me discover Unity better, I modified there a A* pathfinding script. Before this game was called NPC game.</p>
+                            <a href="https://github.com/imvulpi/NPC_Game" class="dark:text-amber-100 text-amber-600 dark:hover:text-amber-300 hover:text-amber-700">Check on github</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-card scranim:animate-slide-top-right scranim-delay:200 opacity-0 even:*:dark:bg-gray-800 even:*:bg-gray-200">
+                    <div class="flip-card-inner *:p-4 *:h-full h-full">
+                        <div class="flip-card-front">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl">Knight's Oath</h3>
+                                <div class="flex">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/csharp.svg">
+                                    <img class="w-8" src="../graphics/icons/solid/brands/vunity.svg">
+                                </div>
+                            </div>
+                            <p>Game where you are a knight of a kingdom which found itself in crisis, you need to save the world.<br><br></p>    
+                        </div>
+                        <div class="flip-card-back">
+                            <h5>Technology: C#, Unity</h5>
+                            <p class="hidden-content">Project I'm currently working on, it helps me try different clean architecture techniques/rules.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scranim:animate-slide-top-right opacity-0 scranim-delay:200">
+                    <h1 class="text-xl">And more smaller projects</h1>
+                    <p>I developed lots of smaller projects to test different features and libraries. (ex. TCPListener - listening to TCP signal in a port)<br><br></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="my-32"></div>
+    <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 scranim:animate-flip-down">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="./index.html" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../graphics/icon.svg" class="h-16" alt="Vulpi Logo" />
+                    <img src="../graphics/logo-text.svg" class="h-8" alt="Vulpi Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li>
+                        <a href="./about.html" class="hover:underline me-4 md:me-6">About</a>
+                    </li>
+                    <li class="hover:animate-shake cursor-default">
+                        <a class="text-amber-400 cursor-default me-4 md:me-6">Projects</a>
+                    </li>
+                    <li>
+                        <a href="./faq.html" class="hover:underline me-4 md:me-6">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html" class="hover:underline me-4 md:me-6">Contact</a>
+                    </li>
+                    <li>
+                        <a href="./more.html" class="hover:underline hover:">More</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/imvulpi" class="hover:underline">Vulpi</a>. All Rights Reserved.</span>
+        </div>
+    </footer> 
+
+    <div class="hidden animate-fade-left animate-fade-down animate-from-left animate-from-right animate-fade-down animate-jump-out animate-slide-top-left animate-slide-top-right"></div>
+</body>
+<script src="../deps/js/main-navigation.js"></script>
+<script src="../deps/js/slider-animations.js"></script>
+</html>

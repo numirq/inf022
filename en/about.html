@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../deps/css/main.css">
+    <link rel="icon" href="../graphics/icon.svg">
+    <title>Vulpi</title>
+</head>
+<body class="bg-white dark:bg-gray-900 dark:text-white">
+    <header class="flex justify-center w-full max-sm:justify-around">
+        <a href="./index.html" class="flex items-center p-4 sm:m-4">
+            <img src="../graphics/icon.png" class="wh-auto max-w-16 max-h-16">
+            <img src="../graphics/logo-text.png" class="max-w-12 max-h-16 animate-waving-hand">
+        </a>
+        <div class="sm:my-8 sm:border-1 animate-flip-up border-gray-500"></div>
+        <ul class="hidden sm:visible sm:flex gap-8 p-8 justify-center items-center text-xl">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projects</a></li>
+            <li class="hover:animate-shake cursor-default"><a href="#" class="text-amber-400">About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+        <div class="hidden max-sm:flex">
+            <img src="../graphics/icons/outline/general/bars.svg" class="dark:filter-[brightness(0)invert(1)] dark:block hover:animate-jump text-3xl items-center w-10" id="navigation-button"></img>
+        </div>
+    </header>
+    <div id="navigation-menu" hidden>
+        <ul class="hidden max-sm:visible max-sm:block p-8 justify-center items-center text-xl *:my-2">
+            <li><a href="./projects.html" class="hover:text-orange-600">Projects</a></li>
+            <li><a href="#" class="text-amber-400 cursor-default">&gt; About</a></li>
+            <li><a href="./faq.html" class="hover:text-orange-600">FAQs</a></li>
+            <li><a href="./more.html" class="hover:text-orange-600">More</a></li>
+        </ul>
+    </div>
+    <main class="overflow-hidden">
+
+        <div class="[mask-image:radial-gradient(ellipse,#000_40%,transparent_80%)] animate-pulse flex justify-center p-10 py-50 bg-[url(../../graphics/patterns/dots.svg)]">
+            <h1 class="text-4xl text-center">More than developer - I create with passion</h1>
+        </div>
+
+        <div class="animate-fade-down relative flex justify-center items-center mb-32 mt-24">
+            <div class="w-2/4 max-lg:w-full mx-2 dark:bg-gray-800/80 bg-gray-200/85 rounded-2xl p-8 scranim:animate-from-top z-1 scranimup:animate-none">
+                <h1 class="text-3xl pb-4">Teamwork</h1>
+                <p class="">I have worked with smaller teams on some projects, but I don't have a lot of experience working with different developers at bigger scale. I work to improve on that and I look forward to develop with more people!</p>    
+            </div>
+            <div class="absolute flex justify-between w-3/4 h-max max-lg:flex-col">
+                <img src="../graphics/images/sm-team3-427.png" class="w-1/4 rounded-2xl -z-1 scranim:animate-vfrom-left max-lg:w-1/2 max-lg:absolute bottom-0 right-0" alt="Team Planning">
+                <img src="../graphics/images/sm-team.jpg" class="w-1/4 rounded-2xl -z-1 scranim:animate-vfrom-right max-lg:w-1/2 max-lg:absolute" alt="Team Photo">    
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-center mt-12 overflow-hidden">
+            <h4 class="flex text-3xl max-sm:text-2xl text-center p-4 justify-center items-center my-12">Technologies used:</h4>
+            <div class="*:p-16 xl:*:w-2/3 flex flex-col justify-center items-center *:even:dark:bg-gray-700 *:dark:bg-gray-800 gap-8 *:bg-gray-200 *:even:bg-gray-100 *:rounded-xl
+            *:even:translate-x-[-10%] *:not-even:translate-x-[10%] max-xl:*:even:translate-x-[0%] max-xl:*:not-even:translate-x-[0%] max-xl:*:w-2/3 max-sm:*:w-full max-sm:*:px-2 px-2">
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-left">
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Unity</h5>
+                        <img src="../graphics/icons/solid/brands/unity.svg" class="w-32 rotate-12 absolute -z-1 dark:opacity-50 opacity-10">
+                    </div>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <p class="w-2/3 max-sm:text-center">I made multiple projects in this engine, including my <i>NPC game</i> (later <i>Blacksmiths Forge</i>) which I stopped developing but I would want to get back at it. I was doing lots of simple projects, some of which I have unfortunately lost. There are projects which I work on right now using unity.</p>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-right">
+                    <p class="w-2/3 text-right max-sm:text-center">Pretty <i>new</i> or repopularized engine which I have tried for some projects and really enjoyed developing my games/apps in it, I have made spaceminer, falling dummy and other fun projects. I also developed HarmoniaUI module for this engine.</p>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Godot</h5>
+                        <img src="../graphics/icons/solid/brands/godot.svg" class="w-32 rotate-12 absolute -z-1 opacity-50">
+                    </div>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-left">
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Postgre DBMS</h5>
+                        <img src="../graphics/icons/solid/brands/postgresql.svg" class="w-32 -rotate-36 absolute -z-1 opacity-30">
+                    </div>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <p class="w-2/3 max-sm:text-center">Used this database for the fullscale website with authentication, Front-End, Back-End, nginx and other. Very popular opensource database system, cross-platform. It allows for complicated queries which I had used in the mentioned before website.</p>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-right">
+                    <p class="w-2/3 text-right max-sm:text-center">Modern web framework which I have used for the Front-End of a fullscale website with different features. It allowed me to intergrate the database and backend easily with their features, plugins and other.</p>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">SvelteKit</h5>
+                        <img src="../graphics/icons/solid/brands/svelte-icon.svg" class="w-32 -rotate-12 absolute -translate-y-12 -z-1 opacity-10">
+                    </div>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-left">
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Node</h5>
+                        <img src="../graphics/icons/solid/brands/nodejs.svg" class="w-32 absolute -z-1 opacity-50 -rotate-12">
+                    </div>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <p class="w-2/3 max-sm:text-center">Node Runtime which I used for the backend of a website with expressjs and other libraries like postgredb connectors, pools etc., in the mentioned fullscale website it was running privately and was used by the frontend. There are better options for a runtime hosting backend, like actix-web and other frameworks written in generally faster languages.</p>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-right">
+                    <p class="w-2/3 text-right max-sm:text-center">I have experience developing an app using Android Studio, HydrateMe was written in Java on Android Studio. It's a impressive but also power consuming IDE with built-in emulators, gradle, code editor, profiling tools, and other. </p>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <div class="w-1/3 flex justify-center">
+                        <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Android Studio</h5>
+                        <img src="../graphics/icons/solid/brands/android-os.svg" class="rotate-12 w-32 absolute -z-1 opacity-50">
+                    </div>
+                </div>
+                <div class="max-sm:flex-col flex items-stretch max-sm:items-center max-sm:*:w-full opacity-0 scranim:animate-slide-top-left">
+                    <h5 class="text-xl w-1/3 px-2 py-4 flex justify-center items-center">Other</h5>
+                    <div class="sm:mx-2 sm:border-1 animate-flip-up border-gray-500"></div>
+                    <p class="w-2/3 max-sm:text-center">I also use Git, Github, Inkscape, Aseprite, Cakewalk, Trello, Miro, Audacity, Blender, Scons, CMake, DBBrowser, GNS3, IDA, KopiaUI, Oracle VM VirtualBox, pgAdmin, PuTTY, ZAP Proxy and more which I can't think of right now</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center items-center flex-col p-4 overflow-hidden translate-x-[-100vw] scranim:animate-from-left">
+            <h1 class="text-xl p-8 animate-pulse">Looking for projects?</h1>
+            <a class="p-12 text-xl bg-amber-600 rounded-xl hover:animate-jump animate-once" href="./projects.html">Check  projects!</a>
+        </div>
+        
+        <!-- Languages I use -->
+        <div class="flex flex-col justify-center items-center my-32">
+            <h4 class="flex text-3xl max-sm:text-xl text-center p-4 justify-center items-center">Programming Languages:</h4>
+            <ul class="overflow-hidden flex flex-col items-center lg:max-w-2/3 justify-center *:flex *:justify-center *:p-2 *:py-8 *:even:dark:bg-gray-800 *:even:bg-gray-200 *:border-b-2 *:border-amber-500 lg:mx-16 sm:mx-4">
+                <li class="scranim:animate-from-left translate-x-[-100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl">C#</h5>
+                        <p>I have done plenty of projects in C#, that includes working with C# on Unity games, and on Godot games. I made libraries like BinPack (serializer) using C# and many other smaller console apps. I often use it to tinker with things.</p>
+                    </div>
+                </li>
+                <li class="scranim:animate-from-right translate-x-[100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl" >C++</h5>
+                        <p>One of the most recent languages I have learned, I used it to develop HarmoniaUI - a New UI System for Godot (a bit like websites). I would love to work with it more, I very much like it.</p>
+                    </div>
+                </li>
+                <li class="scranim:animate-from-right translate-x-[100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl">Javascript/Typescript</h5>
+                        <p>Mostly used this language for scripts on websites and backend servers, it's a very universal language and can be used to develop countless things. I used TypeScript in a quite big website project which included a Database, Front-End server, Back-End server, nginx web server for managing all servers.</p>
+                    </div>
+                </li>
+                <li class="scranim:animate-from-left translate-x-[-100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl">Python</h5>
+                        <p>Tinkering and other, I don't use this language for big/complex projects but I used it for short projects, and maybe mid-sized projects like discord bot. It's a nice language to quickly develop something</p>
+                    </div>
+                </li>
+                <li class="scranim:animate-from-left translate-x-[-100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl">Rust</h5>
+                        <p>I used this language for the MasterVault password manager and a backend server. I would say it's a nice language and has a pretty unique syntax, but developing times are unforgiving, that might be an advantage as its said to be very safe</p>
+                    </div>
+                </li>
+                <li class="scranim:animate-from-left translate-x-[-100vw] scranim-delay:50">
+                    <div>
+                        <h5 class="text-xl">Java</h5>
+                        <p>Language I used to develop HydrateMe app on android using the android studio. It's similiar to C# with some key differences in syntax and specific features (like enums). It's popular in backend apps/microservices sphere with its frameworks like Spring Boot</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Certificates -->
+        <h1 class="flex justify-center text-3xl p-4 my-2 animate-fade-down scranim:animate-fade-left">Certificates</h1>
+        <div class="animate-fade-down flex *:text-center justify-center gap-10 flex-wrap max-sm:px-2 mb-12">
+            <div class="flex-[0_0_1/3] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 scranim:animate-fade-left">
+                <a href="https://www.netacad.com/courses/it-essentials-7?courseLang=en-US">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CISCO IT Essentials</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">CISCO course that covers IT skills, including hardware, operating systems, networking, security principles, and troubleshooting techniques.</p>
+                <a href="https://www.netacad.com/courses/it-essentials-7?courseLang=en-US" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-600 
+                rounded-lg hover:bg-amber-700 focus:ring-4 focus:outline-none focus:bg-amber-300 dark:bg-amber-600 
+                dark:hover:bg-amber-700 dark:focus:ring-amber-300">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>    
+            <div class="flex-[0_0_1/3] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 scranim:animate-fade-left">
+                <a href="https://www.netacad.com/courses/introduction-to-cybersecurity?courseLang=en-US">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CISCO Introduction to Cybersecurity</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Provides an overview of cybersecurity concepts, threats, defense methods, and career insights.</p>
+                <a href="https://www.netacad.com/courses/introduction-to-cybersecurity?courseLang=en-US" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-600 
+                rounded-lg hover:bg-amber-700 focus:ring-4 focus:outline-none focus:bg-amber-300 dark:bg-amber-600 
+                dark:hover:bg-amber-700 dark:focus:ring-amber-300">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>    
+            <div class="flex-[0_0_1/3] max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 scranim:animate-fade-left">
+                <a href="https://www.netacadlearnathon.com/">
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">CISCO Networking Academy Learn-A-Thon 2023</h5>
+                </a>
+                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Focuses on accelerated learning through workshops, practical challenges, and collaboration on networking and other</p>
+                <a href="https://www.netacadlearnathon.com/" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-amber-600 
+                rounded-lg hover:bg-amber-700 focus:ring-4 focus:outline-none focus:bg-amber-300 dark:bg-amber-600 
+                dark:hover:bg-amber-700 dark:focus:ring-amber-300">
+                    Read more
+                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </main>
+    <div class="my-32"></div>
+    <footer class="bg-white rounded-lg shadow-sm dark:bg-gray-900 m-4 scranim:animate-flip-down">
+        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+            <div class="sm:flex sm:items-center sm:justify-between">
+                <a href="./index.html" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <img src="../graphics/icon.svg" class="h-16" alt="Vulpi Logo" />
+                    <img src="../graphics/logo-text.svg" class="h-8" alt="Vulpi Logo" />
+                </a>
+                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <li class="hover:animate-shake cursor-default">
+                        <a class="text-amber-400 cursor-default me-4 md:me-6">About</a>
+                    </li>
+                    <li>
+                        <a href="./projects.html" class="hover:underline me-4 md:me-6">Projects</a>
+                    </li>
+                    <li>
+                        <a href="./faq.html" class="hover:underline me-4 md:me-6">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="./contact.html" class="hover:underline me-4 md:me-6">Contact</a>
+                    </li>
+                    <li>
+                        <a href="./more.html" class="hover:underline hover:">More</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://github.com/imvulpi" class="hover:underline">Vulpi</a>. All Rights Reserved.</span>
+        </div>
+    </footer> 
+
+    <div class="hidden animate-fade-left animate-fade-down animate-from-left animate-from-right animate-fade-down animate-jump-out"></div>
+</body>
+<script src="../deps/js/main-navigation.js"></script>
+<script src="../deps/js/slider-animations.js"></script>
+</html>

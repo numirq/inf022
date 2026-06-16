@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@tailwind utilities;
+@plugin "tailwindcss-animated";
+
+@theme {
+  --animate-from-left: from-left 1s ease-in-out forwards;
+  --animate-vfrom-left: vfrom-left 1s ease-in-out forwards;
+  --animate-from-right: from-right 1s ease-in-out forwards;
+  --animate-vfrom-right: vfrom-right 1s ease-in-out forwards;
+  --animate-from-top: from-top 1s ease-in-out forwards;
+
+  --animate-slide-top-left: slide-top-left 0.5s ease-in forwards;
+  --animate-slide-top-right: slide-top-right 0.5s ease-in forwards;
+  --animate-vrotate-x: rotate-x 0.5s ease-in forwards;
+  --animate-vfade-left: vfade-left 0.5s ease-in forwards;
+
+  @keyframes from-left {
+    0% {
+      transform: translate(0vw);
+    }
+    100% {
+      transform: translate(100vw);
+    }
+  }
+
+  @keyframes vfrom-left {
+    0% {
+      transform: translate(-100vw);
+    }
+    100% {
+      transform: translate(0vw);
+    }
+  }
+
+  @keyframes from-top {
+    0% {
+      transform: translate(0vw, -100vh);
+    }
+    100% {
+      transform: translate(0vw, 0vh);
+    }
+  }
+
+@keyframes from-right {
+    0% {
+      transform: translate(0vw);
+    }
+    100% {
+      transform: translate(-100vw);
+    }
+  }
+
+  @keyframes vfrom-right {
+    0% {
+      transform: translate(100vw);
+    }
+    100% {
+      transform: translate(0vw);
+    }
+  }
+
+  @keyframes slide-top-left {
+    0% {
+      transform: translate(-100%, -100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-top-right {
+    0% {
+      transform: translate(100%, -100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes rotate-x {
+    0%{
+      transform: rotate(0,0)
+    }100%{
+      transform: rotate(180,0)
+    }
+  }
+  
+  @keyframes vfade-left {
+    0% {
+      opacity: 0;
+      transform: translateX(2rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+.flip-card {
+  position: relative;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+  height: 100%;
+  width: 100%;
+}
+
+.flip-card:enabled .flip-card-inner {
+  transform: rotateY(180deg);
+  height: 100%;
+  width: 100%;
+}
+
+.flip-card:active .flip-card-inner {
+  transform: rotateY(180deg);
+  height: 100%;
+  width: 100%;
+}
+
+.flip-card-front, .flip-card-back {
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front{
+  z-index: 2;
+}
+
+.flip-card-back {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0; 
+  text-align: left;
+  transform: rotateY(180deg);
+}
